@@ -28,23 +28,32 @@ const Wrapper = styled("div")`
 `;
 
 export default function QuestionCard() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      // console.log(entry);
-      if (entry.isIntersecting) {
-        entry.target.classList.add("show");
-      } else {
-        entry.target.classList.remove("show");
-      }
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        // console.log(entry);
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        } else {
+          entry.target.classList.remove("show");
+        }
+      });
     });
-  });
 
-  const hiddenElements = document.querySelectorAll(".hidden");
-  hiddenElements.forEach((el) => observer.observe(el));
+    const hiddenElements = document.querySelectorAll(".hidden");
+    hiddenElements.forEach((el) => observer.observe(el));
+
+    return () => {
+      hiddenElements.forEach((el) => {
+        console.log("unobserve => ", el);
+        observer.unobserve(el);
+      });
+    };
+  }, []);
 
   return (
     <Wrapper>
-      <Typography>
+      <Typography sx={{ overflow: "hidden" }} component="div">
         <div className="text hidden">
           "나도 지구를위해, 또 내 몸을 위해 채식을 하고 싶지만 너무 어려워요"
         </div>
