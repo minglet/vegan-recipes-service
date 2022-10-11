@@ -8,10 +8,9 @@ const Wrapper = styled("div")`
   margin-left: 200px;
 
   .text {
-    font-size: 28px;
-    font-family: GangwonEdu-Bold;
-
-    
+    font-size: 25px;
+    font-family: NanumSquareRound;
+    font-weight: 1000;
   }
 `;
 

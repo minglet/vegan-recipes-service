@@ -19,7 +19,7 @@ const Wrapper = styled("div")`
   }
 
   .attraction-typo-content span {
-    font-family: "PyeongChangPeace-Light";
+    font-family: "SBAggroB";
     font-weight: 1000;
     display: inline-block;
     opacity: 0;

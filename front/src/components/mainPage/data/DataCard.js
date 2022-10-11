@@ -12,8 +12,9 @@ const Wrapper = styled("div")`
   text-align: center;
 
   .text {
-    font-size: 25px;
-    font-family: GangwonEdu-Bold;
+    font-size: 23px;
+    font-family: NanumSquareRound;
+    font-weight: 1000;
   }
 `;
 
