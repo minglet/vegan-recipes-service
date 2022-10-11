@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Typography } from "@mui/material";
 import styled from "@emotion/styled";
 
 const Wrapper = styled("div")`
   position: relative;
-  top: 263vh;
+  top: 270vh;
   margin-left: 200px;
 
   .text {
@@ -30,7 +30,7 @@ const Wrapper = styled("div")`
 export default function QuestionCard() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      console.log(entry);
+      // console.log(entry);
       if (entry.isIntersecting) {
         entry.target.classList.add("show");
       } else {
