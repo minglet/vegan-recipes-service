@@ -5,7 +5,8 @@ import styled from "@emotion/styled";
 
 const Wrapper = styled("div")`
   position: relative;
-  top: 270vh;
+  /* top: 270vh; */
+  top: 2600px;
   height: 100vh;
   display: flex;
   justify-content: center;

@@ -51,7 +51,7 @@ export default function DrawPath() {
   return (
     <Wrapper>
       <div className="drawpath-root" ref={parentRef}>
-        <svg width="1887" height="2576" viewBox="0 0 1887 2576" fill="none">
+        <svg width="1887" height="2576" viewBox="0 0 100% 100%" fill="none">
           <path
             ref={pathRef}
             className="drawpath-path"
