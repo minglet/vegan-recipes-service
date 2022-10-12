@@ -87,12 +87,19 @@ userAuthRouter.get(
 
 // Edit user info
 userAuthRouter.put(
-  "/users/:id",
+  "/users/:userId",
   login_required,
   async function (req, res, next) {
     try {
       // URI로부터 사용자 id를 추출함.
-      const user_id = req.params.id;
+      const currentUser = req.currentUserId;
+      const user_id = req.params.userId;
+
+      // 로그인한 사용자와 params로 들어온 userId가 다를 경우 에러
+      if (user_id != currentUser) {
+        throw new Error ('path paramater로 보낸 유저 id와 로그인된 유저 id 값이 달라 수정을 제한합니다.')
+      }
+
       // body data 로부터 업데이트할 사용자 정보를 추출함.
       const name = req.body.name ?? null;
       const password = req.body.password ?? null;
