@@ -16,7 +16,7 @@ import data from "./data.json";
 export default function Chart() {
   //   static demoUrl = 'https://codesandbox.io/s/stacked-bar-chart-s47i2';
 
-  // data 상위 5개 구하기
+  // data 상위 5개 구하기 알고리즘
   const _data = useMemo(() => {
     return data
       .map((it) => {
