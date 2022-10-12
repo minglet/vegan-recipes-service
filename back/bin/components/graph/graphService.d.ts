@@ -23,46 +23,19 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
-declare class userAuthService {
-    static addUser({ name, email, password }: {
-        name: string;
-        email: string;
-        password: string;
-    }): Promise<any>;
-    static getUser({ email, password }: {
-        email: string;
-        password: string;
-    }): Promise<{
-        token: string;
-        id: any;
-        email: string;
-        name: string;
-        errorMessage: any;
-    } | {
-        errorMessage: string;
-    }>;
-    static getUsers(): Promise<(import("mongoose").Document<unknown, any, {
-        name: string;
-        email: string;
-        password: string;
-        id: string;
+declare class graphService {
+    static getGraphs(): Promise<(import("mongoose").Document<unknown, any, {
+        data: {
+            type: ObjectConstructor;
+            required: true;
+        };
     }> & {
-        name: string;
-        email: string;
-        password: string;
-        id: string;
+        data: {
+            type: ObjectConstructor;
+            required: true;
+        };
     } & {
         _id: import("mongoose").Types.ObjectId;
     })[]>;
-    static setUser({ user_id, toUpdate }: {
-        user_id: string;
-        toUpdate: {
-            name?: string;
-            password?: string;
-        };
-    }): Promise<any>;
-    static getUserInfo({ user_id }: {
-        user_id: any;
-    }): Promise<any>;
 }
-export { userAuthService };
+export { graphService };

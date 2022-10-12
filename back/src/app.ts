@@ -4,6 +4,8 @@ import mongoose from "mongoose";
 import { db } from './db';
 import Logging from './lib/Logging';
 import { userAuthRouter } from "./components/users/userRouter";
+import { graphRouter } from "./components/graph/graphRouter";
+
 
 const router = express();
 
@@ -44,6 +46,7 @@ const StartServer = () => {
   });
 
   router.use(userAuthRouter);
+  router.use(graphRouter);
 
   /** Error handling */
   router.use((req, res, next)=> {
