@@ -1,5 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, PureComponent } from "react";
 import { Typography } from "@mui/material";
+
+import Chart from "./Chart";
 
 import styled from "@emotion/styled";
 
@@ -36,6 +38,8 @@ const Wrapper = styled("div")`
   }
 `;
 
+// const data = [];
+
 export default function DataCard() {
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -69,11 +73,9 @@ export default function DataCard() {
             어마어마하다는 사실, 알고 계신가요?
           </div>
         </Typography>
-        <img
-          src="https://picsum.photos/500/500"
-          alt=""
-          style={{ margin: 30 }}
-        />
+        <div style={{ width: 1000, height: 500 }}>
+          <Chart />
+        </div>
         <Typography>
           <div className="text hidden">
             고기소비가 많아지고 축산업 규모가 더욱 커지면서 우리의 하나뿐인
