@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import { db } from './db';
 import Logging from './lib/Logging';
 import { userAuthRouter } from "./components/users/userRouter";
+import { recipeRouter } from "./components/recipes/recipeRouter";
 
 const router = express();
 
@@ -44,6 +45,7 @@ const StartServer = () => {
   });
 
   router.use(userAuthRouter);
+  router.use('/recipes', recipeRouter)
 
   /** Error handling */
   router.use((req, res, next)=> {
