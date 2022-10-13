@@ -21,48 +21,17 @@
 /// <reference types="mongoose/types/utility" />
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
-/// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
-declare class userAuthService {
-    static addUser({ name, email, password }: {
-        name: string;
-        email: string;
-        password: string;
-    }): Promise<any>;
-    static getUser({ email, password }: {
-        email: string;
-        password: string;
-    }): Promise<{
-        token: string;
-        id: any;
-        email: string;
-        name: string;
-        errorMessage: any;
-    } | {
-        errorMessage: string;
-    }>;
-    static getUsers(): Promise<(import("mongoose").Document<unknown, any, {
-        name: string;
-        email: string;
-        password: string;
-        id: string;
-    }> & {
-        name: string;
-        email: string;
-        password: string;
-        id: string;
-    } & {
-        _id: import("mongoose").Types.ObjectId;
-    })[]>;
-    static setUser({ user_id, toUpdate }: {
-        user_id: string;
-        toUpdate: {
-            name?: string;
-            password?: string;
-        };
-    }): Promise<any>;
-    static getUserInfo({ user_id }: {
-        user_id: any;
-    }): Promise<any>;
-}
-export { userAuthService };
+import { Schema } from "mongoose";
+declare const GraphModel: import("mongoose").Model<{
+    data: {
+        type: ObjectConstructor;
+        required: true;
+    };
+}, {}, {}, {}, Schema<any, import("mongoose").Model<any, any, any, any, any>, {}, {}, {}, {}, "type", {
+    data: {
+        type: ObjectConstructor;
+        required: true;
+    };
+}>>;
+export { GraphModel };
