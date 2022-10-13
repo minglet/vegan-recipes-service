@@ -15,6 +15,16 @@ const Wrapper = styled("div")`
   align-items: center;
   text-align: center;
 
+  .chart-box {
+    width: 750px;
+    height: 500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
   .text {
     font-size: 23px;
     font-family: NanumSquareRound;
@@ -59,7 +69,7 @@ export default function DataCard() {
 
     return () => {
       hiddenElements.forEach((el) => {
-        console.log("unobserve => ", el);
+        // console.log("unobserve => ", el);
         observer.unobserve(el);
       });
     };
@@ -74,7 +84,7 @@ export default function DataCard() {
             어마어마하다는 사실, 알고 계신가요?
           </div>
         </Typography>
-        <div style={{ width: 1000, height: 500 }}>
+        <div className="chart-box">
           <Chart />
         </div>
         <Typography>
