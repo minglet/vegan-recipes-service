@@ -1,7 +1,7 @@
 import React from "react";
-import "./Recipe.css";
+import "./RecipeCard.css";
 
-function Recipe({ title, imageUrl, body }) {
+function RecipeCard({ title, imageUrl, body }) {
   return (
     <div className="card-container">
       <div className="image-container">
@@ -24,4 +24,4 @@ function Recipe({ title, imageUrl, body }) {
   );
 }
 
-export default Recipe;
+export default RecipeCard;
