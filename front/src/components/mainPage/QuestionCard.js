@@ -5,7 +5,7 @@ import styled from "@emotion/styled";
 const Wrapper = styled("div")`
   position: relative;
   /* top: 270vh; */
-  top: 2510px;
+  top: 2330px;
   margin-left: 200px;
 
   .text {
@@ -46,7 +46,7 @@ export default function QuestionCard() {
 
     return () => {
       hiddenElements.forEach((el) => {
-        console.log("unobserve => ", el);
+        // console.log("unobserve => ", el);
         observer.unobserve(el);
       });
     };
