@@ -1,21 +1,24 @@
 import axios from "axios";
 
-const backendPortNumber = "5001";
+const backendPortNumber = "5000";
 const serverUrl =
   "http://" + window.location.hostname + ":" + backendPortNumber + "/";
+console.log(window.location.hostname);
+console.log(serverUrl);
 
-async function get(endpoint, params = "") {
+async function get(endpoint) {
   console.log(
-    `%cGET 요청 ${serverUrl + endpoint + "/" + params}`,
+    `%cGET 요청 ${ serverUrl + endpoint }`,
     "color: #a25cd1;"
   );
 
-  return axios.get(serverUrl + endpoint + "/" + params, {
-
-    headers: {
-      Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
-    },
-  });
+  return axios.get(serverUrl + endpoint //, 
+    // {
+    // headers: {
+    //   Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+    // },
+    // }
+  );
 }
 
 async function post(endpoint, data) {
@@ -25,12 +28,14 @@ async function post(endpoint, data) {
   console.log(`%cPOST 요청 데이터: ${bodyData}`, "color: #296aba;");
 
 
-  return axios.post(serverUrl + endpoint, bodyData, {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
-    },
-  });
+  return axios.post(serverUrl + endpoint, bodyData //,
+    // {
+    // headers: {
+    //   "Content-Type": "application/json",
+    //   Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+    // },
+    // }
+  );
 }
 
 async function put(endpoint, data) {
@@ -39,13 +44,14 @@ async function put(endpoint, data) {
   console.log(`%cPUT 요청: ${serverUrl + endpoint}`, "color: #059c4b;");
   console.log(`%cPUT 요청 데이터: ${bodyData}`, "color: #059c4b;");
 
-
-  return axios.put(serverUrl + endpoint, bodyData, {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
-    },
-  });
+  return axios.put(serverUrl + endpoint, bodyData//, 
+    // {
+    // headers: {
+    //   "Content-Type": "application/json",
+    //   Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+    // },
+    // }
+  );
 }
 
 async function del(endpoint, params = "") {
