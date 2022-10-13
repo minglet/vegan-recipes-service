@@ -5,7 +5,7 @@ import "./main.css";
 import styled from "@emotion/styled";
 
 const Wrapper = styled("div")`
-  height: 80vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
