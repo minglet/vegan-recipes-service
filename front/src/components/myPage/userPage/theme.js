@@ -1,9 +1,0 @@
-import { createTheme, colors } from "@mui/material";
-
-const theme = createTheme({
-  palette: {
-    secomdary: {
-      main: colors.orange[500],
-    },
-  },
-});
