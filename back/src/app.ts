@@ -5,6 +5,7 @@ import { db } from './db';
 import Logging from './lib/Logging';
 import { userAuthRouter } from "./components/users/userRouter";
 import { recipeRouter } from "./components/recipes/recipeRouter";
+import { graphRouter } from "./components/graphs/graphRouter";
 
 const router = express();
 
@@ -45,7 +46,8 @@ const StartServer = () => {
   });
 
   router.use(userAuthRouter);
-  router.use('/recipes', recipeRouter)
+  router.use('/recipes', recipeRouter);
+  router.use(graphRouter);
 
   /** Error handling */
   router.use((req, res, next)=> {

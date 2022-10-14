@@ -61,14 +61,17 @@ userAuthRouter.get("/user/current", login_required_1.login_required, async funct
         next(error);
     }
 });
-userAuthRouter.put("/users/:id", login_required_1.login_required, async function (req, res, next) {
-    var _a, _b, _c;
+userAuthRouter.put("/users/:userId", login_required_1.login_required, async function (req, res, next) {
+    var _a, _b;
     try {
-        const user_id = req.params.id;
+        const currentUser = req.currentUserId;
+        const user_id = req.params.userId;
+        if (user_id != currentUser) {
+            throw new Error('path paramater로 보낸 유저 id와 로그인된 유저 id 값이 달라 수정을 제한합니다.');
+        }
         const name = (_a = req.body.name) !== null && _a !== void 0 ? _a : null;
-        const email = (_b = req.body.email) !== null && _b !== void 0 ? _b : null;
-        const password = (_c = req.body.password) !== null && _c !== void 0 ? _c : null;
-        const toUpdate = { name, email, password };
+        const password = (_b = req.body.password) !== null && _b !== void 0 ? _b : null;
+        const toUpdate = { name, password };
         const updatedUser = await userService_1.userAuthService.setUser({ user_id, toUpdate });
         if (updatedUser.errorMessage) {
             throw new Error(updatedUser.errorMessage);

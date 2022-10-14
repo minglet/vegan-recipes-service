@@ -64,7 +64,7 @@ class userAuthService {
         }
         if (toUpdate.password) {
             const fieldToUpdate = "password";
-            const newValue = bcryptjs_1.default.hash(toUpdate.password, 10);
+            const newValue = await bcryptjs_1.default.hash(toUpdate.password, 10);
             user = await userModel_1.User.update({ user_id, fieldToUpdate, newValue });
         }
         return user;
