@@ -4,17 +4,16 @@ import styled from "@emotion/styled";
 
 const Wrapper = styled("div")`
   .start-btn {
-    color: #000;
     font-size: 60px;
     font-family: NanumSquareRound;
     font-weight: 1000;
-
+    /* color: #cccccc; */
     margin: 60px;
     padding: 20px;
     /* border: 2px solid #cccccc;
     border-radius: 20px; */
 
-    background-image: linear-gradient(to right, #4483ad, #4483ad 50%, #000 50%);
+    background-image: linear-gradient(to right, #000, #000 50%, #cccccc 50%);
     background-size: 200% 100%;
     background-position: -100%;
     display: inline-block;
@@ -27,7 +26,7 @@ const Wrapper = styled("div")`
 
   .start-btn:before {
     content: "";
-    background: #4483ad;
+    background: #000;
     display: block;
     position: absolute;
     bottom: -3px;
@@ -50,7 +49,9 @@ const Wrapper = styled("div")`
 export default function StartBtn() {
   return (
     <Wrapper>
-      <p className="start-btn">시작하기</p>
+      <p className="start-btn" style={{ color: "#cccccc" }}>
+        시작하기
+      </p>
     </Wrapper>
   );
 }
