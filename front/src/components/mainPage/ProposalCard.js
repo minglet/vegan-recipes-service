@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link, Typography } from "@mui/material";
-import Button from "@mui/material/Button";
+import StartBtn from "./StartBtn";
 import styled from "@emotion/styled";
 
 const Wrapper = styled("div")`
   position: relative;
-  top: 270vh;
+  /* top: 270vh; */
+  top: 2600px;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -30,18 +31,6 @@ const Wrapper = styled("div")`
     filter: blur(0);
     transform: translateY(0);
   }
-
-  .start-btn {
-    color: #000;
-    font-size: 23px;
-    font-family: NanumSquareRound;
-    font-weight: 1000;
-
-    margin: 60px;
-    padding: 20px;
-    border: 2px solid #cccccc;
-    border-radius: 20px;
-  }
 `;
 
 export default function ProposalCard() {
@@ -62,7 +51,7 @@ export default function ProposalCard() {
 
     return () => {
       hiddenElements.forEach((el) => {
-        console.log("unobserve => ", el);
+        // console.log("unobserve => ", el);
         observer.unobserve(el);
       });
     };
@@ -81,8 +70,8 @@ export default function ProposalCard() {
           </div>
           <div className="text">일단 냉장고에 있는 재료들로 시작해볼까요?</div>
         </Typography>
-        {/* <FontAwesomeIcon icon="fa-light fa-earth-asia" /> */}
-        <p className="start-btn">시작하기</p>
+
+        <StartBtn />
       </div>
     </Wrapper>
   );

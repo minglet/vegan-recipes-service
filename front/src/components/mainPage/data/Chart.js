@@ -1,4 +1,4 @@
-import React, { PureComponent, useMemo } from "react";
+import React, { PureComponent, useState, useMemo, useEffect } from "react";
 import {
   BarChart,
   Bar,
@@ -11,12 +11,19 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+import * as Api from "../../../api";
 import data from "./data.json";
 
-export default function Chart() {
-  //   static demoUrl = 'https://codesandbox.io/s/stacked-bar-chart-s47i2';
+// console.log(data);
 
-  // data 상위 5개 구하기 알고리즘
+export default function Chart() {
+  const [graph, setgraph] = useState([]);
+  useEffect(() => {
+    Api.get("graphs").then((res) => setgraph(res.data));
+  }, []);
+  // console.log(graph);
+
+  // data 상위 7개 구하기 알고리즘
   const _data = useMemo(() => {
     return data
       .map((it) => {
@@ -34,10 +41,8 @@ export default function Chart() {
       .sort((a1, a2) => {
         return a2.totalCount - a1.totalCount;
       })
-      .filter((_, index) => index < 5);
+      .filter((_, index) => index < 7);
   }, [data]);
-
-  //   console.log(_data);
 
   return (
     <ResponsiveContainer width="100%" height="100%">
@@ -52,24 +57,39 @@ export default function Chart() {
           bottom: 5,
         }}
       >
-        <CartesianGrid strokeDasharray="3 3" />
+        <CartesianGrid strokeDasharray="15 0" />
         <XAxis dataKey="Food product" />
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="Land Use Change" stackId="a" fill="#8884d8" />
-        <Bar dataKey="Feed" stackId="a" fill="#82ca9d" />
-        <Bar dataKey="Farm" stackId="a" fill="#8884d8" />
-        <Bar dataKey="Processing" stackId="a" fill="#82ca9d" />
-        <Bar dataKey="Transport" stackId="a" fill="#8884d8" />
-        <Bar dataKey="Packaging" stackId="a" fill="#82ca9d" />
-        <Bar dataKey="Retail" stackId="a" fill="#8884d8" />
-        <Bar dataKey="Total from Land to Retail" stackId="a" fill="#82ca9d" />
         <Bar
-          dataKey="Total Global Average GHG Emissions per kg"
+          name="토지 이용"
+          dataKey="Land Use Change"
           stackId="a"
           fill="#8884d8"
         />
+        <Bar
+          name="농장 및 사료"
+          dataKey="Farm and Feed"
+          stackId="a"
+          fill="#82ca9d"
+        />
+        {/* <Bar dataKey="Farm" stackId="a" fill="#8884d8" /> */}
+        <Bar name="처리" dataKey="Processing" stackId="a" fill="#82ca9d" />
+        <Bar name="운송" dataKey="Transport" stackId="a" fill="#8884d8" />
+        <Bar name="포장" dataKey="Packaging" stackId="a" fill="#82ca9d" />
+        <Bar name="소매" dataKey="Retail" stackId="a" fill="#8884d8" />
+        <Bar
+          name="토지부터 소매 총액"
+          dataKey="Total from Land to Retail"
+          stackId="a"
+          fill="#82ca9d"
+        />
+        {/* <Bar
+          dataKey="Total Global Average GHG Emissions per kg"
+          stackId="a"
+          fill="#8884d8"
+        /> */}
       </BarChart>
     </ResponsiveContainer>
   );
