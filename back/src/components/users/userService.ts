@@ -77,7 +77,7 @@ class userAuthService {
 
   /** Edit user info */
   static async setUser({ user_id, toUpdate }:
-    {user_id: string, toUpdate: {name?: string, password?: string}}) {
+    {user_id: string, toUpdate: {name: string, email: string, password: string}}) {
     // 우선 해당 id 의 유저가 db에 존재하는지 여부 확인
     let user :any = await User.findById({ user_id });
 
@@ -89,7 +89,7 @@ class userAuthService {
     }
 
     // 업데이트 대상에 name이 있다면, 즉 name 값이 null 이 아니라면 업데이트 진행
-    if (toUpdate.name) {
+    if (toUpdate.name ) {
       const fieldToUpdate = "name";
       const newValue = toUpdate.name;
       user = await User.update({ user_id, fieldToUpdate, newValue });

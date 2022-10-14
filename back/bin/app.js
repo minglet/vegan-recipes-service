@@ -9,7 +9,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const db_1 = require("./db");
 const Logging_1 = __importDefault(require("./lib/Logging"));
 const userRouter_1 = require("./components/users/userRouter");
-const graphRouter_1 = require("./components/graph/graphRouter");
+const recipeRouter_1 = require("./components/recipes/recipeRouter");
 const router = (0, express_1.default)();
 mongoose_1.default
     .connect(db_1.db.mongo.url, { retryWrites: true, w: 'majority' })
@@ -36,7 +36,7 @@ const StartServer = () => {
         res.send("하루한끼 서비스 API 입니다.");
     });
     router.use(userRouter_1.userAuthRouter);
-    router.use(graphRouter_1.graphRouter);
+    router.use('/recipes', recipeRouter_1.recipeRouter);
     router.use((req, res, next) => {
         const error = new Error('not found');
         Logging_1.default.error(error);

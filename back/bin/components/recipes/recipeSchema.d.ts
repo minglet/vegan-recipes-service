@@ -23,15 +23,15 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { Schema } from "mongoose";
-declare const GraphModel: import("mongoose").Model<{
-    data: {
-        type: ObjectConstructor;
-        required: true;
-    };
+declare const RecipeModel: import("mongoose").Model<{
+    title: string;
+    ingredients: string;
+    preparation: string;
+    img_url: string;
 }, {}, {}, {}, Schema<any, import("mongoose").Model<any, any, any, any, any>, {}, {}, {}, {}, "type", {
-    data: {
-        type: ObjectConstructor;
-        required: true;
-    };
+    title: string;
+    ingredients: string;
+    preparation: string;
+    img_url: string;
 }>>;
-export { GraphModel };
+export { RecipeModel };

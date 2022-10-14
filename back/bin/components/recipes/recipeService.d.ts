@@ -23,19 +23,22 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
-declare class graphService {
-    static getGraphs(): Promise<(import("mongoose").Document<unknown, any, {
-        data: {
-            type: ObjectConstructor;
-            required: true;
-        };
+declare class recipeService {
+    static getRecipes(): Promise<(import("mongoose").Document<unknown, any, {
+        title: string;
+        ingredients: string;
+        preparation: string;
+        img_url: string;
     }> & {
-        data: {
-            type: ObjectConstructor;
-            required: true;
-        };
+        title: string;
+        ingredients: string;
+        preparation: string;
+        img_url: string;
     } & {
         _id: import("mongoose").Types.ObjectId;
     })[]>;
+    static getRecipeInfo({ recipe_id }: {
+        recipe_id: any;
+    }): Promise<any>;
 }
-export { graphService };
+export { recipeService };

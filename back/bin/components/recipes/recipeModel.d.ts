@@ -23,19 +23,34 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
-declare class Graph {
-    static findAll(): Promise<(import("mongoose").Document<unknown, any, {
-        data: {
-            type: ObjectConstructor;
-            required: true;
-        };
+declare class Recipe {
+    static findById({ recipe_id }: {
+        recipe_id: string;
+    }): Promise<import("mongoose").Document<unknown, any, {
+        title: string;
+        ingredients: string;
+        preparation: string;
+        img_url: string;
     }> & {
-        data: {
-            type: ObjectConstructor;
-            required: true;
-        };
+        title: string;
+        ingredients: string;
+        preparation: string;
+        img_url: string;
+    } & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    static findAll(): Promise<(import("mongoose").Document<unknown, any, {
+        title: string;
+        ingredients: string;
+        preparation: string;
+        img_url: string;
+    }> & {
+        title: string;
+        ingredients: string;
+        preparation: string;
+        img_url: string;
     } & {
         _id: import("mongoose").Types.ObjectId;
     })[]>;
 }
-export { Graph };
+export { Recipe };
