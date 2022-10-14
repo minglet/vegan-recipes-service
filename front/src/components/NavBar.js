@@ -2,6 +2,7 @@ import React from "react";
 import Nav from "react-bootstrap/Nav";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 
+
 export default function NavBar() {
   const navigate = useNavigate();
   const location = useLocation();
