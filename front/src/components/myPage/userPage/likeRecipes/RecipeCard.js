@@ -19,7 +19,7 @@ const Wrapper = styled("div")`
   margin: 10px;
   .like-recipe-container {
     padding: 20px 70px 60px 70px;
-    border: 1px solid #cccccc;
+    border: 2px solid #cccccc;
     border-radius: 50px;
     /* box-shadow: 5px 2px 15px #cccccc; */
   }
@@ -65,8 +65,16 @@ export default function RecipeCard() {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button size="small">보러가기</Button>
-                  <Button size="small">삭제</Button>
+                  <Grid xs="6">
+                    <Button size="small" color="inherit">
+                      보러가기
+                    </Button>
+                  </Grid>
+                  <Grid xs="6">
+                    <Button size="small" color="inherit">
+                      삭제
+                    </Button>
+                  </Grid>
                 </CardActions>
               </Card>
             </Grid>

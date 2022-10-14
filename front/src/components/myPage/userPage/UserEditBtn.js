@@ -18,7 +18,7 @@ const Wrapper = styled("div")`
 export default function UserEditBtn() {
   return (
     <Wrapper>
-      <Button className="user-edit-btn" variant="outlined">
+      <Button className="user-edit-btn" variant="outlined" color="inherit">
         회원정보 수정
       </Button>
     </Wrapper>
