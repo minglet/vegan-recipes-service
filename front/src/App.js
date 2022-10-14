@@ -7,8 +7,8 @@ function App() {
   return (
     <div>
       <NavBar />
-      <UserPage />
-      {/* <Main /> */}
+      {/* <UserPage /> */}
+      <Main />
     </div>
   );
 }
