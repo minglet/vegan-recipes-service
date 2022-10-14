@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import styled from "@emotion/styled";
 
@@ -49,9 +50,9 @@ const Wrapper = styled("div")`
 export default function StartBtn() {
   return (
     <Wrapper>
-      <p className="start-btn" style={{ color: "#cccccc" }}>
+      <Link to="#" className="start-btn">
         시작하기
-      </p>
+      </Link>
     </Wrapper>
   );
 }
