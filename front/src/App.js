@@ -1,14 +1,13 @@
-import RecipeCard from "./components/service/RecipeCard";
-
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ServiceRecipes from "./components/service/ServiceRecipes";
 function App() {
   return (
-    <div>
-      <RecipeCard
-        title="Recipe Name"
-        imageUrl="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-        body="This recipe is...."
-      />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/recipes" element={<ServiceRecipes />} />
+        <Route path="/recipes/current/:recipeId" element={<ServiceRecipes />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
