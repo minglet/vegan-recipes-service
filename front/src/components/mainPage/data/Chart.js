@@ -55,24 +55,35 @@ export default function Chart() {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="Food product" />
-        <YAxis />
+        <XAxis dataKey="Food product" name="" />
+        <YAxis domain={["auto", "auto"]} />
         <Tooltip />
         <Legend />
-
-        <Bar dataKey="Land Use Change" stackId="a" fill="#8884d8" />
-        <Bar dataKey="Farm and Feed" stackId="a" fill="#82ca9d" />
-        {/* <Bar dataKey="Farm" stackId="a" fill="#8884d8" /> */}
-        <Bar name="처리" dataKey="Processing" stackId="a" fill="#82ca9d" />
-        <Bar name="운송" dataKey="Transport" stackId="a" fill="#8884d8" />
-        <Bar name="포장" dataKey="Packaging" stackId="a" fill="#82ca9d" />
-        <Bar name="소매" dataKey="Retail" stackId="a" fill="#8884d8" />
         <Bar
           name="토지부터 소매 총액"
           dataKey="Total from Land to Retail"
           stackId="a"
           fill="#82ca9d"
         />
+        <Bar
+          name="농장 및 사료"
+          dataKey="Farm and Feed"
+          stackId="a"
+          fill="#8884d8"
+        />
+        <Bar
+          name="토지 이용"
+          dataKey="Land Use Change"
+          stackId="a"
+          fill="#82ca9d"
+        />
+
+        {/* <Bar dataKey="Farm" stackId="a" fill="#8884d8" /> */}
+        <Bar name="처리" dataKey="Processing" stackId="a" fill="#8884d8" />
+        <Bar name="운송" dataKey="Transport" stackId="a" fill="#82ca9d" />
+        <Bar name="포장" dataKey="Packaging" stackId="a" fill="#8884d8" />
+        <Bar name="소매" dataKey="Retail" stackId="a" fill="#82ca9d" />
+
         {/* <Bar
           dataKey="Total Global Average GHG Emissions per kg"
           stackId="a"
