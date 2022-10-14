@@ -57,8 +57,9 @@ declare class userAuthService {
     static setUser({ user_id, toUpdate }: {
         user_id: string;
         toUpdate: {
-            name?: string;
-            password?: string;
+            name: string;
+            email: string;
+            password: string;
         };
     }): Promise<any>;
     static getUserInfo({ user_id }: {
