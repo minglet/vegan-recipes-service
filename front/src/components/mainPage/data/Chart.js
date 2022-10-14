@@ -14,7 +14,8 @@ import {
 import * as Api from "../../../api";
 
 export default function Chart() {
-
+  
+  // graph 그리는 json data 불러오는 알고리즘
   const [graph, setgraph] = useState([])
   useEffect(() => { 
     Api.get("graphs").then((res) => setgraph(res.data));
