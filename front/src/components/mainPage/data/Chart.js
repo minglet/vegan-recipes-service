@@ -12,25 +12,23 @@ import {
 } from "recharts";
 
 import * as Api from "../../../api";
-import data from "./data.json";
-
-// console.log(data);
 
 export default function Chart() {
+  // graph 그리는 json data 불러오는 알고리즘
   const [graph, setgraph] = useState([]);
   useEffect(() => {
     Api.get("graphs").then((res) => setgraph(res.data));
   }, []);
-  // console.log(graph);
 
   // data 상위 7개 구하기 알고리즘
   const _data = useMemo(() => {
-    return data
+    return graph
       .map((it) => {
         let totalCount = 0;
         Object.keys(it).forEach((t2) => {
-          if (typeof it[t2] === "number") {
-            totalCount = totalCount + it[t2];
+          const numCheck = Number(it[t2]);
+          if (typeof numCheck === "number" && !isNaN(numCheck)) {
+            totalCount = totalCount + numCheck;
           }
         });
         return {
@@ -42,8 +40,7 @@ export default function Chart() {
         return a2.totalCount - a1.totalCount;
       })
       .filter((_, index) => index < 7);
-  }, [data]);
-
+  }, [graph]);
   return (
     <ResponsiveContainer width="100%" height="100%">
       <BarChart
@@ -57,23 +54,14 @@ export default function Chart() {
           bottom: 5,
         }}
       >
-        <CartesianGrid strokeDasharray="15 0" />
+        <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="Food product" />
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar
-          name="토지 이용"
-          dataKey="Land Use Change"
-          stackId="a"
-          fill="#8884d8"
-        />
-        <Bar
-          name="농장 및 사료"
-          dataKey="Farm and Feed"
-          stackId="a"
-          fill="#82ca9d"
-        />
+
+        <Bar dataKey="Land Use Change" stackId="a" fill="#8884d8" />
+        <Bar dataKey="Farm and Feed" stackId="a" fill="#82ca9d" />
         {/* <Bar dataKey="Farm" stackId="a" fill="#8884d8" /> */}
         <Bar name="처리" dataKey="Processing" stackId="a" fill="#82ca9d" />
         <Bar name="운송" dataKey="Transport" stackId="a" fill="#8884d8" />
