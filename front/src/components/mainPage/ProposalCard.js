@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link, Typography } from "@mui/material";
 import StartBtn from "./StartBtn";
 import styled from "@emotion/styled";
+import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 
 const Wrapper = styled("div")`
   position: relative;
@@ -34,28 +35,7 @@ const Wrapper = styled("div")`
 `;
 
 export default function ProposalCard() {
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        // console.log(entry);
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show");
-        } else {
-          entry.target.classList.remove("show");
-        }
-      });
-    });
-
-    const hiddenElements = document.querySelectorAll(".hidden");
-    hiddenElements.forEach((el) => observer.observe(el));
-
-    return () => {
-      hiddenElements.forEach((el) => {
-        // console.log("unobserve => ", el);
-        observer.unobserve(el);
-      });
-    };
-  }, []);
+  useIntersectionObserver();
 
   return (
     <Wrapper>

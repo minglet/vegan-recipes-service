@@ -1,13 +1,13 @@
-import React, { useEffect, PureComponent } from "react";
+import React from "react";
 import { Typography } from "@mui/material";
 
-import Chart from "./Chart";
+import Chart from "../../Chart";
+import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 
 import styled from "@emotion/styled";
 
 const Wrapper = styled("div")`
   position: absolute;
-  /* top: 180vh; */
   top: 1700px;
   left: 80px;
   display: flex;
@@ -49,31 +49,8 @@ const Wrapper = styled("div")`
   }
 `;
 
-// const data = [];
-
 export default function DataCard() {
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        // console.log(entry);
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show");
-        } else {
-          entry.target.classList.remove("show");
-        }
-      });
-    });
-
-    const hiddenElements = document.querySelectorAll(".hidden");
-    hiddenElements.forEach((el) => observer.observe(el));
-
-    return () => {
-      hiddenElements.forEach((el) => {
-        // console.log("unobserve => ", el);
-        observer.unobserve(el);
-      });
-    };
-  }, []);
+  useIntersectionObserver();
 
   return (
     <Wrapper>

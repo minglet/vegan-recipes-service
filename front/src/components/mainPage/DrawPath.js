@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import useScrollEffect from "./hooks/useScrollEffect";
+import useScrollEffect from "../../hooks/useScrollEffect";
 import styled from "@emotion/styled";
 
 const Wrapper = styled("div")`
@@ -39,14 +39,6 @@ export default function DrawPath() {
   useScrollEffect(() => {
     scrollHandler();
   });
-
-  //   useEffect(() => {
-  //     window.addEventListener("scroll", scrollHandler);
-
-  //     return () => {
-  //       window.removeEventListener("scroll", scrollHandler);
-  //     };
-  //   }, []);
 
   return (
     <Wrapper>

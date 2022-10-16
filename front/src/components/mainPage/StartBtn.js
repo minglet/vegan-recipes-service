@@ -8,11 +8,8 @@ const Wrapper = styled("div")`
     font-size: 60px;
     font-family: NanumSquareRound;
     font-weight: 1000;
-    /* color: #cccccc; */
     margin: 60px;
     padding: 20px;
-    /* border: 2px solid #cccccc;
-    border-radius: 20px; */
 
     background-image: linear-gradient(to right, #000, #000 50%, #cccccc 50%);
     background-size: 200% 100%;
