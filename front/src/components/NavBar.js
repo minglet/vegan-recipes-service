@@ -95,13 +95,13 @@ export default function NavBar() {
           <Button variant="text" component={Link} to="#">
             Team
           </Button>
-          <Button variant="text" component={Link} to="#">
+          <Button variant="text" component={Link} to="/recipes">
             Recipes
           </Button>
-          <Button variant="text" component={Link} to="/login">
+          <Button variant="text" component={Link} to="/user/login">
             SignIn
           </Button>
-          <Button variant="text" component={Link} to="/register">
+          <Button variant="text" component={Link} to="/user/register">
             SignUp
           </Button>
 
