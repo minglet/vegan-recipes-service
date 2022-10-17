@@ -1,6 +1,6 @@
 import { useLocation, useParams } from "react-router-dom";
 
-function RecipeDetail() {
+function ServiceRecipeDetail() {
   const { title } = useParams();
   const { state } = useLocation();
   return (
@@ -10,4 +10,4 @@ function RecipeDetail() {
     </div>
   );
 }
-export default RecipeDetail;
+export default ServiceRecipeDetail;

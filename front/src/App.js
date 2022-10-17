@@ -1,11 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ServiceRecipes from "./components/service/ServiceRecipes";
+import ServiceRecipeDetail from "./components/service/ServiceRecipeDetail";
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/recipes" element={<ServiceRecipes />} />
-        <Route path="/recipes/current/:recipeId" element={<ServiceRecipes />} />
+        <Route path="/recipe" element={<ServiceRecipes />} />
+        <Route path="/recipe/:title" element={<ServiceRecipeDetail />} />
       </Routes>
     </BrowserRouter>
   );

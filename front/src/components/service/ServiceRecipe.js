@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 function ServiceRecipe(props) {
   const navigate = useNavigate();
   const onClickRecipeItem = () => {
-    navigate(`/recipes/current/:${props.title}`, {
+    navigate(`/recipe/${props.title}`, {
       state: props,
     });
   };

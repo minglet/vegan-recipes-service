@@ -1,4 +1,8 @@
+import { dummy } from "../../recipeDummy";
+import ServiceRecipe from "./ServiceRecipe";
+import { Link } from "react-router-dom";
 import * as React from "react";
+import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -6,14 +10,23 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
-import Link from "@mui/material/Link";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Typography } from "@mui/material";
-import { dummy } from "../../recipeDummy";
 
-export default function ServiceRecipes() {
+function ServiceRecipes() {
   return (
-    <Container sx={{ py: 8 }} maxWidth="md">
+    /*<div>
+      <div className="app-container">
+        {dummy.results.map((item) => {
+          return (
+            <ServiceRecipe
+              title={item.title}
+              ingredients={item.ingredients}
+              img_url={item.img_url}
+            />
+          );
+        })}
+      </div>
+    </div>*/
+    <Container className="like-recipe-container" sx={{ py: 8 }} maxWidth="md">
       {/* End hero unit */}
       <Grid container spacing={4}>
         {dummy.results.map((item) => (
@@ -25,23 +38,19 @@ export default function ServiceRecipes() {
                 flexDirection: "column",
               }}
             >
-              <CardMedia
-                component="img"
-                sx={{
-                  // 16:9
-                  pt: "56.25%",
-                }}
-                img_url={item.img_url}
-                alt="random"
-              />
+              <CardMedia component="img" image={item.img_url} alt="random" />
               <CardContent sx={{ flexGrow: 1 }}>
                 <Typography gutterBottom variant="h5" component="h2">
-                  title={item.title}
+                  {/* 레시피 이름 */}
+                  {item.title}
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small">View</Button>
-                <Button size="small">Edit</Button>
+                <Grid xs="6">
+                  <Button size="small" color="inherit">
+                    <Link to={`/recipe/${item.title}`}>보러가기</Link>
+                  </Button>
+                </Grid>
               </CardActions>
             </Card>
           </Grid>
@@ -50,3 +59,5 @@ export default function ServiceRecipes() {
     </Container>
   );
 }
+
+export default ServiceRecipes;
