@@ -1,9 +1,9 @@
-import React from "react";
-
-import Image from "mui-image";
-
+import React, { useState, useEffect } from "react";
+import { Button, Grid, Stack, Typography, CardMedia } from "@mui/material";
+import { Link } from "react-scroll";
 import styled from "@emotion/styled";
-import { Button, Typography } from "@mui/material";
+
+import * as Api from "../../api";
 
 const Wrapper = styled("div")`
   text-align: center;
@@ -19,30 +19,80 @@ const Wrapper = styled("div")`
   .name-container {
     margin: 50px;
   }
+
+  .second-line-container {
+    display: flex;
+    /* flex-direction: row; */
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+    width: 700px;
+  }
+
+  .scroll-btn {
+    margin: 10px;
+  }
+
+  .ingredients-container,
+  .preparation-container {
+    margin-bottom: 1000px;
+  }
 `;
 
-function ServiceRecipeDetail() {
+export default function ServiceRecipeDetail() {
   return (
     <Wrapper>
       <div className="image-container">
-        <Image
-          src="https://picsum.photos/500/500"
-          height="500px"
-          width="500px"
+        <CardMedia
+          component="img"
+          height="auto"
+          width="600px"
+          image="https://picsum.photos/500/500"
         />
       </div>
-      <div className="name-container">
-        <Typography variant="h3">요리 이름</Typography>
+      <div className="second-line-container">
+        <div className="name-container">
+          <Typography variant="h3">title</Typography>
+        </div>
+        <div className="btn-container">
+          <Link
+            activeClass="active"
+            to="ingredients-scroll-btn"
+            spy={true}
+            smooth={true}
+          >
+            <Button
+              // id="ingredients-btn"
+              className="ingredients-scroll-btn"
+              variant="outlined"
+              size="small"
+            >
+              Ingredients
+            </Button>
+          </Link>
+          <Link
+            activeClass="active"
+            to="preparation-scroll-btn"
+            spy={true}
+            smooth={true}
+          >
+            <Button
+              className="preparation-scroll-btn"
+              variant="outlined"
+              size="small"
+            >
+              Preparation
+            </Button>
+          </Link>
+        </div>
       </div>
-      {/* <div className="btn-container">
-        <Button variant="outlined" size="small">
-          재료
-        </Button>
-        <Button variant="outlined" size="small">
-          레시피
-        </Button>
-      </div> */}
+
+      <div className="ingredients-container">
+        <Typography variant="h5">Ingredients</Typography>
+      </div>
+      <div className="preparation-container">
+        <Typography variant="h5">Preparation</Typography>
+      </div>
     </Wrapper>
   );
 }
-export default ServiceRecipeDetail;
