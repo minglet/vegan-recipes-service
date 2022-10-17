@@ -6,7 +6,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/recipe" element={<ServiceRecipes />} />
-        <Route path="/recipe/:title" element={<ServiceRecipeDetail />} />
+        <Route path="/recipe/id" element={<ServiceRecipeDetail />} />
       </Routes>
     </BrowserRouter>
   );
