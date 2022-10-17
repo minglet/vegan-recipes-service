@@ -11,7 +11,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-import * as Api from "../../../api";
+import * as Api from "../src/api";
 
 export default function Chart() {
   // graph 그리는 json data 불러오는 알고리즘
