@@ -60,29 +60,29 @@ export default function Chart() {
         <Tooltip />
         <Legend />
         <Bar
-          name="토지부터 소매 총액"
+          name="Total"
           dataKey="Total from Land to Retail"
           stackId="a"
           fill="#82ca9d"
         />
         <Bar
-          name="농장 및 사료"
+          name="Farm"
           dataKey="Farm and Feed"
           stackId="a"
           fill="#8884d8"
         />
         <Bar
-          name="토지 이용"
+          name="Land Use"
           dataKey="Land Use Change"
           stackId="a"
           fill="#82ca9d"
         />
 
         {/* <Bar dataKey="Farm" stackId="a" fill="#8884d8" /> */}
-        <Bar name="처리" dataKey="Processing" stackId="a" fill="#8884d8" />
-        <Bar name="운송" dataKey="Transport" stackId="a" fill="#82ca9d" />
-        <Bar name="포장" dataKey="Packaging" stackId="a" fill="#8884d8" />
-        <Bar name="소매" dataKey="Retail" stackId="a" fill="#82ca9d" />
+        <Bar name="Processing" dataKey="Processing" stackId="a" fill="#8884d8" />
+        <Bar name="Transport" dataKey="Transport" stackId="a" fill="#82ca9d" />
+        <Bar name="Package" dataKey="Packaging" stackId="a" fill="#8884d8" />
+        <Bar name="Retail" dataKey="Retail" stackId="a" fill="#82ca9d" />
 
         {/* <Bar
           dataKey="Total Global Average GHG Emissions per kg"
