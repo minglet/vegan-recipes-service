@@ -85,24 +85,24 @@ export default function NavBar() {
       <AppBar>
         <Toolbar>
           <Link to="/" className="logo">
-            하루한끼
+            HaruHanKki
           </Link>
 
           <Box sx={{ flexGrow: 1 }} />
-          <Button variant="text" component={Link} to="/">
+          {/* <Button variant="text" component={Link} to="/">
             소개말
+          </Button> */}
+          <Button variant="text" component={Link} to="#">
+            Team
           </Button>
           <Button variant="text" component={Link} to="#">
-            팀소개
-          </Button>
-          <Button variant="text" component={Link} to="#">
-            레시피보러가기
+            Recipes
           </Button>
           <Button variant="text" component={Link} to="/login">
-            로그인
+            SignIn
           </Button>
           <Button variant="text" component={Link} to="/register">
-            회원가입
+            SignUp
           </Button>
 
           {/* <Nav activeKey={location.pathname}>

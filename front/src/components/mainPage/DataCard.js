@@ -57,8 +57,8 @@ export default function DataCard() {
       <div>
         <Typography>
           <div className="text hidden">
-            우리가 먹는 식품들을 생산하고 유통하는데 만들어지는 온실가스량이
-            어마어마하다는 사실, 알고 계신가요?
+            Did you know that the amount of greenhouse gases we produce and
+            distribute is enormous?
           </div>
         </Typography>
         <div className="chart-box">
@@ -66,8 +66,10 @@ export default function DataCard() {
         </div>
         <Typography>
           <div className="text hidden">
-            고기소비가 많아지고 축산업 규모가 더욱 커지면서 우리의 하나뿐인
-            지구는 더더욱 생명력을 잃고있어요.
+            As meat consumption increases and the size of the livestock industry
+            increases,
+            <br />
+            our only planet is losing its vitality even more and more.
           </div>
         </Typography>
       </div>

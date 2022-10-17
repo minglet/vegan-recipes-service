@@ -48,7 +48,7 @@ export default function StartBtn() {
   return (
     <Wrapper>
       <Link to="/recipes" className="start-btn">
-        시작하기
+        Join Us?
       </Link>
     </Wrapper>
   );
