@@ -6,7 +6,7 @@ import styled from "@emotion/styled";
 const Wrapper = styled("div")`
   .start-btn {
     font-size: 60px;
-    font-family: NanumSquareRound;
+    font-family: SBAggroB;
     font-weight: 1000;
     margin: 60px;
     padding: 20px;
@@ -48,7 +48,7 @@ export default function StartBtn() {
   return (
     <Wrapper>
       <Link to="/recipes" className="start-btn">
-        시작하기
+        Join Us?
       </Link>
     </Wrapper>
   );

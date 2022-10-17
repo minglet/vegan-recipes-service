@@ -46,9 +46,11 @@ export default function ProposalCard() {
           }}
         >
           <div className="text" style={{ marginBottom: 80 }}>
-            처음부터 완전히 채식일 필요는 없어요!
+            You don't have to be completely vegetarian from the start !
           </div>
-          <div className="text">일단 냉장고에 있는 재료들로 시작해볼까요?</div>
+          <div className="text">
+            Let's start with the ingredients in the refrigerator
+          </div>
         </Typography>
 
         <StartBtn />
