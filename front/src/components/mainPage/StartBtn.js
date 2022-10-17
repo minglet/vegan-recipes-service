@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import styled from "@emotion/styled";
 
@@ -50,7 +51,7 @@ export default function StartBtn() {
   return (
     <Wrapper>
       <p className="start-btn" style={{ color: "#cccccc" }}>
-        시작하기
+        <Link to = "/recipes">Start~!</Link>
       </p>
     </Wrapper>
   );
