@@ -12,12 +12,12 @@ async function get(endpoint) {
     "color: #a25cd1;"
   );
 
-  return axios.get(serverUrl + endpoint //, 
-    // {
-    // headers: {
-    //   Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
-    // },
-    // }
+  return axios.get(serverUrl + endpoint, 
+    {
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+    },
+    }
   );
 }
 
@@ -27,14 +27,13 @@ async function post(endpoint, data) {
   console.log(`%cPOST 요청: ${serverUrl + endpoint}`, "color: #296aba;");
   console.log(`%cPOST 요청 데이터: ${bodyData}`, "color: #296aba;");
 
-
-  return axios.post(serverUrl + endpoint, bodyData //,
-    // {
-    // headers: {
-    //   "Content-Type": "application/json",
-    //   Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
-    // },
-    // }
+  return axios.post(serverUrl + endpoint, bodyData,
+    {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+    },
+    }
   );
 }
 
@@ -44,13 +43,13 @@ async function put(endpoint, data) {
   console.log(`%cPUT 요청: ${serverUrl + endpoint}`, "color: #059c4b;");
   console.log(`%cPUT 요청 데이터: ${bodyData}`, "color: #059c4b;");
 
-  return axios.put(serverUrl + endpoint, bodyData//, 
-    // {
-    // headers: {
-    //   "Content-Type": "application/json",
-    //   Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
-    // },
-    // }
+  return axios.put(serverUrl + endpoint, bodyData, 
+    {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+    },
+    }
   );
 }
 
