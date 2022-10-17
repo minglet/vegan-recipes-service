@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Grid, Stack, Typography, CardMedia } from "@mui/material";
+import { useParams } from "react-router-dom";
 import styled from "@emotion/styled";
 
 import * as Api from "../../api";
@@ -39,6 +40,17 @@ const Wrapper = styled("div")`
 `;
 
 export default function ServiceRecipeDetail() {
+  const { recipeId } = useParams();
+  const [recipes, setrecipes] = useState([]);
+
+  console.log(recipeId.image_url);
+
+  useEffect(() => {
+    if (!recipeId) return;
+    // get요청res를 setState로 !
+    Api.get("recipes").then((res) => setrecipes(recipes));
+  }, [recipeId]);
+
   return (
     <Wrapper>
       <div className="image-container">
@@ -46,7 +58,7 @@ export default function ServiceRecipeDetail() {
           component="img"
           height="auto"
           width="600px"
-          image="https://picsum.photos/500/500"
+          image={recipes.image_url}
         />
       </div>
       <div className="second-line-container">
@@ -54,30 +66,20 @@ export default function ServiceRecipeDetail() {
           <Typography variant="h3">title</Typography>
         </div>
         <div className="btn-container">
-          <Link
-            activeClass="active"
-            to="ingredients-scroll-btn"
-            spy={true}
-            smooth={true}
+          <Button
+            className="ingredients-scroll-btn"
+            variant="outlined"
+            size="small"
           >
-            <Button
-              // id="ingredients-btn"
-              className="ingredients-scroll-btn"
-              variant="outlined"
-              size="small"
-            >
-              Ingredients
-            </Button>
-          </Link>
-          <Link>
-            <Button
-              className="preparation-scroll-btn"
-              variant="outlined"
-              size="small"
-            >
-              Preparation
-            </Button>
-          </Link>
+            Ingredients
+          </Button>
+          <Button
+            className="preparation-scroll-btn"
+            variant="outlined"
+            size="small"
+          >
+            Preparation
+          </Button>
         </div>
       </div>
 
