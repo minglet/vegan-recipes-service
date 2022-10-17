@@ -86,7 +86,7 @@ function ServiceRecipes() {
 
       <footer>
         <Pagination
-          total={dummy.results.length}
+          total={recipes.length}
           limit={limit}
           page={page}
           setPage={setPage}

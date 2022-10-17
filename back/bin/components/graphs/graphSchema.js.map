@@ -1,1 +1,0 @@
-{"version":3,"file":"graphSchema.js","sourceRoot":"","sources":["../../../src/components/graphs/graphSchema.ts"],"names":[],"mappings":";;;AAAA,uCAAyC;AAEzC,MAAM,WAAW,GAAG,IAAI,iBAAM,CAC5B;IACE,IAAI,EAAE,EAAE,IAAI,EAAE,MAAM,EAAE,QAAQ,EAAE,IAAI,EAAE;CACvC,EACD;IACE,UAAU,EAAE,IAAI;CACjB,CACF,CAAC;AAEF,MAAM,UAAU,GAAG,IAAA,gBAAK,EAAC,OAAO,EAAE,WAAW,CAAC,CAAC;AAEtC,gCAAU"}
