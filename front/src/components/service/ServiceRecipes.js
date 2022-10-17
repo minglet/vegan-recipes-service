@@ -18,7 +18,6 @@ import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container";
 
 function ServiceRecipes() {
-
   const [recipes, setrecipes] = useState([]);
   useEffect(() => {
     Api.get("recipes").then((res) => setrecipes(res.data));
@@ -75,7 +74,7 @@ function ServiceRecipes() {
               <CardActions>
                 <Grid xs="6">
                   <Button size="small" color="inherit">
-                    <Link to={`/recipe/${item.title}`}>보러가기</Link>
+                    <Link to={`/recipes/current/${item._id}`}>보러가기</Link>
                   </Button>
                 </Grid>
               </CardActions>

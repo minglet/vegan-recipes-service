@@ -11,7 +11,6 @@ async function get(endpoint, params = "") {
   );
 
   return axios.get(serverUrl + endpoint + "/" + params, {
-
     headers: {
       Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
     },
@@ -19,11 +18,9 @@ async function get(endpoint, params = "") {
 }
 
 async function post(endpoint, data) {
-
   const bodyData = JSON.stringify(data);
   console.log(`%cPOST 요청: ${serverUrl + endpoint}`, "color: #296aba;");
   console.log(`%cPOST 요청 데이터: ${bodyData}`, "color: #296aba;");
-
 
   return axios.post(serverUrl + endpoint, bodyData, {
     headers: {
@@ -34,11 +31,9 @@ async function post(endpoint, data) {
 }
 
 async function put(endpoint, data) {
-
   const bodyData = JSON.stringify(data);
   console.log(`%cPUT 요청: ${serverUrl + endpoint}`, "color: #059c4b;");
   console.log(`%cPUT 요청 데이터: ${bodyData}`, "color: #059c4b;");
-
 
   return axios.put(serverUrl + endpoint, bodyData, {
     headers: {
@@ -49,10 +44,8 @@ async function put(endpoint, data) {
 }
 
 async function del(endpoint, params = "") {
-
   console.log(`DELETE 요청 ${serverUrl + endpoint + "/" + params}`);
-  
-  
+
   return axios.delete(serverUrl + endpoint + "/" + params, {
     headers: {
       Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
