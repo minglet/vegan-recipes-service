@@ -1,9 +1,11 @@
-import { dummy } from "../../recipeDummy";
+import Pagination from "./Pagination";
+
+import React, { useState, useMemo, useEffect } from "react";
+import * as Api from "../../api";
+
 import ServiceRecipe from "./ServiceRecipe";
 import { Link } from "react-router-dom";
-import * as React from "react";
-import { useState } from "react";
-import Pagination from "./Pagination";
+
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
@@ -16,6 +18,12 @@ import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container";
 
 function ServiceRecipes() {
+
+  const [recipes, setrecipes] = useState([]);
+  useEffect(() => {
+    Api.get("recipes").then((res) => setrecipes(res.data));
+  }, []);
+
   const [limit, setLimit] = useState(4);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
@@ -48,7 +56,7 @@ function ServiceRecipes() {
       </Box>
       {/* End hero unit */}
       <Grid container spacing={4}>
-        {dummy.results.slice(offset, offset + limit).map((item) => (
+        {recipes.slice(offset, offset + limit).map((item) => (
           <Grid item key={item} xs={12} sm={6} md={4}>
             <Card
               sx={{
@@ -75,6 +83,7 @@ function ServiceRecipes() {
           </Grid>
         ))}
       </Grid>
+
       <footer>
         <Pagination
           total={dummy.results.length}
