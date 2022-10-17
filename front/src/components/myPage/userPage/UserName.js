@@ -17,11 +17,11 @@ const Wrapper = styled("div")`
 `;
 
 export default function UserName() {
-  const userName = "이사장";
+  const userName = "HaruHanKki Fan";
   return (
     <Wrapper>
       <Typography className="user" variant="h2">
-        {userName}님
+        {userName}
       </Typography>
     </Wrapper>
   );

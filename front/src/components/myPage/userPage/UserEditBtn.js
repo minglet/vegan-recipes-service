@@ -19,7 +19,7 @@ export default function UserEditBtn() {
   return (
     <Wrapper>
       <Button className="user-edit-btn" variant="outlined" color="inherit">
-        회원정보 수정
+        edit profile
       </Button>
     </Wrapper>
   );

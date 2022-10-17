@@ -39,9 +39,7 @@ export default function RecipeCard() {
   return (
     <Wrapper>
       <Container className="like-recipe-container" sx={{ py: 8 }} maxWidth="md">
-        <Typography className="like-recipe-text">
-          내가 좋아하는 레시피
-        </Typography>
+        <Typography className="like-recipe-text">My favorite recipe</Typography>
         {/* End hero unit */}
         <Grid container spacing={4}>
           {cards.map((card) => (
@@ -61,18 +59,18 @@ export default function RecipeCard() {
                 <CardContent sx={{ flexGrow: 1 }}>
                   <Typography gutterBottom variant="h5" component="h2">
                     {/* 레시피 이름 */}
-                    요리이름
+                    TITLE
                   </Typography>
                 </CardContent>
                 <CardActions>
                   <Grid xs="6">
                     <Button size="small" color="inherit">
-                      보러가기
+                      VIEW
                     </Button>
                   </Grid>
                   <Grid xs="6">
                     <Button size="small" color="inherit">
-                      삭제
+                      DELETE
                     </Button>
                   </Grid>
                 </CardActions>
