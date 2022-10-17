@@ -55,18 +55,18 @@ export default function Chart() {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="Food product" name="" />
+        <XAxis dataKey="Food product" />
         <YAxis domain={["auto", "auto"]} />
         <Tooltip />
         <Legend />
-        <Bar dataKey="Total from Land to Retail" stackId="a" fill="#82ca9d" />
-        <Bar dataKey="Farm and Feed" stackId="a" fill="#8884d8" />
-        <Bar dataKey="Land Use Change" stackId="a" fill="#82ca9d" />
+        <Bar dataKey="Total from Land to Retail" stackId="a" fill="#37474f" />
+        <Bar dataKey="Farm and Feed" stackId="a" fill="#455a64" />
+        <Bar dataKey="Land Use Change" stackId="a" fill="#546e7a" />
 
-        <Bar dataKey="Processing" stackId="a" fill="#8884d8" />
-        <Bar dataKey="Transport" stackId="a" fill="#82ca9d" />
-        <Bar dataKey="Packaging" stackId="a" fill="#8884d8" />
-        <Bar dataKey="Retail" stackId="a" fill="#82ca9d" />
+        <Bar dataKey="Processing" stackId="a" fill="#607d8b" />
+        <Bar dataKey="Transport" stackId="a" fill="#78909c" />
+        <Bar dataKey="Packaging" stackId="a" fill="#90a4ae" />
+        <Bar dataKey="Retail" stackId="a" fill="#b0bec5" />
       </BarChart>
     </ResponsiveContainer>
   );

@@ -46,7 +46,7 @@ export default function ProposalCard() {
           }}
         >
           <div className="text" style={{ marginBottom: 80 }}>
-            You don't have to be completely vegetarian from the start!
+            You don't have to be completely vegetarian from the start !
           </div>
           <div className="text">
             Let's start with the ingredients in the refrigerator
