@@ -95,13 +95,13 @@ export default function NavBar() {
           <Button variant="text" component={Link} to="#">
             팀소개
           </Button>
-          <Button variant="text" component={Link} to="#">
+          <Button variant="text" component={Link} to="/recipes">
             레시피보러가기
           </Button>
-          <Button variant="text" component={Link} to="/login">
+          <Button variant="text" component={Link} to="/user/login">
             로그인
           </Button>
-          <Button variant="text" component={Link} to="/register">
+          <Button variant="text" component={Link} to="/user/register">
             회원가입
           </Button>
 
