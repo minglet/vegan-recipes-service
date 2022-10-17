@@ -47,7 +47,7 @@ const Wrapper = styled("div")`
 export default function StartBtn() {
   return (
     <Wrapper>
-      <Link to="#" className="start-btn">
+      <Link to="/recipes" className="start-btn">
         시작하기
       </Link>
     </Wrapper>
