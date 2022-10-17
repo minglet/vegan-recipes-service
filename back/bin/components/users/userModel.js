@@ -4,20 +4,16 @@ exports.User = void 0;
 const userSchema_1 = require("./userSchema");
 class User {
     static async create({ newUser }) {
-        const createdNewUser = await userSchema_1.UserModel.create(newUser);
-        return createdNewUser;
+        return await userSchema_1.UserModel.create(newUser);
     }
     static async findByEmail({ email }) {
-        const user = await userSchema_1.UserModel.findOne({ email });
-        return user;
+        return await userSchema_1.UserModel.findOne({ email });
     }
     static async findById({ user_id }) {
-        const user = await userSchema_1.UserModel.findOne({ id: user_id });
-        return user;
+        return await userSchema_1.UserModel.findOne({ id: user_id });
     }
     static async findAll() {
-        const users = await userSchema_1.UserModel.find({});
-        return users;
+        return await userSchema_1.UserModel.find({});
     }
     static async update({ user_id, fieldToUpdate, newValue }) {
         const filter = { id: user_id };

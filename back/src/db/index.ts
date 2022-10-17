@@ -1,16 +1,15 @@
-import dotenv from 'dotenv';
+import Logging from "../lib/Logging";
+import mongoose from "mongoose";
 
-dotenv.config();
-
-const MONGODB_URL = "mongodb+srv://minglet:als9531213@cluster0.zi6ygoe.mongodb.net/";
-
-const SERVER_PORT = process.env.SERVER_PORT ? Number(process.env.SERVER_PORT) : 1337;
-
-export const db = {
-    mongo: {
-        url: MONGODB_URL
-    },
-    server: {
-        port: SERVER_PORT
-    }
-};
+export default async (dbUrl: string) => {
+    mongoose
+      .connect(dbUrl, { retryWrites: true, w: "majority" })
+      .then(() => {
+        Logging.info("Connected to MongoDB!!");
+      })
+      .catch((err) => {
+        Logging.error("Unable to connect: ");
+        Logging.error(err);
+      });
+  };
+  

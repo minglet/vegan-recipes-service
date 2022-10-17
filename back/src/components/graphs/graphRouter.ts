@@ -5,8 +5,7 @@ const graphRouter = Router();
 
 graphRouter.get("/graphs", async (req, res, next) => {
   try {
-    const graphs = await graphService.getGraphs();
-    res.status(200).json(graphs);
+    res.status(200).json(await graphService.getGraphs());
   } catch(err) {
       next(err);
   }

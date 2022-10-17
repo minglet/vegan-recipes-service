@@ -71,8 +71,7 @@ class userAuthService {
 
   /** Get all users */
   static async getUsers() {
-    const users = await User.findAll();
-    return users;
+    return await User.findAll();
   }
 
   /** Edit user info */

@@ -23,7 +23,7 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
-declare class recipeService {
+export declare class recipeService {
     static getRecipes(): Promise<(import("mongoose").Document<unknown, any, {
         title: string;
         ingredients: string;
@@ -37,8 +37,5 @@ declare class recipeService {
     } & {
         _id: import("mongoose").Types.ObjectId;
     })[]>;
-    static getRecipeInfo({ recipe_id }: {
-        recipe_id: any;
-    }): Promise<any>;
+    static getRecipeInfo(recipe_id: string): Promise<any>;
 }
-export { recipeService };

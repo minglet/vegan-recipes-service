@@ -7,8 +7,7 @@ const recipeRouter = (0, express_1.Router)();
 exports.recipeRouter = recipeRouter;
 recipeRouter.get("/", async function (req, res, next) {
     try {
-        const recipes = await recipeService_1.recipeService.getRecipes();
-        res.status(200).send(recipes);
+        res.status(200).send(await recipeService_1.recipeService.getRecipes());
     }
     catch (error) {
         next(error);
@@ -16,14 +15,9 @@ recipeRouter.get("/", async function (req, res, next) {
 });
 recipeRouter.get("/current/:recipeId", async function (req, res, next) {
     try {
-        const recipe_id = req.params.recipeId;
-        const currentRecipeInfo = await recipeService_1.recipeService.getRecipeInfo({
-            recipe_id,
-        });
-        if (currentRecipeInfo.errorMessage) {
-            throw new Error(currentRecipeInfo.errorMessage);
-        }
-        res.status(200).send(currentRecipeInfo);
+        res
+            .status(200)
+            .send(await recipeService_1.recipeService.getRecipeInfo(req.params.recipeId));
     }
     catch (error) {
         next(error);

@@ -48,8 +48,7 @@ class userAuthService {
         return loginUser;
     }
     static async getUsers() {
-        const users = await userModel_1.User.findAll();
-        return users;
+        return await userModel_1.User.findAll();
     }
     static async setUser({ user_id, toUpdate }) {
         let user = await userModel_1.User.findById({ user_id });

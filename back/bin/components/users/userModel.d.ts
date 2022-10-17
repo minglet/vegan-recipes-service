@@ -25,58 +25,58 @@
 /// <reference types="mongoose/types/inferschematype" />
 declare class User {
     static create({ newUser }: any): Promise<import("mongoose").Document<unknown, any, {
+        id: string;
         name: string;
         email: string;
         password: string;
-        id: string;
     }> & {
+        id: string;
         name: string;
         email: string;
         password: string;
-        id: string;
     } & {
         _id: import("mongoose").Types.ObjectId;
     }>;
     static findByEmail({ email }: {
         email: string;
     }): Promise<import("mongoose").Document<unknown, any, {
+        id: string;
         name: string;
         email: string;
         password: string;
-        id: string;
     }> & {
+        id: string;
         name: string;
         email: string;
         password: string;
-        id: string;
     } & {
         _id: import("mongoose").Types.ObjectId;
     }>;
     static findById({ user_id }: {
         user_id: string;
     }): Promise<import("mongoose").Document<unknown, any, {
+        id: string;
         name: string;
         email: string;
         password: string;
-        id: string;
     }> & {
+        id: string;
         name: string;
         email: string;
         password: string;
-        id: string;
     } & {
         _id: import("mongoose").Types.ObjectId;
     }>;
     static findAll(): Promise<(import("mongoose").Document<unknown, any, {
+        id: string;
         name: string;
         email: string;
         password: string;
-        id: string;
     }> & {
+        id: string;
         name: string;
         email: string;
         password: string;
-        id: string;
     } & {
         _id: import("mongoose").Types.ObjectId;
     })[]>;
@@ -85,15 +85,15 @@ declare class User {
         fieldToUpdate: string;
         newValue: any;
     }): Promise<import("mongoose").Document<unknown, any, {
+        id: string;
         name: string;
         email: string;
         password: string;
-        id: string;
     }> & {
+        id: string;
         name: string;
         email: string;
         password: string;
-        id: string;
     } & {
         _id: import("mongoose").Types.ObjectId;
     }>;
