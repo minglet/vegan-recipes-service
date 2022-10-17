@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Button, Grid, Stack, Typography, CardMedia } from "@mui/material";
-import { Link } from "react-scroll";
 import styled from "@emotion/styled";
 
 import * as Api from "../../api";
@@ -70,12 +69,7 @@ export default function ServiceRecipeDetail() {
               Ingredients
             </Button>
           </Link>
-          <Link
-            activeClass="active"
-            to="preparation-scroll-btn"
-            spy={true}
-            smooth={true}
-          >
+          <Link>
             <Button
               className="preparation-scroll-btn"
               variant="outlined"
