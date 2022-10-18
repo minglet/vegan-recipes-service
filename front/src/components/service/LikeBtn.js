@@ -12,6 +12,13 @@ const Wrapper = styled("div")`
     border: none;
     cursor: pointer;
   }
+
+  .recommend-container {
+    position: fixed;
+    top: 10vh;
+    right: 155px;
+    display: block;
+  }
 `;
 
 export default function LikeBtn() {
@@ -24,7 +31,7 @@ export default function LikeBtn() {
   // console.log("userState.user : ", userState.user);
   // userId가 뜨네 ..
 
-  const handleClick = (e) => {
+  const handleClick = () => {
     if (!isLogin) {
       // 로그인이 안되어있을 때 작동
       alert("You can save your favorite recipe when you log in!");
@@ -40,26 +47,11 @@ export default function LikeBtn() {
 
     // 데이터 현재 데이터 다시 로드 (결과 가 제대로 처리 됬는지 여부를 판단하기 위해...)
   };
-  console.log("isLiked :", isLiked);
-
-  /*
-    로그인 상태에서 좋아요를 누르면 -> 마이페이지에 내가 좋아한 레시피가 뜸
-    좋아요를 누르면 새로고침해도 좋아요인 상태로 있어야겠지 ?
-
-    만약에 isLogin !== null 인 상태에서 isLiked가 true가 된다면 ?
-    그 페이지에 있는 레시피카드를 myPage에 갖고오는것 !
-
-    그리고 로그인이 되어있지 않은 상태에서 좋아요를 누르면
-    alert로 "로그인시 좋아하는 레시피를 저장할 수 있어요!" 를 띄우고
-    다음에할게요랑 로그인하러 가기 버튼
-    if (isLogin === null) {
-      alert("로그인 시 좋아하는 레시피를 저장할 수 있어요!")
-    }
-  */
+  // console.log("isLiked :", isLiked);
 
   return (
     <Wrapper>
-      {isLiked ? <Recommend /> : <div></div>}
+      <div className="recommend-container">{isLiked && <Recommend />}</div>
       <Button
         className="button"
         onClick={() => {

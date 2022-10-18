@@ -37,13 +37,6 @@ const Wrapper = styled("div")`
   .preparation-container {
     margin-bottom: 100px;
   }
-
-  .recommend-container {
-    position: fixed;
-    top: 10vh;
-    right: 155px;
-    display: block;
-  }
 `;
 
 export default function ServiceRecipeDetail() {
@@ -79,9 +72,6 @@ export default function ServiceRecipeDetail() {
       <div className="preparation-container">
         <Typography variant="h5">Preparation</Typography>
         <Typography>{recipes.preparation}</Typography>
-      </div>
-      <div className="recommend-container">
-        <Recommend />
       </div>
     </Wrapper>
   );
