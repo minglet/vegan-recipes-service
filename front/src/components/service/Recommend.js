@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
 import styled from "@emotion/styled";
+import { Paper } from "@mui/material";
 
 const Wrapper = styled("div")`
   /* position: fixed; */
