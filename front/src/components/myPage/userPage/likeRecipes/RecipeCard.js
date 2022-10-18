@@ -8,6 +8,8 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
+import * as Api from "../../../../api";
+
 import styled from "@emotion/styled";
 
 const Wrapper = styled("div")`
@@ -33,8 +35,10 @@ const Wrapper = styled("div")`
 `;
 
 export default function RecipeCard() {
-  // 여기에 좋아하는 레시피 목록을 넣으면 되나?
-  const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const [recipes, setrecipes] = useState([]);
+  useEffect(() => {
+    Api.get("recipes").then((res) => setrecipes(res.data));
+  }, []);
 
   return (
     <Wrapper>
@@ -42,8 +46,8 @@ export default function RecipeCard() {
         <Typography className="like-recipe-text">My favorite recipe</Typography>
         {/* End hero unit */}
         <Grid container spacing={4}>
-          {cards.map((card) => (
-            <Grid item key={card} xs={12} sm={6} md={4}>
+          {recipes.map((item) => (
+            <Grid item key={item} xs={12} sm={6} md={4}>
               <Card
                 sx={{
                   height: "100%",
@@ -53,13 +57,13 @@ export default function RecipeCard() {
               >
                 <CardMedia
                   component="img"
-                  image="https://picsum.photos/300/300"
-                  alt="random"
+                  image={item.img_url}
+                  height="250px"
                 />
                 <CardContent sx={{ flexGrow: 1 }}>
                   <Typography gutterBottom variant="h5" component="h2">
                     {/* 레시피 이름 */}
-                    TITLE
+                    {item.title}
                   </Typography>
                 </CardContent>
                 <CardActions>
