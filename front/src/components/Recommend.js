@@ -18,20 +18,7 @@ const Wrapper = styled("div")`
   text-align: center;
   align-items: center;
   margin: 10px;
-
-  .like-recipe-container {
-    padding: 20px 70px 60px 70px;
-    border: 2px solid #cccccc;
-    border-radius: 50px;
-    box-shadow: 5px 2px 15px #cccccc;
-  }
-
-  .like-recipe-text {
-    display: inline-block;
-    background-color: #ffffff;
-    transform: translate(-300px, -32px);
-    padding: 0 10px 0 10px;
-  }
+  width: 200px;
 `;
 
 export default function Recommend() {
@@ -40,7 +27,8 @@ export default function Recommend() {
 
   return (
     <Wrapper>
-      <Grid item key={cards} xs={12} sm={6} md={4}>
+      <Grid item key={cards}>
+        <Typography>How about this recipe?</Typography>
         <Card
           sx={{
             height: "100%",

@@ -36,8 +36,10 @@ const Wrapper = styled("div")`
   }
 
   .recommend-container {
-    display: flex;
-    flex-direction: row-reverse;
+    position: fixed;
+    top: 10vh;
+    right: 155px;
+    display: block;
   }
 `;
 
