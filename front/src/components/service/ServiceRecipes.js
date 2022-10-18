@@ -1,9 +1,8 @@
 import Pagination from "./Pagination";
 
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import * as Api from "../../api";
 
-import ServiceRecipe from "./ServiceRecipe";
 import { Link } from "react-router-dom";
 
 import Typography from "@mui/material/Typography";
@@ -18,12 +17,12 @@ import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container";
 
 function ServiceRecipes() {
-  const [recipes, setrecipes] = useState([]);
+  const [recipes, setRecipes] = useState([]);
   useEffect(() => {
-    Api.get("recipes").then((res) => setrecipes(res.data));
+    Api.get("recipes").then((res) => setRecipes(res.data));
   }, []);
 
-  const [limit, setLimit] = useState(6);
+  const limit = 6;
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
   return (
