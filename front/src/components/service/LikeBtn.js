@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import { Button } from "@mui/material";
 import * as Api from "../../api";
 import { createRoutesFromChildren } from "react-router-dom";
+import Recommend from "./Recommend";
 
 const Wrapper = styled("div")`
   .button {
@@ -14,15 +15,16 @@ const Wrapper = styled("div")`
 `;
 
 export default function LikeBtn() {
+  // like 버튼
   const [isLiked, setIsLiked] = useState(false);
 
   const userState = useContext(UserStateContext);
 
   const isLogin = !!userState.user;
-  console.log("userState.user : ", userState.user);
+  // console.log("userState.user : ", userState.user);
   // userId가 뜨네 ..
 
-  const onClick = () => {
+  const handleClick = (e) => {
     if (!isLogin) {
       // 로그인이 안되어있을 때 작동
       alert("You can save your favorite recipe when you log in!");
@@ -38,7 +40,7 @@ export default function LikeBtn() {
 
     // 데이터 현재 데이터 다시 로드 (결과 가 제대로 처리 됬는지 여부를 판단하기 위해...)
   };
-  console.log(isLiked);
+  console.log("isLiked :", isLiked);
 
   /*
     로그인 상태에서 좋아요를 누르면 -> 마이페이지에 내가 좋아한 레시피가 뜸
@@ -57,11 +59,11 @@ export default function LikeBtn() {
 
   return (
     <Wrapper>
+      {isLiked ? <Recommend /> : <div></div>}
       <Button
         className="button"
         onClick={() => {
-          // onClickLike();
-          onClick();
+          handleClick();
         }}
       >
         {isLiked ? (
