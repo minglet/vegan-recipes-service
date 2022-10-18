@@ -23,7 +23,7 @@ function ServiceRecipes() {
     Api.get("recipes").then((res) => setrecipes(res.data));
   }, []);
 
-  const [limit, setLimit] = useState(4);
+  const [limit, setLimit] = useState(6);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
   return (
