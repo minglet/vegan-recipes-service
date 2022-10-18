@@ -15,7 +15,7 @@ import LoginPage from "./components/user/LoginPage";
 import RegisterPage from "./components/user/RegisterPage";
 import UserEditPage from "./components/myPage/userEditPage/UserEditPage";
 // import Search from "./components/service/Search";
-// import teamPage from "./components/user/TeamPage";
+import TeamPage from "./components/TeamPage/TeamPage";
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -74,7 +74,7 @@ function App() {
             <Route path="/UserEditPage" element={<UserEditPage />} />
             <Route path="/user/login" element={<LoginPage />} />
             <Route path="/user/register" element={<RegisterPage />} />
-            {/* <Route path="/user/teamPage" element={<TeamPage/>} /> */}
+            <Route path="/team" element={<TeamPage />} />
           </Routes>
         </Router>
       </UserStateContext.Provider>
