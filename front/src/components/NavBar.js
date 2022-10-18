@@ -102,7 +102,7 @@ export default function NavBar() {
           </Link>
 
           <Box sx={{ flexGrow: 1 }} />
-          <Button variant="text" component={Link} to="#">
+          <Button variant="text" component={Link} to="/team">
             Team
           </Button>
           <Button variant="text" component={Link} to="/recipes">
