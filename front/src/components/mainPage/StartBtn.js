@@ -48,7 +48,7 @@ export default function StartBtn() {
   return (
     <Wrapper>
       <Link to="/recipes" className="start-btn">
-        Join Us?
+        Get Started?
       </Link>
     </Wrapper>
   );

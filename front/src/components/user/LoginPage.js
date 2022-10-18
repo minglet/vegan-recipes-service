@@ -13,11 +13,12 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
 import * as Api from "../../api";
-// import { DispatchContext } from "../../App";
+import { DispatchContext } from "../../App";
 
 function LoginPage(){
 
   const navigate = useNavigate();
+  const dispatch = useContext(DispatchContext);
 
   // useState로 email 상태를 생성함.
   const [email, setEmail] = useState("");
@@ -39,6 +40,7 @@ function LoginPage(){
   const isPasswordValid = password.length >= 4;
   // 이메일과 비밀번호 조건이 동시에 만족되는지 확인함.
   const isFormValid = isEmailValid && isPasswordValid;
+  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -57,13 +59,13 @@ function LoginPage(){
             // sessionStorage에 "userToken"이라는 키로 JWT 토큰을 저장함.
             sessionStorage.setItem("userToken", jwtToken);
             // dispatch 함수를 이용해 로그인 성공 상태로 만듦.
-            // dispatch({
-            //   type: "LOGIN_SUCCESS",
-            //   payload: user,
-            // });
+            dispatch({
+              type: "LOGIN_SUCCESS",
+              payload: user,
+            });
       
             // 기본 페이지로 이동함.
-            navigate("/mainPage", { replace: true });
+            navigate("/", { replace: true });
           } catch (err) {
             console.log("로그인에 실패하였습니다.\n", err);
           }
@@ -117,7 +119,7 @@ function LoginPage(){
               /> 
                   {!isEmailValid && (
                     <Form.Text className="text-success">
-                      이메일 형식이 올바르지 않습니다.
+                      Please check the email right.
                     </Form.Text>
                   )}
               <TextField
@@ -134,7 +136,7 @@ function LoginPage(){
               /> 
                   {!isPasswordValid && (
                     <Form.Text className="text-success">
-                      비밀번호는 4글자 이상입니다.
+                      Password is same as or more than 4 letters.
                     </Form.Text>
                   )}
               

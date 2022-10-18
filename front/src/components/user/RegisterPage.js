@@ -50,12 +50,13 @@ export default function RegisterPage() {
   // 위 4개 조건이 모두 동시에 만족되는지 여부를 확인함.
   const isFormValid =
     isEmailValid && isPasswordValid && isPasswordSame && isNameValid;
-
+  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
+      
       // "user/register" 엔드포인트로 post요청함.
       await Api.post("user/register", {
         // id,
@@ -63,9 +64,10 @@ export default function RegisterPage() {
         name,
         password,
       });
-
+      
       // 로그인 페이지로 이동함.
-      navigate("/user/login");
+      navigate("/");
+      
     } catch (err) {
       console.log("회원가입에 실패하였습니다.", err);
     }
@@ -122,7 +124,7 @@ export default function RegisterPage() {
             />
               {!isEmailValid && (
                 <Form.Text className="text-success">
-                  이메일 형식이 올바르지 않습니다.
+                  Please check the email right.
                 </Form.Text>
               )}
             <TextField
@@ -139,7 +141,7 @@ export default function RegisterPage() {
             />
               {!isNameValid && (
                 <Form.Text className="text-success">
-                  이름은 2글자 이상으로 설정해 주세요.
+                  Name should be same as or more than 2 letters.
                 </Form.Text>
               )}
             <TextField
@@ -156,7 +158,7 @@ export default function RegisterPage() {
             />
               {!isPasswordValid && (
                 <Form.Text className="text-success">
-                  비밀번호는 4글자 이상으로 설정해 주세요.
+                  Same as or More than 4 Letters. 
                 </Form.Text>
               )}
             <TextField
@@ -173,7 +175,7 @@ export default function RegisterPage() {
             />
               {!isPasswordSame && (
                 <Form.Text className="text-success">
-                  비밀번호가 일치하지 않습니다.
+                  Please check the password one more.
                 </Form.Text>
               )}
             

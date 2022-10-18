@@ -1,5 +1,5 @@
-import * as React from "react";
-import PropTypes from "prop-types";
+import React, { useContext } from "react";
+// import PropTypes from "prop-types";
 import MuiAppBar from "@mui/material/AppBar";
 import {
   Box,
@@ -7,13 +7,15 @@ import {
   createTheme,
   ThemeProvider,
   Toolbar,
-  Typography,
+  // Typography,
 } from "@mui/material";
 import { deepmerge } from "@mui/utils";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 // import Nav from "react-bootstrap/Nav";
 import styled from "@emotion/styled";
 import theme from "../theme";
+
+import { UserStateContext, DispatchContext } from "../App";
 
 const AppBar = styled(MuiAppBar)`
   /* height: 80px;
@@ -74,44 +76,56 @@ const navBarTheme = createTheme({
 
 export default function NavBar() {
   const navigate = useNavigate();
-  const location = useLocation();
-  console.log(location.pathname);
-  console.log(window.location.hostname);
-  const serverUrl = "http://" + window.location.hostname + ":" + "3000" + "/";
-  console.log(serverUrl);
+
+  const userState = useContext(UserStateContext);
+  const dispatch = useContext(DispatchContext);
+
+  // 전역상태에서 user가 null이 아니라면 로그인 성공 상태임.
+  const isLogin = !!userState.user;
+
+  // 로그아웃 클릭 시 실행되는 함수
+  const logout = () => {
+    // sessionStorage 에 저장했던 JWT 토큰을 삭제함.
+    sessionStorage.removeItem("userToken");
+    // dispatch 함수를 이용해 로그아웃함.
+    dispatch({ type: "LOGOUT" });
+    // 기본 페이지로 돌아감.
+    navigate("/");
+  };
 
   return (
     <ThemeProvider theme={deepmerge(theme, navBarTheme)}>
       <AppBar>
         <Toolbar>
           <Link to="/" className="logo">
-            HaruHanKki
+            Just One Meal
           </Link>
 
           <Box sx={{ flexGrow: 1 }} />
-          {/* <Button variant="text" component={Link} to="/">
-            소개말
-          </Button> */}
           <Button variant="text" component={Link} to="#">
             Team
           </Button>
           <Button variant="text" component={Link} to="/recipes">
             Recipes
           </Button>
-          <Button variant="text" component={Link} to="/user/login">
-            SignIn
-          </Button>
-          <Button variant="text" component={Link} to="/user/register">
-            SignUp
-          </Button>
-
-          {/* <Nav activeKey={location.pathname}>
-              {/* <Nav.Link onClick={() => navigate("/register")}>회원가입</Nav.Link> */}
-
-          {/* <p style={{ padding: 10 }}>로그인</p> */}
-          {/* <Nav.Link style={{ padding: 10 }} onClick={() => navigate("/login")}>로그인</Nav.Link> */}
-          {/* <p style={{ padding: 10 }}>회원가입</p> */}
-          {/* </Nav> */}
+          {isLogin ? (
+            <Button variant="text" onClick={logout}>
+              Logout
+            </Button>
+          ) : (
+            <Button variant="text" component={Link} to="/user/login">
+              Login
+            </Button>
+          )}
+          {isLogin ? (
+            <Button variant="text" component={Link} to="/userPage">
+              My Page
+            </Button>
+          ) : (
+            <Button variant="text" component={Link} to="/user/register">
+              Register
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </ThemeProvider>
