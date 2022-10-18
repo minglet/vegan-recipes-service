@@ -64,7 +64,12 @@ function ServiceRecipes() {
                 flexDirection: "column",
               }}
             >
-              <CardMedia component="img" image={item.img_url} alt="random" />
+              <CardMedia
+                component="img"
+                image={item.img_url}
+                alt="random"
+                height="250px"
+              />
               <CardContent sx={{ flexGrow: 1 }}>
                 <Typography gutterBottom variant="h5" component="h2">
                   {/* 레시피 이름 */}

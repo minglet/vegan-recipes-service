@@ -4,6 +4,8 @@ import { loginReducer } from "./reducer";
 
 import React, { useState, useEffect, useReducer, createContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "@mui/material";
+import theme from "./theme";
 
 import NavBar from "./components/NavBar";
 import Main from "./components/mainPage/Main";
@@ -59,26 +61,28 @@ function App() {
     return "loading...";
   }
   return (
-    <DispatchContext.Provider value={dispatch}>
-      <UserStateContext.Provider value={userState}>
-        <Router>
-          <NavBar />
-          <Routes>
-            <Route path="/" element={<Main />} />
-            <Route path="/recipes" element={<Recipes />} />
-            <Route
-              path="/recipes/current/:recipeId"
-              element={<ServiceRecipeDetail />}
-            />
-            <Route path="/UserPage" element={<UserPage />} />
-            <Route path="/UserEditPage" element={<UserEditPage />} />
-            <Route path="/user/login" element={<LoginPage />} />
-            <Route path="/user/register" element={<RegisterPage />} />
-            {/* <Route path="/user/teamPage" element={<TeamPage/>} /> */}
-          </Routes>
-        </Router>
-      </UserStateContext.Provider>
-    </DispatchContext.Provider>
+    <ThemeProvider theme={theme}>
+      <DispatchContext.Provider value={dispatch}>
+        <UserStateContext.Provider value={userState}>
+          <Router>
+            <NavBar />
+            <Routes>
+              <Route path="/" element={<Main />} />
+              <Route path="/recipes" element={<Recipes />} />
+              <Route
+                path="/recipes/current/:recipeId"
+                element={<ServiceRecipeDetail />}
+              />
+              <Route path="/UserPage" element={<UserPage />} />
+              <Route path="/UserEditPage" element={<UserEditPage />} />
+              <Route path="/user/login" element={<LoginPage />} />
+              <Route path="/user/register" element={<RegisterPage />} />
+              {/* <Route path="/user/teamPage" element={<TeamPage/>} /> */}
+            </Routes>
+          </Router>
+        </UserStateContext.Provider>
+      </DispatchContext.Provider>
+    </ThemeProvider>
   );
 }
 
