@@ -4,7 +4,7 @@ import { loginReducer } from "./reducer";
 
 import React, { useState, useEffect, useReducer, createContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ThemeProvider } from "@mui/material";
+import { Box, CircularProgress, ThemeProvider } from "@mui/material";
 import theme from "./theme";
 
 import NavBar from "./components/NavBar";
@@ -58,8 +58,9 @@ function App() {
   }, []);
 
   if (!isFetchCompleted) {
-    return "loading...";
+    return null;
   }
+
   return (
     <ThemeProvider theme={theme}>
       <DispatchContext.Provider value={dispatch}>
