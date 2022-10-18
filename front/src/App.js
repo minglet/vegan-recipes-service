@@ -70,8 +70,8 @@ function App() {
               path="/recipes/current/:recipeId"
               element={<ServiceRecipeDetail />}
             />
-            <Route path="/UserPage" element={<UserPage />} />
-            <Route path="/UserEditPage" element={<UserEditPage />} />
+            <Route path="/userPage" element={<UserPage />} />
+            <Route path="/userEditPage" element={<UserEditPage />} />
             <Route path="/user/login" element={<LoginPage />} />
             <Route path="/user/register" element={<RegisterPage />} />
             {/* <Route path="/user/teamPage" element={<TeamPage/>} /> */}
