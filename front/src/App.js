@@ -10,10 +10,11 @@ import Main from "./components/mainPage/Main";
 import UserPage from "./components/myPage/userPage/UserPage";
 import Recipes from "./components/service/ServiceRecipes";
 // import myPage from "./components/myPage/userPage/likeRecipes/Recipes";
+import ServiceRecipeDetail from "./components/service/ServiceRecipeDetail";
 import LoginPage from "./components/user/LoginPage";
 import RegisterPage from "./components/user/RegisterPage";
 import UserEditPage from "./components/myPage/userEditPage/UserEditPage";
-import Search from "./components/service/Search";
+// import Search from "./components/service/Search";
 // import teamPage from "./components/user/TeamPage";
 
 export const UserStateContext = createContext(null);
@@ -65,6 +66,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/recipes" element={<Recipes />} />
+            <Route
+              path="/recipes/current/:recipeId"
+              element={<ServiceRecipeDetail />}
+            />
             <Route path="/UserPage" element={<UserPage />} />
             <Route path="/UserEditPage" element={<UserEditPage />} />
             <Route path="/user/login" element={<LoginPage />} />
