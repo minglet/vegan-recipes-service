@@ -21,11 +21,14 @@ const Wrapper = styled("div")`
 
   .second-line-container {
     display: flex;
-    /* flex-direction: row; */
+    flex-direction: column;
     text-align: center;
     align-items: center;
-    justify-content: space-between;
     width: 50%;
+    /* margin: 30px; */
+  }
+
+  .like-btn-container {
     margin: 30px;
   }
 

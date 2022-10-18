@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -69,7 +70,7 @@ export default function RecipeCard() {
                 <CardActions>
                   <Grid xs="6">
                     <Button size="small" color="inherit">
-                      VIEW
+                      <Link to={`/recipes/current/${item._id}`}>VIEW</Link>
                     </Button>
                   </Grid>
                   <Grid xs="6">
