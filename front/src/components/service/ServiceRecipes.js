@@ -4,6 +4,7 @@ import React, { useState, useMemo, useEffect } from "react";
 import * as Api from "../../api";
 
 import ServiceRecipe from "./ServiceRecipe";
+import Search from "../service/Search"
 import { Link } from "react-router-dom";
 
 import Typography from "@mui/material/Typography";
@@ -16,44 +17,37 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container";
+import TextField from '@mui/material/TextField';
+import IconButton from '@mui/material/IconButton';
+import SearchIcon from '@mui/icons-material/Search';
 
 function ServiceRecipes() {
-  const [recipes, setrecipes] = useState([]);
+  const [recipes, setRecipes] = useState([]);
+  const [keyword, setKeyword] = useState("beetroot");
+
   useEffect(() => {
-    Api.get("recipes").then((res) => setrecipes(res.data));
+    Api.get("recipes").then((res) => setRecipes(res.data));
   }, []);
+
+  // const test = ["Mike", "Jenny", "Aim"].filter(item => item.includes("e"))
+  // console.log(test);
+  
+  if (keyword.length > 0) {
+      // console.log(keyword, recipes.slice(0, 3));
+      const newRecipes 
+            = recipes.filter((item) => item.ingredients.includes(keyword))  
+      console.log(newRecipes);  
+      setRecipes(newRecipes);
+      // setKeyword("");
+  }
+  // setKeyword("");
+  console.log(recipes);
 
   const [limit, setLimit] = useState(4);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
   return (
     <Container className="like-recipe-container" sx={{ py: 8 }} maxWidth="md">
-      <Box
-        sx={{
-          bgcolor: "background.paper",
-          pt: 8,
-          pb: 6,
-        }}
-      >
-        <Container maxWidth="sm">
-          <Typography
-            component="h1"
-            variant="h2"
-            align="center"
-            color="text.primary"
-            gutterBottom
-          >
-            Vegan Recipes
-          </Typography>
-          <Stack
-            sx={{ pt: 4 }}
-            direction="row"
-            spacing={2}
-            justifyContent="center"
-          ></Stack>
-        </Container>
-      </Box>
-      {/* End hero unit */}
       <Grid container spacing={4}>
         {recipes.slice(offset, offset + limit).map((item) => (
           <Grid item key={item} xs={12} sm={6} md={4}>

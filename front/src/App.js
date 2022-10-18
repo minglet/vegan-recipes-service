@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Main from "./components/mainPage/Main";
 import UserPage from "./components/myPage/userPage/UserPage";
-import Recipes from "./components/service/ServiceRecipes";
+import Recipes from "./components/service/RecipePage";
 // import myPage from "./components/myPage/userPage/likeRecipes/Recipes";
 import ServiceRecipeDetail from "./components/service/ServiceRecipeDetail";
 import LoginPage from "./components/user/LoginPage";
