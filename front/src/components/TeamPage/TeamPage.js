@@ -1,13 +1,11 @@
 import * as React from "react";
+import styled from "@emotion/styled";
 import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
-import styled from "@emotion/styled";
-import IconButton from "@mui/material/IconButton";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import EmailIcon from "@mui/icons-material/Email";
 import hd from "../../img/hd.png";
 import ma from "../../img/ma.png";
 import hj from "../../img/hj.png";
@@ -18,29 +16,26 @@ const Wrapper = styled("div")`
   display: flex;
   align-items: center;
   text-align: center;
+  /* top: 300px; */
+
+  .card-container {
+    top: 300px;
+  }
 `;
 
 export default function TeamPage() {
   return (
     <Wrapper>
-      <Card sx={{ maxWidth: 345 }}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="300"
-            image={jh}
-            alt="green iguana"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              JI HYE
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              <IconButton aria-label="GitHubIcon"></IconButton>
-              <IconButton aria-label="EmailIcon"></IconButton>
-            </Typography>
-          </CardContent>
-        </CardActionArea>
+      <Card className="card-container" sx={{ width: 300, height: 600 }}>
+        <CardMedia component="img" alt="green iguana" height="140" image={hd} />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            Lizzie
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            2_2wisdom
+          </Typography>
+        </CardContent>
       </Card>
     </Wrapper>
   );
