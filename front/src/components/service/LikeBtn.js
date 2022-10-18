@@ -16,21 +16,36 @@ const Wrapper = styled("div")`
 export default function LikeBtn() {
   const [isLiked, setIsLiked] = useState(false);
 
-  const onClick = () => {
-    if (isLogin !== null) {
-      setIsLiked(!isLiked);
-    } else alert("You can save your favorite recipe when you log in!");
-  };
-  console.log(isLiked);
   const userState = useContext(UserStateContext);
 
-  const isLogin = userState.user;
+  const isLogin = !!userState.user;
   console.log("userState.user : ", userState.user);
   // userId가 뜨네 ..
+
+  const onClick = () => {
+    if (!isLogin) {
+      // 로그인이 안되어있을 때 작동
+      alert("You can save your favorite recipe when you log in!");
+      return;
+    }
+
+    setIsLiked((pre) => !pre);
+    if (!isLiked) {
+      // 조아용 API 호출
+    } else {
+      // 안좋아용 API 호출
+    }
+
+    // 데이터 현재 데이터 다시 로드 (결과 가 제대로 처리 됬는지 여부를 판단하기 위해...)
+  };
+  console.log(isLiked);
 
   /*
     로그인 상태에서 좋아요를 누르면 -> 마이페이지에 내가 좋아한 레시피가 뜸
     좋아요를 누르면 새로고침해도 좋아요인 상태로 있어야겠지 ?
+
+    만약에 isLogin !== null 인 상태에서 isLiked가 true가 된다면 ?
+    그 페이지에 있는 레시피카드를 myPage에 갖고오는것 !
 
     그리고 로그인이 되어있지 않은 상태에서 좋아요를 누르면
     alert로 "로그인시 좋아하는 레시피를 저장할 수 있어요!" 를 띄우고
