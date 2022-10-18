@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Button, Grid, Stack, Typography, CardMedia } from "@mui/material";
+import {
+  Button,
+  Grid,
+  Stack,
+  Typography,
+  CardMedia,
+  Container,
+} from "@mui/material";
 import { useParams } from "react-router-dom";
 import LikeBtn from "./LikeBtn";
 import Recommend from "./Recommend";
@@ -7,7 +14,7 @@ import styled from "@emotion/styled";
 
 import * as Api from "../../api";
 
-const Wrapper = styled("div")`
+const Wrapper = styled(Container)`
   text-align: center;
   align-items: center;
   display: flex;
@@ -52,7 +59,7 @@ export default function ServiceRecipeDetail() {
   }, [recipeId]);
 
   return (
-    <Wrapper>
+    <Wrapper maxWidth="md">
       <div className="image-container">
         <CardMedia component="img" image={recipes.img_url} />
       </div>
