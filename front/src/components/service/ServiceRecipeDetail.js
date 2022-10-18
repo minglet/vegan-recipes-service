@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Grid, Stack, Typography, CardMedia } from "@mui/material";
 import { useParams } from "react-router-dom";
 import LikeBtn from "./LikeBtn";
-import Recommend from "../Recommend";
+import Recommend from "./Recommend";
 import styled from "@emotion/styled";
 
 import * as Api from "../../api";
