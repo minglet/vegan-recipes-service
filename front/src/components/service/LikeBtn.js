@@ -19,7 +19,7 @@ export default function LikeBtn() {
   const onClick = () => {
     if (isLogin !== null) {
       setIsLiked(!isLiked);
-    } else alert("로그인 시 좋아하는 레시피를 저장할 수 있어요!");
+    } else alert("You can save your favorite recipe when you log in!");
   };
   console.log(isLiked);
   const userState = useContext(UserStateContext);
