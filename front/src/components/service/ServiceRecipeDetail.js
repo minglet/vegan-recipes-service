@@ -32,7 +32,7 @@ const Wrapper = styled(Container)`
     flex-direction: column;
     text-align: center;
     align-items: center;
-    width: 50%;
+    width: 100%;
     /* margin: 30px; */
   }
 
