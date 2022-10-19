@@ -1,3 +1,4 @@
+import { Int32 } from "mongodb";
 import { Schema, model } from "mongoose";
 
 const RecipeSchema = new Schema(
@@ -18,6 +19,10 @@ const RecipeSchema = new Schema(
       type: String,
       required: true,
     },
+    cluster_label: {
+      type: String,
+      required: true
+    }
   },
   {
     timestamps: true,
