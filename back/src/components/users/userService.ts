@@ -1,4 +1,4 @@
-import { Scrap, User } from "./userModel"; // from을 폴더(db) 로 설정 시, 디폴트로 index.js 로부터 import함.
+import { User } from "./userModel"; // from을 폴더(db) 로 설정 시, 디폴트로 index.js 로부터 import함.
 import bcrypt from "bcryptjs";
 import { v4 as uuidv4 } from "uuid";
 import jwt from "jsonwebtoken";
@@ -75,12 +75,11 @@ class userAuthService {
     return await User.findAll();
   }
 
-    //**확인사항1
+
   /** Edit user info */
   static async setUser({ user_id, toUpdate }:
     {user_id: string, toUpdate: {
-      recipe_scraps?: string[], name?: string, password?: string
-}}) {
+      recipe_scraps?: string[], name?: string, password?: string}}) {
     // 우선 해당 id 의 유저가 db에 존재하는지 여부 확인
     let user :any = await User.findById({ user_id });
 
@@ -104,12 +103,10 @@ class userAuthService {
       user = await User.update({ user_id, fieldToUpdate, newValue });
     }
 
-    //**확인사항1
     if (toUpdate.recipe_scraps) {
       const fieldToUpdate = "recipe_scraps";
       const newValue = toUpdate.recipe_scraps;
       user = await User.update({ user_id, fieldToUpdate, newValue })
-      // user.recipeScrap.push({newValue});
     }
     return user;
   }

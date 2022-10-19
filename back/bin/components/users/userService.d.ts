@@ -42,21 +42,24 @@ declare class userAuthService {
         errorMessage: string;
     }>;
     static getUsers(): Promise<(import("mongoose").Document<unknown, any, {
+        id: string;
         name: string;
         email: string;
         password: string;
-        id: string;
+        recipe_scraps: any[];
     }> & {
+        id: string;
         name: string;
         email: string;
         password: string;
-        id: string;
+        recipe_scraps: any[];
     } & {
         _id: import("mongoose").Types.ObjectId;
     })[]>;
     static setUser({ user_id, toUpdate }: {
         user_id: string;
         toUpdate: {
+            recipe_scraps?: string[];
             name?: string;
             password?: string;
         };

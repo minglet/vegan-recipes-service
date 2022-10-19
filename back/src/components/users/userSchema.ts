@@ -19,7 +19,7 @@ const UserSchema = new Schema(
       required: true,
     },
     recipe_scraps : {
-      type : Array
+      type : Array 
     },
   },
   {
@@ -31,15 +31,3 @@ const UserModel = model("User", UserSchema);
 
 export { UserModel };
 
-//Array에 대한 함수. -> filter 
-//find를 해도 filter를 해야 하므로.
-
-/*let newRecipeArray = []
-
-for(const i of user.recipe_like) {
-if(i != recipeId) {
-newRecipeArray.push(i)
-}
-}
-
-user.recipe_like = newRecipeArray */

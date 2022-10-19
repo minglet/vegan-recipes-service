@@ -1,7 +1,7 @@
-import { Router, Request, Response, NextFunction } from "express";
-import { ifErrorMessage } from "src/middleware/errorHandler.middleware";
+import { Router } from "express";
+import { NotFoundError } from "src/utils/error/notfound.error";
 import { login_required } from "../../lib/login_required";
-import { UserModel } from "./userSchema";
+import { recipeService } from "../recipes/recipeService";
 import { userAuthService } from "./userService";
 
 const userAuthRouter = Router();
@@ -131,75 +131,96 @@ userAuthRouter.get("/afterlogin", login_required, function (req, res, next) {
     );
 });
 
-// scrap -> service
-// const scrapRouter = Router();
-
-userAuthRouter.post(
-    "/scrap/addscrap/:recipeId",
-    login_required,
-    async (req, res, next) => {
-    try{
+userAuthRouter.put(
+  "/scrap/addscrap/:recipeId",
+  login_required,
+  async (req, res, next) => {
+    try {
       const user_id = req.currentUserId
       const currentUserInfo = await userAuthService.getUserInfo({
         user_id,
       })
-     //현재 레시피 스크랩 현황 
-      let recipe_scraps = currentUserInfo.recipe_scraps
-      console.log("recipe_scraps : ", recipe_scraps);
+
+      //현재 레시피 스크랩 현황 
+      const recipe_scraps = currentUserInfo.recipe_scraps
 
       //현재 유저가 보고 있는 레시피(스크랩 할 레시피)
       const recipe_id = req.params.recipeId
-      console.log("recipe_id : " , recipe_id);
 
-      //스크랩 추가
-      recipe_scraps.push(recipe_id)
-      console.log("add_recipe_scraps : ", recipe_scraps );
-      
+      if (recipe_scraps.includes(recipe_id)) {
+        recipe_scraps.splice(recipe_scraps.indexOf(recipe_id), 1)
+      } else {
+        //스크랩 추가
+        recipe_scraps.push(recipe_id)  
+      }
+
       //업데이트 된 레시피 스크랩
       const toUpdate :{ recipe_scraps?: []} = {recipe_scraps}
-      console.log("toUpdate : ", toUpdate);
 
       //업데이트
       const updatedUser = await userAuthService.setUser({ user_id, toUpdate });
-      console.log("updatedUser : ", updatedUser);
-    
-      res.status(200).send(updatedUser)
-    }catch (error){
-      next(error);
+
+      res.status(200).json(updatedUser)
+    } catch (err) {
+      next(err);
     }
-});
+  }
+);
 
-
+/** 마이페이지에서 삭제 기능 */
 userAuthRouter.put(
-    "/like/unscrap", 
-    login_required,
-    (req, res) => {
-    let { recipeId, userId } = req.body;
+  "/users/unscrap/:recipeId",
+  login_required,
+  async (req, res, next) => {
+    try {
+      const user_id = req.currentUserId
+      const recipe_id = req.params.recipeId
 
-    console.log(recipeId, userId);
+      const user_info = await userAuthService.getUserInfo({
+        user_id
+      })
 
-    UserModel.findOneAndDelete({ recipe_scraps: recipeId, userId: userId }).exec(
-        (err, result) => {
-            if (err) return res.status(400).json({ unscrap: false, err });
-            return res.status(200).json({ unscrap: true });
-        }
-    );
-});
+      // recipe_scraps => 유저가 좋아요한 레시피 전체
+      const recipe_scraps = user_info.recipe_scraps
+      if (recipe_scraps.includes(recipe_id)) {
+        recipe_scraps.splice(recipe_scraps.indexOf(recipe_id), 1)
+      } else {
+        throw new NotFoundError("해당 레시피가 존재하지 않습니다. 레시피 id를 다시 확인해주세요.")
+      }
+
+      const toUpdate :{ recipe_scraps?: []} = {recipe_scraps}
+
+      res.status(200).send(await userAuthService.setUser({ user_id, toUpdate }))
+    } catch (err) {
+      next(err);
+    }
+  }
+);
 
 userAuthRouter.get(
-    "/scraps",
-    login_required,
-     async (req, res, next) => {
+  "/scraps",
+  login_required,
+  async (req, res, next) => {
     try {
-        const userId = req.params.id;
+      const user_id = req.currentUserId
 
-        const scraps = await UserModel.find({userId: userId});
-        ifErrorMessage(scraps);
-        res.status(200).send(scraps);
-      } catch (error) {
-        next(error);
-      }
-});
+      const user_info = await userAuthService.getUserInfo({ user_id });
+      const recipe_arr = user_info.recipe_scraps 
+      const mapping : any[] = []
+      await Promise.all(
+        recipe_arr.map(async (data) => {
+          const result = await recipeService.getRecipeInfo(data)
+          mapping.push(result)
+          return mapping
+        })
+      );
+
+      res.status(200).json(mapping);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
 
 
 

@@ -24,14 +24,16 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { Schema } from "mongoose";
 declare const UserModel: import("mongoose").Model<{
+    id: string;
     name: string;
     email: string;
     password: string;
-    id: string;
+    recipe_scraps: any[];
 }, {}, {}, {}, Schema<any, import("mongoose").Model<any, any, any, any, any>, {}, {}, {}, {}, "type", {
+    id: string;
     name: string;
     email: string;
     password: string;
-    id: string;
+    recipe_scraps: any[];
 }>>;
 export { UserModel };
