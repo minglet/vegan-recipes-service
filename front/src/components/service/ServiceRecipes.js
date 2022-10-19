@@ -26,24 +26,19 @@ function ServiceRecipes() {
   const [keyword, setKeyword] = useState("beetroot");
 
   useEffect(() => {
-    Api.get("recipes").then((res) => setRecipes(res.data));
+    Api.get("recipes").then((res) => setRecipes(res.data))
+                      .then(() => {
+                        if (keyword.length > 0) {
+                            const newRecipes 
+                                   = recipes.filter((item) => item.ingredients.includes(keyword)) 
+                            console.log(newRecipes);
+                            setRecipes(newRecipes);
+                            // setKeyword("");
+                      }})
+    console.log(recipes);
   }, []);
 
-  // const test = ["Mike", "Jenny", "Aim"].filter(item => item.includes("e"))
-  // console.log(test);
-  
-  if (keyword.length > 0) {
-      // console.log(keyword, recipes.slice(0, 3));
-      const newRecipes 
-            = recipes.filter((item) => item.ingredients.includes(keyword))  
-      console.log(newRecipes);  
-      setRecipes(newRecipes);
-      // setKeyword("");
-  }
-  // setKeyword("");
-  console.log(recipes);
-
-  const [limit, setLimit] = useState(4);
+  const [limit, setLimit] = useState(6);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
   return (

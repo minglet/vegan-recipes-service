@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import Container from "@mui/material/Container";
+import Grid from '@mui/material/Grid';
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 
 function Search() {
@@ -10,31 +10,45 @@ function Search() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        
+        console.log(keyword);
 
-        return (
-
-          <Container className="like-recipe-container" sx={{ py: 8 }} maxWidth="md">
-            <Box>
-              <TextField
+    } 
+      return (
+        <Grid container spacing={2}>
+          <Box onSubmit={handleSubmit}>
+            <Grid item xs={8}>
+                  <TextField
+                    variant="outlined"
+                    // margin="normal"
+                    // required
+                    fullWidth
+                    name="keyword"
+                    label="keyword"
+                    // type="keyword"
+                    id="keyword"
+                    // autoComplete="off"
+                    value={keyword}
+                    // inputProps={keyword}
+                    onChange = {(e) => setKeyword(e.target.value)}
+                  /> 
+            </Grid>
+            {/* <Grid item xs={2}>
+              <Button
+                type = "submit"
                 variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="keyword"
-                label="keyword"
-                type="keyword"
-                id="keyword"
-                autoComplete="off"
-                value={keyword}
-                // onChange={(e) => setKeyword(e.target.value)}
-              /> 
-              <Button>
+                color="inherit"
+                size = "large"
+                value = {keyword}
+                onClick = {(e) => setKeyword(e.target.value)}
+                >
                 SEARCH
               </Button>
-            </Box>
-          </Container>
+            </Grid> */}
+          </Box>
+        </Grid>
+          
       );
-  }
 }
 
 export default Search;

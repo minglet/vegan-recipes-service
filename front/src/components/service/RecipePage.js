@@ -1,25 +1,14 @@
 // import Pagination from "./Pagination";
 
-import React, { useState, useMemo, useEffect } from "react";
-import * as Api from "../../api";
+import React from "react";
 
 import ServiceRecipes from "./ServiceRecipes";
 import Search from "../service/Search"
-// import { Link } from "react-router-dom";
 
 import Typography from "@mui/material/Typography";
-// import Button from "@mui/material/Button";
-// import Card from "@mui/material/Card";
-// import CardActions from "@mui/material/CardActions";
-// import CardContent from "@mui/material/CardContent";
-// import CardMedia from "@mui/material/CardMedia";
-// import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container";
-// import TextField from '@mui/material/TextField';
-// import IconButton from '@mui/material/IconButton';
-// import SearchIcon from '@mui/icons-material/Search';
 
 function RecipePage() {
 
@@ -50,16 +39,9 @@ function RecipePage() {
           > </Stack>
         </Container>
       </Box>
-      <Box
-        sx={{
-          bgcolor: "background.paper",
-          pt: 8,
-          pb: 6,
-        }}
-      >
-        <Search/>
-      </Box>
-        <ServiceRecipes/>
+      
+      <Search/>
+      <ServiceRecipes/>
     </Container> 
       
   );
