@@ -38,12 +38,15 @@ const Wrapper = styled("div")`
 
 export default function RecipeCard() {
   const [recipes, setrecipes] = useState([]);
+
+  // 여기에 좋아요 한 레시피 불러오는 API로 수정
   useEffect(() => {
     Api.get("recipes").then((res) => setrecipes(res.data));
   }, []);
 
-  // 상태가 true이면 Blank페이지, false면 좋아요한 레시피가 뜸
-  const [favorite, setFavorite] = useState(true);
+  // 상태가 false이면 Blank페이지, true면 좋아요한 레시피가 뜸
+  // 불러온 값이 null이면 false, null이 아니면 true ?
+  const [favorite, setFavorite] = useState(false);
 
   return (
     <Wrapper>
@@ -52,8 +55,6 @@ export default function RecipeCard() {
         {/* End hero unit */}
         <Grid container spacing={4}>
           {favorite ? (
-            <Blank />
-          ) : (
             recipes.map((item) => (
               <Grid item key={item} xs={12} sm={6} md={4}>
                 <Card
@@ -89,6 +90,8 @@ export default function RecipeCard() {
                 </Card>
               </Grid>
             ))
+          ) : (
+            <Blank />
           )}
         </Grid>
       </Container>
