@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { NotFoundError } from "src/utils/error/notfound.error";
+import { NotFoundError } from "../../utils/error/notfound.error";
 import { login_required } from "../../lib/login_required";
 import { recipeService } from "../recipes/recipeService";
 import { userAuthService } from "./userService";
@@ -154,7 +154,7 @@ userAuthRouter.put(
       }
 
       //업데이트 된 레시피 스크랩
-      const toUpdate :{ recipe_scraps?: []} = {recipe_scraps}
+      const toUpdate :{ recipe_scraps?: string[]} = {recipe_scraps}
 
       //업데이트
       const updatedUser = await userAuthService.setUser({ user_id, toUpdate });
@@ -187,7 +187,7 @@ userAuthRouter.put(
         throw new NotFoundError("해당 레시피가 존재하지 않습니다. 레시피 id를 다시 확인해주세요.")
       }
 
-      const toUpdate :{ recipe_scraps?: []} = {recipe_scraps}
+      const toUpdate :{ recipe_scraps?: string[]} = {recipe_scraps}
 
       res.status(200).send(await userAuthService.setUser({ user_id, toUpdate }))
     } catch (err) {

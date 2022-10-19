@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.userAuthRouter = void 0;
 const express_1 = require("express");
-const notfound_error_1 = require("src/utils/error/notfound.error");
+const notfound_error_1 = require("../../utils/error/notfound.error");
 const login_required_1 = require("../../lib/login_required");
 const recipeService_1 = require("../recipes/recipeService");
 const userService_1 = require("./userService");
