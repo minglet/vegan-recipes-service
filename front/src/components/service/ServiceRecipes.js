@@ -38,32 +38,6 @@ function ServiceRecipes() {
           sx={{ py: 8 }}
           maxWidth="md"
         >
-          <Box
-            sx={{
-              bgcolor: "background.paper",
-              pt: 8,
-              pb: 6,
-            }}
-          >
-            <Container maxWidth="sm">
-              <Typography
-                component="h1"
-                variant="h2"
-                align="center"
-                color="text.primary"
-                gutterBottom
-              >
-                Vegan Recipes
-              </Typography>
-              <Stack
-                sx={{ pt: 4 }}
-                direction="row"
-                spacing={2}
-                justifyContent="center"
-              ></Stack>
-            </Container>
-          </Box>
-          {/* End hero unit */}
           <Grid container spacing={4}>
             {recipes.slice(offset, offset + limit).map((item) => (
               <Grid item key={item} xs={12} sm={6} md={4}>
@@ -106,7 +80,7 @@ function ServiceRecipes() {
               setPage={setPage}
             />
           </footer>
-        </Container>
+         </Container>
       )}
     </Container>
   );
