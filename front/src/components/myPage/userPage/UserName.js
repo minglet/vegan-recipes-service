@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Typography } from "@mui/material";
 
 import styled from "@emotion/styled";
+
+import * as Api from "../../../api";
 
 const Wrapper = styled("div")`
   text-align: center;
@@ -17,12 +19,20 @@ const Wrapper = styled("div")`
 `;
 
 export default function UserName() {
-  const userName = "HaruHanKki Fan";
+
+  const [user, setUser] = useState(null);
+  useEffect (() => {
+    Api.get('user/current').then((res) => setUser(res.data))
+  }, []);
+  console.log(user);
+  
   return (
     <Wrapper>
-      <Typography className="user" variant="h2">
-        {userName}
-      </Typography>
+      {user && (
+        <Typography className="user" variant="h2">
+          {user.name}
+        </Typography>
+      )}
     </Wrapper>
   );
 }
