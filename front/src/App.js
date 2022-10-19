@@ -74,8 +74,8 @@ function App() {
                 path="/recipes/current/:recipeId"
                 element={<ServiceRecipeDetail />}
               />
-              <Route path="/UserPage" element={<UserPage />} />
-              <Route path="/UserEditPage" element={<UserEditPage />} />
+              <Route path="/Users" element={<UserPage />} />
+              <Route path="/users/:id" element={<UserEditPage />} />
               <Route path="/user/login" element={<LoginPage />} />
               <Route path="/user/register" element={<RegisterPage />} />
               <Route path="/team" element={<TeamPage />} />

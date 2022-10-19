@@ -118,7 +118,7 @@ export default function NavBar() {
             </Button>
           )}
           {isLogin ? (
-            <Button variant="text" component={Link} to="/userPage">
+            <Button variant="text" component={Link} to="/users">
               My Page
             </Button>
           ) : (

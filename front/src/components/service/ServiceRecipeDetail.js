@@ -58,6 +58,8 @@ export default function ServiceRecipeDetail() {
     Api.get(`recipes/current/${recipeId}`).then((res) => setrecipes(res.data));
   }, [recipeId]);
 
+  console.log("recipeId :", recipeId);
+
   return (
     <Wrapper maxWidth="md">
       <div className="image-container">
