@@ -117,7 +117,7 @@ export default function RegisterPage() {
                 autoComplete="email"
                 autoFocus
                 type="email"
-                autoComplete="off"
+                // autoComplete="off"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
