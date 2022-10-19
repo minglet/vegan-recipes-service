@@ -66,6 +66,11 @@ class userAuthService {
             const newValue = await bcryptjs_1.default.hash(toUpdate.password, 10);
             user = await userModel_1.User.update({ user_id, fieldToUpdate, newValue });
         }
+        if (toUpdate.recipe_scraps) {
+            const fieldToUpdate = "recipe_scraps";
+            const newValue = toUpdate.recipe_scraps;
+            user = await userModel_1.User.update({ user_id, fieldToUpdate, newValue });
+        }
         return user;
     }
     static async getUserInfo({ user_id }) {
