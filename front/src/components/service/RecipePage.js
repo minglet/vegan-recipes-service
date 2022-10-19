@@ -5,39 +5,44 @@ import RecipePageTitle from "../service/RecipePageTitle"
 // import Search from "../service/Search"
 import ServiceRecipes from "./ServiceRecipes";
 
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container";
-import paper from "@mui/material/paper";
-import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid';
-import Button from "@mui/material/Button";
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
-import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
 
 function RecipePage() {
   const [recipes, setRecipes] = useState([]);
-  const [keyword, setKeyword] = useState("radish");
-  const [loading, setLoading] = useState(false);
+  const [keyword, setKeyword] = useState("");
+  const [inputValue, setInputValue] = useState("");
+  const [loading, setLoading] = useState(true);
+  
+ 
+  useEffect(() => {
+    // console.log("test");
+    // console.log(recipes);
+    Api.get("recipes").then((res) => setRecipes(res.data));
+    setLoading(false);
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
-    console.log(keyword);
+   
+    setKeyword(inputValue);
 
-    
+    Api.get("recipes").then((res) => setRecipes(res.data))
+                      .then(() => {
+                        if (keyword.length > 0) {
+                            console.log(keyword);
+                            console.log(recipes);
+                            const newRecipes 
+                                   = recipes.filter((item) => item.ingredients.includes(keyword)) 
+                            console.log(newRecipes);
+                            setRecipes(newRecipes);
+                      }})
+                    
 
   } 
-
-  useEffect(() => {
-    console.log("test");
-    console.log(recipes);
-    Api.get("recipes").then((res) => setRecipes(res.data));
-    // setLoading(false);
-  }, []);
 
   return (
     <Container className="like-recipe-container" sx={{ py: 8 }} maxWidth="md">
@@ -46,16 +51,24 @@ function RecipePage() {
 
       <Paper
         component="form"
-        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
+        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: "50vh" }}
+        
       >
         <InputBase
           sx={{ ml: 1, flex: 1 }}
           placeholder="Search"
-          inputProps={{ 'aria-label': 'search google maps' }}
+          inputProps={{ inputValue }}
+          onChange={(e)=> setInputValue(e.target.value)}
         />
-        <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+        <Button 
+          type="button" 
+          sx={{ p: '10px' }} 
+          aria-label="search"
+          color="inherit"
+          onClick={handleSubmit}
+        >
           <SearchIcon />
-        </IconButton>
+        </Button>
       </Paper>
 
       {/* Recipe Display */}

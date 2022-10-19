@@ -1,6 +1,6 @@
 import Pagination from "./Pagination";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import Typography from "@mui/material/Typography";
@@ -16,8 +16,6 @@ import Spinner from "./Spinner";
 function ServiceRecipes(recipes) {
 
   const selectedRecipes = recipes.recipes;
-  console.log(recipes.loading);
-  console.log(selectedRecipes);
 
   const limit = 6;
   const [page, setPage] = useState(1);
