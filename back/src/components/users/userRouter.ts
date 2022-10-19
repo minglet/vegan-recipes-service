@@ -1,5 +1,7 @@
 import { Router, Request, Response, NextFunction } from "express";
+import { ifErrorMessage } from "src/middleware/errorHandler.middleware";
 import { login_required } from "../../lib/login_required";
+import { UserModel } from "./userSchema";
 import { userAuthService } from "./userService";
 
 const userAuthRouter = Router();
@@ -129,4 +131,76 @@ userAuthRouter.get("/afterlogin", login_required, function (req, res, next) {
     );
 });
 
-export { userAuthRouter };
+// scrap -> service
+// const scrapRouter = Router();
+
+userAuthRouter.post(
+    "/scrap/addscrap/:recipeId",
+    login_required,
+    async (req, res, next) => {
+    try{
+      const user_id = req.currentUserId
+      const currentUserInfo = await userAuthService.getUserInfo({
+        user_id,
+      })
+     //현재 레시피 스크랩 현황 
+      let recipe_scraps = currentUserInfo.recipe_scraps
+      console.log("recipe_scraps : ", recipe_scraps);
+
+      //현재 유저가 보고 있는 레시피(스크랩 할 레시피)
+      const recipe_id = req.params.recipeId
+      console.log("recipe_id : " , recipe_id);
+
+      //스크랩 추가
+      recipe_scraps.push(recipe_id)
+      console.log("add_recipe_scraps : ", recipe_scraps );
+      
+      //업데이트 된 레시피 스크랩
+      const toUpdate :{ recipe_scraps?: []} = {recipe_scraps}
+      console.log("toUpdate : ", toUpdate);
+
+      //업데이트
+      const updatedUser = await userAuthService.setUser({ user_id, toUpdate });
+      console.log("updatedUser : ", updatedUser);
+    
+      res.status(200).send(updatedUser)
+    }catch (error){
+      next(error);
+    }
+});
+
+
+userAuthRouter.put(
+    "/like/unscrap", 
+    login_required,
+    (req, res) => {
+    let { recipeId, userId } = req.body;
+
+    console.log(recipeId, userId);
+
+    UserModel.findOneAndDelete({ recipe_scraps: recipeId, userId: userId }).exec(
+        (err, result) => {
+            if (err) return res.status(400).json({ unscrap: false, err });
+            return res.status(200).json({ unscrap: true });
+        }
+    );
+});
+
+userAuthRouter.get(
+    "/scraps",
+    login_required,
+     async (req, res, next) => {
+    try {
+        const userId = req.params.id;
+
+        const scraps = await UserModel.find({userId: userId});
+        ifErrorMessage(scraps);
+        res.status(200).send(scraps);
+      } catch (error) {
+        next(error);
+      }
+});
+
+
+
+export { userAuthRouter};
