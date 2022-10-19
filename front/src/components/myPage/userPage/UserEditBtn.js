@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 
 import styled from "@emotion/styled";
@@ -18,7 +19,12 @@ const Wrapper = styled("div")`
 export default function UserEditBtn() {
   return (
     <Wrapper>
-      <Button className="user-edit-btn" variant="outlined" color="inherit">
+      <Button 
+        component={Link} to="/userEditPage"
+        className="user-edit-btn" 
+        variant="outlined" 
+        color="inherit"
+      >
         edit profile
       </Button>
     </Wrapper>
