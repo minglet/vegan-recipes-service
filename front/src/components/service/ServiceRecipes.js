@@ -1,8 +1,6 @@
 import Pagination from "./Pagination";
 
 import React, { useState, useEffect } from "react";
-import * as Api from "../../api";
-
 import { Link } from "react-router-dom";
 
 import Typography from "@mui/material/Typography";
@@ -12,25 +10,21 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container";
 import Spinner from "./Spinner";
 
-function ServiceRecipes() {
-  const [recipes, setRecipes] = useState([]);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    Api.get("recipes").then((res) => setRecipes(res.data));
-    setLoading(false);
-  }, []);
+function ServiceRecipes(recipes) {
+
+  const selectedRecipes = recipes.recipes;
+  console.log(recipes.loading);
+  console.log(selectedRecipes);
 
   const limit = 6;
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
   return (
     <Container>
-      {loading ? (
+      { recipes.loading ? (
         <Spinner />
       ) : (
         <Container
@@ -39,7 +33,7 @@ function ServiceRecipes() {
           maxWidth="md"
         >
           <Grid container spacing={4}>
-            {recipes.slice(offset, offset + limit).map((item) => (
+            {selectedRecipes.slice(offset, offset + limit).map((item) => (
               <Grid item key={item} xs={12} sm={6} md={4}>
                 <Card
                   sx={{
@@ -74,7 +68,7 @@ function ServiceRecipes() {
 
           <footer>
             <Pagination
-              total={recipes.length}
+              total={selectedRecipes.length}
               limit={limit}
               page={page}
               setPage={setPage}
