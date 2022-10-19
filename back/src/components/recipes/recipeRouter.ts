@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { login_required } from "src/lib/login_required";
+import { userAuthService } from "../users/userService";
 import { recipeService } from "./recipeService";
 // import { spawn } from "child_process";
 
@@ -73,14 +74,23 @@ recipeRouter.get(
     try {
       // jwt토큰에서 추출된 사용자 id를 가지고 db에서 사용자 정보를 찾음.
       // const user_id = req.currentUserId;
-      const recipe_like : string[] = ['634f650aee628bd037c6dc91', '634f650aee628bd037c6dc90','634f650aee628bd037c6dca3']
+      // const recipe_like : string[] = (await userAuthService.getUserInfo({user_id})).recipe_like
+      const recipe_like : string[] = ["634f650aee628bd037c6dc90", "634f650aee628bd037c6dc91", "634f650aee628bd037c6dc9a"]
       const recent_like : string = recipe_like[recipe_like.length - 1]
 
       const find_recipe = await recipeService.getRecipeInfo(recent_like)
       const cluster_recipes: any = await recipeService.getSimilarRecipes(find_recipe.cluster_label)
 
-      // 같은 recipe_id를 갖는 것을 제외하기
-      res.status(200).send(cluster_recipes)
+      // 좋아요한 레시피는 제외
+      const rec_recipes = cluster_recipes.splice(2,1)
+      if (rec_recipes[0]._id == recent_like) {
+        // 그 다음 레시피로 보여주기
+        const another_recipe = cluster_recipes.splice(3,1)
+        res.status(200).send(another_recipe)
+      } else {
+        res.status(200).send(rec_recipes)
+      }
+
     } catch (error) {
       next(error);
     }
