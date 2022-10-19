@@ -1,5 +1,4 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
@@ -8,12 +7,12 @@ import Button from "@mui/material/Button";
 // import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import { useForm, Controller } from "react-hook-form";
-
-function sleep(delay) {
-  return new Promise((resolve) => setTimeout(resolve, delay));
-}
+import * as Api from "../../../api";
+import { UserStateContext, DispatchContext } from "../../../App";
 
 export default function UserEditPage() {
+  const { id } = useParams();
+
   const { control, handleSubmit, getValues } = useForm({
     defaultValues: {
       name: "",
@@ -23,10 +22,14 @@ export default function UserEditPage() {
   });
 
   const onSubmit = handleSubmit(async (values) => {
-    await sleep(5); // API 호출로 대체
-
-    // 성공시
+    await Api.put(`/users/${id}`, {
+      name: "",
+      email: "",
+      password: "",
+    });
   });
+
+  console.log("id :", id);
 
   return (
     <Container component="main" maxWidth="xs">
