@@ -75,7 +75,7 @@ export default function RegisterPage() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: "url(https://img.hani.co.kr/imgdb/resize/2015/0722/143743620091_20150722.JPG)",
+            backgroundImage: "url(http://placeimg.com/640/480/nature)",
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"
