@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
@@ -10,6 +10,7 @@ import { Form } from "react-bootstrap";
 
 export default function UserEditPage() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [user, setUser] = useState("");
   const email = user.email;  // email 변경 불가
@@ -22,7 +23,7 @@ export default function UserEditPage() {
 
   }, []);
 
-  // console.log(user);
+  console.log(user);
   // console.log(user.name);
 
   // 비밀번호가 4글자 이상인지 여부를 확인함.
@@ -42,6 +43,8 @@ export default function UserEditPage() {
       email: email,
       password: password,
     });
+
+    navigate('/users');
   };
 
   return (
