@@ -127,48 +127,6 @@ class userAuthService {
   }
 }
 
-//  //**확인사항2
-// class ScrapService{
-//   static post(arg0: string, arg1: (req: any, res: any, next: any) => Promise<void>) {
-//     throw new Error("Method not implemented.");
-//   }
-//    //좋아요 추가 
-//    static async addScrap({ user_id, recipe_id }) {
-//     //유저찾기
-//     let toUpdate = await User.findById({ user_id });
-//     //레시피 찾기
-//     let recipe : any = await Recipe.findById({recipe_id});
-
-//     //비어있던 레시피 라이크만 추가되서 수정이 된다. -> 덮어쓰기.
-//     // db에서 찾지 못한 경우, 에러 메시지 반환
-//     if (!recipe) {
-//         const errorMessage =
-//           "레시피가 없습니다.😥";
-//         return { errorMessage };
-//       }
-  
-//       //확인필요
-//       if (toUpdate.recipe_scraps) {
-//         const fieldToUpdate = "recipe_scraps";
-//         const newValue = toUpdate.recipe_scraps;
-//         recipe = await User.update({ user_id , fieldToUpdate, newValue });
-//       }
-//       return recipe;
-//     }
-
-//     // 좋아요 삭제
-//     static async unScrap({ user_id, recipe_id } ) {
-//     const user = await User.findById({ user_id });
-//     if (!user) {
-//       return { errorMessage: "존재하지 않는 유저입니다." };
-//     }
-    
-//     const post = await Recipe.findById({ recipe_id });
-//     if (!post) {
-//       return { errorMessage: "레시피가 없습니다.😥" };
-//     }
-//   }
-// }
 
 export { userAuthService };
 

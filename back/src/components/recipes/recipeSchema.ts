@@ -1,4 +1,3 @@
-import { Int32 } from "mongodb";
 import { Schema, model } from "mongoose";
 
 const RecipeSchema = new Schema(
