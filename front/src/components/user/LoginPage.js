@@ -1,11 +1,9 @@
-// import * as React from 'react';
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form } from "react-bootstrap";
 
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
@@ -74,8 +72,7 @@ function LoginPage() {
   };
 
   return (
-    <Grid container component="main" sx={{ height: "100vh" }}>
-      {/* <CssBaseline /> */}
+    <Grid container component="main" sx={{ height: "80vh" }}>
       <Grid
         item
         xs={false}
@@ -104,7 +101,7 @@ function LoginPage() {
         >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Login
           </Typography>
           <Box
             component="form"
@@ -137,7 +134,7 @@ function LoginPage() {
               label="Password"
               type="password"
               id="password"
-              autoComplete="on"
+              // autoComplete="on"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -146,7 +143,12 @@ function LoginPage() {
                 Password is same as or more than 4 letters.
               </Form.Text>
             )}
-            {userValidation && <Alert severity="error">{userValidation}</Alert>}
+            {userValidation && 
+            <Grid item xs={12}>
+              <Alert fullWidth severity="error">{userValidation}</Alert>
+            </Grid>
+            }
+
             <Button
               type="submit"
               fullWidth
