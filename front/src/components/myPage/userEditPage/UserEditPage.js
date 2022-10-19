@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+// import Form from "@mui/material/Form";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 // import Link from "@mui/material/Link";
@@ -9,33 +10,58 @@ import Grid from "@mui/material/Grid";
 import { useForm, Controller } from "react-hook-form";
 import * as Api from "../../../api";
 import { UserStateContext, DispatchContext } from "../../../App";
+import { useEffect, useState } from "react";
+import { Form } from "react-bootstrap";
 
 export default function UserEditPage() {
   const { id } = useParams();
 
-  const { control, handleSubmit, getValues } = useForm({
-    defaultValues: {
-      name: "",
-      password: "",
-      password_confirm: "",
-    },
-  });
+  const [user, setUser] = useState("");
+  const email = user.email;  // email 변경 불가
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [password_confirm, setPasswordConfirm] = useState("");
 
-  const onSubmit = handleSubmit(async (values) => {
-    await Api.put(`/users/${id}`, {
-      name: "",
-      email: "",
-      password: "",
+  useEffect (() => {
+    Api.get('user/current').then((res) => setUser(res.data))
+
+  }, []);
+
+  console.log(user);
+  console.log(user.name);
+
+  // const { control, getValues } = useForm({
+  //   defaultValues: {
+  //     name: user.name,
+  //     password: user.password,
+  //     password_confirm: user.password,
+  //   },
+  // });
+
+  // 비밀번호가 4글자 이상인지 여부를 확인함.
+  const isPasswordValid = password.length >= 4;
+  // 비밀번호와 확인용 비밀번호가 일치하는지 여부를 확인함.
+  const isPasswordSame = password === password_confirm;
+  // 이름이 2글자 이상인지 여부를 확인함.
+  const isNameValid = name.length >= 2;
+
+  const isFormValid =
+    isPasswordValid && isPasswordSame && isNameValid;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await Api.put(`users/${id}`, {
+      name: name,
+      email: email,
+      password: password,
     });
 
     // 성공했을 때, name이랑 password를 해당 TextField 안에 있는 값으로 변경?
-  });
-
-  console.log("id :", id);
+  };
 
   return (
     <Container component="main" maxWidth="xs">
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit}>
         <Box
           sx={{
             marginTop: 8,
@@ -49,7 +75,7 @@ export default function UserEditPage() {
           </Typography>
 
           <Box sx={{ mt: 3 }}>
-            <Controller
+            {/* <Controller
               control={control}
               name="name"
               rules={{
@@ -66,21 +92,30 @@ export default function UserEditPage() {
                   message: "Name cannot be more than 12 characters long.",
                 },
               }}
-              render={({ field, fieldState: { error } }) => (
-                <TextField
-                  label="Name"
-                  variant="outlined"
-                  margin="normal"
-                  fullWidth
-                  autoFocus
-                  {...field}
-                  error={!!error}
-                  helperText={error?.message}
-                />
-              )}
-            />
+              render={({ field, fieldState: { error } }) => {
+                 return ( */}
+                  <TextField
+                    label="Name"
+                    variant="outlined"
+                    margin="normal"
+                    fullWidth
+                    autoFocus
+                    // {...field}
+                    // error={!!error}
+                    // helperText={error?.message}
+                    defaultValue= {user.name}
+                    value = {name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                  {!isNameValid && (
+                  <Form.Text className="text-success">
+                    Name should be same as or more than 2 letters.
+                  </Form.Text>
+                  )}    
+              {/* )}}
+            /> */}
 
-            <Controller
+            {/* <Controller
               control={control}
               name="password"
               rules={{
@@ -93,8 +128,8 @@ export default function UserEditPage() {
                   message: "Same as or More than 4 Letters.",
                 },
               }}
-              render={({ field, fieldState: { error } }) => {
-                return (
+              render={({ field, fieldState: { error } }) => { */}
+                {/* return ( */}
                   <TextField
                     name="password"
                     label="Password"
@@ -103,15 +138,22 @@ export default function UserEditPage() {
                     autoComplete="current-password"
                     margin="normal"
                     fullWidth
-                    {...field}
-                    error={!!error}
-                    helperText={error?.message}
+                    // {...field}
+                    // error={!!error}
+                    // helperText={error?.message}
+                    value = {password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
-                );
-              }}
-            />
+                  {!isPasswordValid && (
+                <Form.Text className="text-success">
+                  Same as or More than 4 Letters.
+                </Form.Text>
+              )}
+                {/* ); */}
+              {/* }}
+            /> */}
 
-            <Controller
+            {/* <Controller
               control={control}
               name="password_confirm"
               rules={{
@@ -135,8 +177,8 @@ export default function UserEditPage() {
                   return true;
                 },
               }}
-              render={({ field, fieldState: { error } }) => {
-                return (
+              render={({ field, fieldState: { error } }) => { */}
+                {/* return ( */}
                   <TextField
                     label="Confirm password"
                     variant="outlined"
@@ -144,27 +186,27 @@ export default function UserEditPage() {
                     autoComplete="current-password"
                     margin="normal"
                     fullWidth
-                    {...field}
-                    error={!!error}
-                    helperText={error?.message}
+                    // {...field}
+                    // error={!!error}
+                    // helperText={error?.message}
+                    value = {password_confirm}
+                    onChange={(e) => setPasswordConfirm(e.target.value)}
                   />
-                );
-              }}
-            />
-
-            {/* <TextField
-              name="email"
-              label="이메일을 입력해주세요."
-              variant="outlined"
-              autoComplete="email"
-              margin="normal"
-              fullWidth
+                  {!isPasswordSame && (
+                    <Form.Text className="text-success">
+                      Please check the password one more.
+                    </Form.Text>
+                  )}
+                {/* ); */}
+              {/* }}
             /> */}
 
             <Button
+              // onClick={handleSubmit}
               variant="contained"
               type="submit"
               fullWidth
+              color="inherit"
               sx={{ mt: 3, mb: 2 }}
             >
               Edit
