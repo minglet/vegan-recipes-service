@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { login_required } from "src/lib/login_required";
+import { login_required } from "../../lib/login_required";
 import { userAuthService } from "../users/userService";
 import { recipeService } from "./recipeService";
 // import { spawn } from "child_process";
@@ -36,36 +36,6 @@ recipeRouter.get(
     }
   }
 );
-
-/** python 연결 */
-// recipeRouter.get(
-//   "/current/:recipeId/rec",
-//   login_required,
-//   async function (req, res, next) {
-//     try {
-//       // jwt토큰에서 추출된 사용자 id를 가지고 db에서 사용자 정보를 찾음.
-//       // const user_id = req.currentUserId;
-//       // const recipe_like : string[] = ['63490495c6fc520554b62445']
-
-//       const net = spawn('python3', ['clustering.py', '8', '19'])
-
-//       net.stdout.on('data', function(data) {
-//         console.log(data.toString());
-//         if (data) {
-//           res
-//             .status(200)
-//             .send('minah');
-//         } else {
-//           res
-//             .status(200)
-//             .send('na');
-//         }
-//       })
-//     } catch (error) {
-//       next(error);
-//     }
-//   }
-// );
 
 recipeRouter.get(
   "/current/:recipeId/rec",

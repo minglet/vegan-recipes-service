@@ -25,8 +25,7 @@ userAuthRouter.post("/user/register", async function (req, res, next) {
 });
 userAuthRouter.post("/user/login", async function (req, res, next) {
     try {
-        const email = req.body.email;
-        const password = req.body.password;
+        const { email, password } = req.body;
         const user = await userService_1.userAuthService.getUser({ email, password });
         if (user.errorMessage) {
             throw new Error(user.errorMessage);
