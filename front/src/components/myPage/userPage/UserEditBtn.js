@@ -19,10 +19,11 @@ const Wrapper = styled("div")`
 export default function UserEditBtn() {
   return (
     <Wrapper>
-      <Button 
-        component={Link} to="/userEditPage"
-        className="user-edit-btn" 
-        variant="outlined" 
+      <Button
+        component={Link}
+        to="/UserEditPage"
+        className="user-edit-btn"
+        variant="outlined"
         color="inherit"
       >
         edit profile
