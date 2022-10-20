@@ -42,15 +42,6 @@ userAuthRouter.post("/user/login", (0, validator_middleware_1.default)('login'),
         next(error);
     }
 });
-userAuthRouter.get("/userlist", login_required_1.login_required, async function (req, res, next) {
-    try {
-        const users = await userService_1.userAuthService.getUsers();
-        res.status(200).send(users);
-    }
-    catch (error) {
-        next(error);
-    }
-});
 userAuthRouter.get("/user/current", login_required_1.login_required, async function (req, res, next) {
     try {
         const user_id = req.currentUserId;
@@ -86,11 +77,6 @@ userAuthRouter.put("/users/:userId", (0, validator_middleware_1.default)('edit')
     catch (error) {
         next(error);
     }
-});
-userAuthRouter.get("/afterlogin", login_required_1.login_required, function (req, res, next) {
-    res
-        .status(200)
-        .send(`안녕하세요 ${req.currentUserId}님, jwt 웹 토큰 기능 정상 작동 중입니다.`);
 });
 userAuthRouter.put("/scrap/addscrap/:recipeId", login_required_1.login_required, async (req, res, next) => {
     try {

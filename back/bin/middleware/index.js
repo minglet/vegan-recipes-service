@@ -32,7 +32,7 @@ class MiddleWare {
             res.send("하루한끼 서비스 API 입니다.");
         });
         App.use(userRouter_1.userAuthRouter);
-        App.use("/recipes", recipeRouter_1.recipeRouter);
+        App.use(recipeRouter_1.recipeRouter);
         App.use(graphRouter_1.graphRouter);
         App.use(errorHandler_middleware_1.default);
     }

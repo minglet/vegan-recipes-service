@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { NotFoundError } from "../../utils/error/notfound.error";
 import { login_required } from "../../lib/login_required";
 import { userAuthService } from "../users/userService";
 import { recipeService } from "./recipeService";
@@ -41,9 +42,14 @@ recipeRouter.get(
       const user_info = await userAuthService.getUserInfo({user_id})
       const recipe_like : string[] = user_info.recipe_scraps
 
-      // 가장 최근 좋아요한 레시피
-      const recent_like : string = recipe_like[recipe_like.length - 1]
-      const find_recipe = await recipeService.getRecipeIndex(recent_like)
+      const recipe_id = req.params.recipeId
+
+      if (!recipe_like.includes(recipe_id)) {
+        throw new NotFoundError("좋아요 레시피 리스트에서 찾을 수 없습니다.")
+      }
+
+      // 좋아요한 레시피와 유사성이 높은 레시피 찾기
+      const find_recipe = await recipeService.getRecipeIndex(recipe_id)
       const similar_recipe = await recipeService.getSimilarRecipes(find_recipe)
       
       res.status(200).send(similar_recipe)
