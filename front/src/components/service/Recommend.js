@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
+import { useParams } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -24,20 +25,29 @@ const Wrapper = styled("div")`
   width: 200px;
 `;
 
-export default function Recommend(recipeId) {
+export default function Recommend() {
   // console.log(recipeId);
-  const recipe_id = recipeId.recipeId;
-  console.log(recipe_id);
+  // const recipe_id = recipeId.recipeId;
+  // console.log(recipe_id);
   // 추천카드한개 api 가져오기
   const cards = [1];
+
+  const { recipeId } = useParams();
+  // console.log(recipeId);
+
   const [recommendCard, setRecommendCard] = useState(null);
+  
 
   useEffect (() => {
-    Api.get(`recipes/current/${recipe_id}/rec`).then((res) => { console.log('test')
-                                                                setRecommendCard(res.data)
-                                                                console.log(recommendCard)})
+    console.log('test1')
+    Api.get(`recipes/current/${recipeId}/rec`).then((res) => { console.log('test2');
+                                                                setRecommendCard(res.data);
+                                                                console.log(recommendCard);})
 
-  }, []);
+  }, [recommendCard]);
+  if(recommendCard){
+  console.log(recommendCard);
+}
   
 
   return (

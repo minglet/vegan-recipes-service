@@ -22,6 +22,7 @@ const Wrapper = styled("div")`
   align-items: center;
   margin: 10px;
   .like-recipe-container {
+    width: 805px;
     padding: 20px 70px 60px 70px;
     border: 2px solid #cccccc;
     border-radius: 50px;
@@ -41,12 +42,15 @@ export default function RecipeCard() {
 
   // 여기에 좋아요 한 레시피 불러오는 API로 수정
   useEffect(() => {
-    Api.get("recipes").then((res) => setrecipes(res.data));
+    Api.get("scraps").then((res) => setrecipes(res.data));
   }, []);
 
   // 상태가 false이면 Blank페이지, true면 좋아요한 레시피가 뜸
   // 불러온 값이 null이면 false, null이 아니면 true ?
-  const [favorite, setFavorite] = useState(false);
+
+  const [favorite, setFavorite] = useState(true);
+
+  // if ()
 
   return (
     <Wrapper>
