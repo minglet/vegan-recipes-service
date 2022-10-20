@@ -1,15 +1,24 @@
 import { useState } from "react";
 import styled from "styled-components";
+import Pagination from '@mui/material/Pagination';
 
-function Pagination({ total, limit, page, setPage }) {
+function PaginationFunc({ total, limit, page, setPage }) {
   const numPages = Math.ceil(total / limit);
   const [currPage, setCurrPage] = useState(page);
   let firstNum = currPage - (currPage % 5) + 1;
   let lastNum = currPage - (currPage % 5) + 5;
 
   return (
-    <>
-      <Nav>
+    <div
+        style={{
+          display: "flex",
+          padding : '30px',
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+    <Pagination count={total} variant="outlined" shape="rounded" />
+      {/* <Nav>
         <Button
           onClick={() => {
             setPage(page - 1);
@@ -63,48 +72,48 @@ function Pagination({ total, limit, page, setPage }) {
         >
           &gt;
         </Button>
-      </Nav>
-    </>
+      </Nav> */}
+    </div>
   );
 }
 
-const Nav = styled.nav`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-  margin: 16px;
-`;
+// const Nav = styled.nav`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   gap: 4px;
+//   margin: 16px;
+// `;
 
-const Button = styled.button`
-  border: none;
-  border-radius: 8px;
-  padding: 6px;
-  margin: 0;
-  background: aliceblue;
-  color: black;
-  font-size: 1rem;
-  font-weight: bold;
+// const Button = styled.button`
+//   border: none;
+//   border-radius: 8px;
+//   padding: 6px;
+//   margin: 0;
+//   background: aliceblue;
+//   color: black;
+//   font-size: 1rem;
+//   font-weight: bold;
 
-  &:hover {
-    background: lightskyblue;
-    color: white;
-    cursor: pointer;
-    transform: translateY(-2px);
-  }
+//   &:hover {
+//     background: lightskyblue;
+//     color: white;
+//     cursor: pointer;
+//     transform: translateY(-2px);
+//   }
 
-  &[disabled] {
-    cursor: revert;
-    transform: revert;
-  }
+//   &[disabled] {
+//     cursor: revert;
+//     transform: revert;
+//   }
 
-  &[aria-current] {
-    background: dodgerblue;
-    color: white;
-    font-weight: bold;
-    cursor: revert;
-    transform: revert;
-  }
-`;
+//   &[aria-current] {
+//     background: dodgerblue;
+//     color: white;
+//     font-weight: bold;
+//     cursor: revert;
+//     transform: revert;
+//   }
+// `;
 
-export default Pagination;
+export default PaginationFunc;

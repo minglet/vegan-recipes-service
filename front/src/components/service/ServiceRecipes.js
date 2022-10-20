@@ -1,4 +1,5 @@
-import Pagination from "./Pagination";
+import PaginationFunc from "./Pagination";
+import Pagination from '@mui/material/Pagination';
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
@@ -55,7 +56,7 @@ function ServiceRecipes(recipes) {
       </Grid>
 
       <footer>
-        <Pagination
+        <PaginationFunc
           total={selectedRecipes.length}
           limit={limit}
           page={page}
