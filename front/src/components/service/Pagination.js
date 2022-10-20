@@ -1,17 +1,19 @@
-import { useState } from "react";
 import styled from "styled-components";
-import Pagination from '@mui/material/Pagination';
-
-// import Button from '@mui/material/Button';
 
 function PaginationFunc({ total, limit, page, setPage }) {
+  // 총 페이지 수
   const numPages = Math.ceil(total / limit);
-  const [currPage, setCurrPage] = useState(page);
-  let firstNum = currPage - (currPage % 5) + 1;
-  let lastNum = currPage - (currPage % 5) + 5;
+  // 1~5 (1그룹), 6~10(2그룹)
+  const pageCount = 5;
+  const pageGroup = Math.ceil(page / pageCount);
+  
+  // 페이지그룹 내 왼쪽 & 오른쪽 숫자
+  let rightNum = pageGroup * pageCount;
+  let leftNum = rightNum - pageCount + 1;
+  if (rightNum > numPages) {rightNum = numPages}
 
   return (
-    <div
+      <div
         style={{
           display: "flex",
           padding : '30px',
@@ -19,67 +21,62 @@ function PaginationFunc({ total, limit, page, setPage }) {
           alignItems: "center",
         }}
       >
-    {page <= numPages? (
-          <>
         <Button
           onClick={() => {
             setPage(page - 1);
-            setCurrPage(page - 2);
           }}
           disabled={page === 1}
         >
           &lt;
         </Button>
-          <Button
-            onClick={() => setPage(firstNum)}
-            aria-current={page === firstNum ? "page" : null}
-          >
-          {firstNum}
-          </Button>
+        <Button
+          onClick={() => setPage(leftNum)}
+          aria-current={page === leftNum ? "page" : null}
+        >
+        {leftNum}
+        </Button>
 
-            {Array(4)
-              .fill()
-              .map((_, i) => {
-                if (i <= 2) {
-                  return (
-                    <Button
-                      border="true"
-                      key={i + 1}
-                      onClick={() => {
-                        setPage(firstNum + 1 + i);
-                      }}
-                      aria-current={page === firstNum + 1 + i ? "page" : null}
-                    >
-                      {firstNum + 1 + i}
-                    </Button>
-                  );
-                } else if (i >= 3) {
-                  return (
-                    <Button
-                      border="true"
-                      key={i + 1}
-                      onClick={() => setPage(lastNum)}
-                      aria-current={page === lastNum ? "page" : null}
-                    >
-                      {lastNum}
-                    </Button>
-                  );
-                }
-              })
+        {Array(rightNum-leftNum)
+          .fill()
+          .map((_, i) => {
+            if (i <= 2) {
+              return (
+                <Button
+                  border="true"
+                  key={i + 1}
+                  onClick={() => {
+                    setPage(leftNum + 1 + i);
+                  }}
+                  aria-current={page === leftNum + 1 + i ? "page" : null}
+                >
+                  {leftNum + 1 + i}
+                </Button>
+              );
+            } else if (i >= 3) {
+              return (
+                <Button
+                  border="true"
+                  key={i + 1}
+                  onClick={() => setPage(rightNum)}
+                  aria-current={page === rightNum ? "page" : null}
+                >
+                  {rightNum}
+                </Button>
+              );
             }
-          <Button
-            onClick={() => { if (page < numPages) {
-                                            setPage(page + 1);
-                                            setCurrPage(page);
-                                            }}}
-            disabled={page === numPages}
-          >
-            &gt;
-          </Button>
-        </>
-        ):( <></>)
+          })
         }
-     </div>
+
+        <Button
+          onClick={() => { if (page < numPages) {
+                                          setPage(page + 1);
+                                          // setCurrPage(page);
+                                          }}}
+          disabled={page === numPages}
+        >
+          &gt;
+        </Button>
+      </div>
   );
 }
 
