@@ -1,4 +1,5 @@
-// 사용자가 잘못 입력한 경우
+
+// 잘못된 요청 에러
 export class BadRequestError {
     status: number;
     message: any;

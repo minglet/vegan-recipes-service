@@ -40,16 +40,16 @@ declare class userAuthService {
         errorMessage: any;
     }>;
     static getUsers(): Promise<(import("mongoose").Document<unknown, any, {
-        id: string;
         name: string;
         email: string;
         password: string;
+        id: string;
         recipe_scraps: any[];
     }> & {
-        id: string;
         name: string;
         email: string;
         password: string;
+        id: string;
         recipe_scraps: any[];
     } & {
         _id: import("mongoose").Types.ObjectId;

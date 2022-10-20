@@ -8,4 +8,4 @@ class InternalServerError {
     }
 }
 exports.InternalServerError = InternalServerError;
-//# sourceMappingURL=interval-server.error.js.map
+//# sourceMappingURL=internal-server.error.js.map
