@@ -14,6 +14,14 @@ import Alert from "@mui/material/Alert";
 import * as Api from "../../api";
 import { DispatchContext } from "../../App";
 
+import styled from "@emotion/styled";
+
+const Wrapper = styled("div")`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 function LoginPage() {
   const navigate = useNavigate();
   const dispatch = useContext(DispatchContext);
@@ -72,96 +80,102 @@ function LoginPage() {
   };
 
   return (
-    <Grid container component="main" sx={{ height: "80vh" }}>
-      <Grid
-        item
-        xs={false}
-        sm={4}
-        md={7}
+    <Wrapper>
+      <Box
         sx={{
-          backgroundImage: "url(http://placeimg.com/640/480/nature)",
-          backgroundRepeat: "no-repeat",
-          backgroundColor: (t) =>
-            t.palette.mode === "light"
-              ? t.palette.grey[50]
-              : t.palette.grey[900],
-          backgroundSize: "cover",
-          backgroundPosition: "center",
+          width: 3 / 4,
         }}
-      />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        <Box
-          sx={{
-            my: 8,
-            mx: 4,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
-          <Typography component="h1" variant="h5">
-            Login
-          </Typography>
-          <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 1 }}
-          >
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="email"
-              label="email"
-              type="email"
-              id="email"
-              autoComplete="on"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            {!isEmailValid && (
-              <Form.Text className="text-success">
-                Please check the email right.
-              </Form.Text>
-            )}
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              // autoComplete="on"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            {!isPasswordValid && (
-              <Form.Text className="text-success">
-                Password is same as or more than 4 letters.
-              </Form.Text>
-            )}
-            {userValidation && 
-            <Grid item xs={12}>
-              <Alert fullWidth severity="error">{userValidation}</Alert>
-            </Grid>
-            }
-
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              disabled={!isFormValid}
+      >
+        <Grid container component="main" sx={{ height: "100vh" }}>
+          <Grid
+            item
+            xs={false}
+            sm={4}
+            md={7}
+            sx={{
+              backgroundImage: "url(https://source.unsplash.com/random/?salad)",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+          <Grid item xs={12} sm={8} md={5} elevation={6} square>
+            <Box
+              sx={{
+                my: 8,
+                mx: 4,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
             >
-              Login
-            </Button>
-          </Box>
-        </Box>
-      </Grid>
-    </Grid>
+              <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
+              <Typography component="h1" variant="h5">
+                Login
+              </Typography>
+              <Box
+                component="form"
+                noValidate
+                onSubmit={handleSubmit}
+                sx={{ mt: 1 }}
+              >
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="email"
+                  label="email"
+                  type="email"
+                  id="email"
+                  autoComplete="on"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                {!isEmailValid && (
+                  <Form.Text className="text-success">
+                    Please check the email right.
+                  </Form.Text>
+                )}
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  // autoComplete="on"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                {!isPasswordValid && (
+                  <Form.Text className="text-success">
+                    Password is same as or more than 4 letters.
+                  </Form.Text>
+                )}
+                {userValidation && (
+                  <Grid item xs={12}>
+                    <Alert fullWidth severity="error">
+                      {userValidation}
+                    </Alert>
+                  </Grid>
+                )}
+
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                  disabled={!isFormValid}
+                >
+                  Login
+                </Button>
+              </Box>
+            </Box>
+          </Grid>
+        </Grid>
+      </Box>
+    </Wrapper>
   );
 }
 export default LoginPage;
