@@ -40,7 +40,7 @@ const Wrapper = styled("div")`
 function useScraps() {
   const [data, setData] = useState([]);
 
-  const [lastUpdate, setLastUpdate] = useState([]);
+  const [lastUpdate, setLastUpdate] = useState();
 
   const fetchData = async () => {
     const { data } = await Api.get("scraps");
@@ -60,22 +60,20 @@ function useScraps() {
 }
 
 export default function RecipeCard() {
-  const { recipeId, reFetch } = useParams();
-  const { data: recipes = [] } = useScraps();
+  const [scrapRecipe, setScrapRecipe] = useState();
+  // const { recipeId } = useParams();
+  const { data: recipes = [], reFetch } = useScraps();
+
+  const favorite = recipes.length > 0;
 
   // 좋아하는 레시피 삭제버튼
-  const deleteRecipe = async () => {
+  const deleteRecipe = async (recipeId) => {
     await Api.put(`users/unscrap/${recipeId}`);
 
     // 리스트 다시 불러오기
     reFetch();
+    // window.location.replace("/users");
   };
-
-  const favorite = recipes.length > 0;
-
-  // console.log("recipes :", recipes);
-  // console.log("recipes._id :", recipes);
-  // console.log("getRecipe :", getRecipe);
 
   return (
     <Wrapper>
@@ -113,7 +111,7 @@ export default function RecipeCard() {
                       <Button
                         size="small"
                         color="inherit"
-                        onClick={deleteRecipe}
+                        onClick={() => deleteRecipe(item._id)}
                       >
                         DELETE
                       </Button>
