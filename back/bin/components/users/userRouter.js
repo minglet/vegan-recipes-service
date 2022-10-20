@@ -10,7 +10,7 @@ const userService_1 = require("./userService");
 const validator_middleware_1 = __importDefault(require("../../middleware/validator.middleware"));
 const userAuthRouter = (0, express_1.Router)();
 exports.userAuthRouter = userAuthRouter;
-userAuthRouter.post("/user/register", async function (req, res, next) {
+userAuthRouter.post("/user/register", (0, validator_middleware_1.default)('register'), async function (req, res, next) {
     try {
         const { name, email, password } = req.body;
         const newUser = await userService_1.userAuthService.addUser({
@@ -65,7 +65,7 @@ userAuthRouter.get("/user/current", login_required_1.login_required, async funct
         next(error);
     }
 });
-userAuthRouter.put("/users/:userId", login_required_1.login_required, async function (req, res, next) {
+userAuthRouter.put("/users/:userId", (0, validator_middleware_1.default)('edit'), login_required_1.login_required, async function (req, res, next) {
     var _a, _b;
     try {
         const currentUser = req.currentUserId;

@@ -2,7 +2,7 @@ import { User } from "./userModel"; // from을 폴더(db) 로 설정 시, 디폴
 import bcrypt from "bcryptjs";
 import { v4 as uuidv4 } from "uuid";
 import jwt from "jsonwebtoken";
-import { BadRequestError } from "src/utils/error/bad-request.error";
+import { BadRequestError } from "../../utils/error/bad-request.error"
 
 class userAuthService {
   /** User register */

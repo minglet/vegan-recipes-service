@@ -38,8 +38,6 @@ declare class userAuthService {
         email: string;
         name: string;
         errorMessage: any;
-    } | {
-        errorMessage: string;
     }>;
     static getUsers(): Promise<(import("mongoose").Document<unknown, any, {
         name: string;
