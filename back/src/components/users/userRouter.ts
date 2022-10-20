@@ -1,11 +1,16 @@
 import { Router, Request, Response, NextFunction } from "express";
 import { login_required } from "../../lib/login_required";
 import { userAuthService } from "./userService";
+import validator from '../../middleware/validator.middleware'
+
 
 const userAuthRouter = Router();
 
 // User register
-userAuthRouter.post("/user/register", async function (req, res, next) {
+userAuthRouter.post(
+  "/user/register", 
+  validator('register'),
+  async function (req, res, next) {
   try {
     // req (request) 에서 데이터 가져오기
     const {name, email, password} = req.body
@@ -28,7 +33,10 @@ userAuthRouter.post("/user/register", async function (req, res, next) {
 });
 
 // User login
-userAuthRouter.post("/user/login", async function (req, res, next) {
+userAuthRouter.post(
+  "/user/login", 
+  validator('login'), 
+  async function (req, res, next) {
   try {
     // req (request) 에서 데이터 가져오기
     const email = req.body.email;
@@ -88,6 +96,7 @@ userAuthRouter.get(
 // Edit user info
 userAuthRouter.put(
   "/users/:userId",
+  validator('edit'),
   login_required,
   async function (req, res, next) {
     try {
