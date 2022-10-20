@@ -8,6 +8,8 @@ import * as Api from "../../../api";
 import { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 
+import UserName from "../../myPage/userPage/UserName";
+
 export default function UserEditPage() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -49,6 +51,7 @@ export default function UserEditPage() {
 
   return (
     <Container component="main" maxWidth="xs">
+      <UserName />
       <form onSubmit={handleSubmit}>
         <Box
           sx={{
