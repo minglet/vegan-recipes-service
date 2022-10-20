@@ -22,7 +22,7 @@ function ServiceRecipes(recipes) {
     <Container className="like-recipe-container" sx={{ py: 8 }} maxWidth="md">
       <Grid container spacing={4}>
         {selectedRecipes.slice(offset, offset + limit).map((item) => (
-          <Grid item key={item} xs={12} sm={6} md={4}>
+          <Grid item key={item._id} xs={12} sm={6} md={4}>
             <Card
               sx={{
                 height: "100%",
@@ -43,7 +43,7 @@ function ServiceRecipes(recipes) {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Grid xs="6">
+                <Grid>
                   <Button size="small" color="inherit">
                     <Link to={`/recipes/current/${item._id}`}>VIEW</Link>
                   </Button>
