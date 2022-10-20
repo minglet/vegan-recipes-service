@@ -1,3 +1,4 @@
+// 잘못된 요청 에러
 export class BadRequestError {
     status: number;
     message: any;
