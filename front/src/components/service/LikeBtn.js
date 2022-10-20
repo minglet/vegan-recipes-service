@@ -32,7 +32,10 @@ const Wrapper = styled("div")`
   }
 `;
 
-export default function LikeBtn() {
+export default function LikeBtn(recipeId) {
+  // console.log(recipeId);
+  const recipe_id = recipeId.recipeId;
+  console.log(recipe_id);
   // like 버튼
   const [isLiked, setIsLiked] = useState(false);
 
@@ -73,7 +76,11 @@ export default function LikeBtn() {
       <div className="recommend-container">
         <Grow in={isLiked}>
           <Paper sx={{ border: "none" }} elevation={0} variant="outlined">
-            <Recommend />
+            {recipeId && (
+              <Recommend 
+                recipeId = {recipe_id}
+              />
+            )}
           </Paper>
         </Grow>
       </div>

@@ -8,6 +8,8 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
+import * as Api from "../../api";
+
 import styled from "@emotion/styled";
 import { Paper } from "@mui/material";
 
@@ -22,9 +24,21 @@ const Wrapper = styled("div")`
   width: 200px;
 `;
 
-export default function Recommend() {
+export default function Recommend(recipeId) {
+  // console.log(recipeId);
+  const recipe_id = recipeId.recipeId;
+  console.log(recipe_id);
   // 추천카드한개 api 가져오기
   const cards = [1];
+  const [recommendCard, setRecommendCard] = useState(null);
+
+  useEffect (() => {
+    Api.get(`recipes/current/${recipe_id}/rec`).then((res) => { console.log('test')
+                                                                setRecommendCard(res.data)
+                                                                console.log(recommendCard)})
+
+  }, []);
+  
 
   return (
     <Wrapper>
