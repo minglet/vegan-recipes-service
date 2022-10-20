@@ -27,51 +27,63 @@ declare class Recipe {
     static findById({ recipe_id }: {
         recipe_id: string;
     }): Promise<import("mongoose").Document<unknown, any, {
+        index: string;
         title: string;
         ingredients: string;
         preparation: string;
         img_url: string;
         cluster_label: string;
+        sim_idx: string;
     }> & {
+        index: string;
         title: string;
         ingredients: string;
         preparation: string;
         img_url: string;
         cluster_label: string;
+        sim_idx: string;
     } & {
         _id: import("mongoose").Types.ObjectId;
     }>;
     static findAll(): Promise<(import("mongoose").Document<unknown, any, {
+        index: string;
         title: string;
         ingredients: string;
         preparation: string;
         img_url: string;
         cluster_label: string;
+        sim_idx: string;
     }> & {
+        index: string;
         title: string;
         ingredients: string;
         preparation: string;
         img_url: string;
         cluster_label: string;
+        sim_idx: string;
     } & {
         _id: import("mongoose").Types.ObjectId;
     })[]>;
-    static findByClusterNum({ cluster_num }: {
-        cluster_num: string;
-    }): Promise<(import("mongoose").Document<unknown, any, {
+    static findByIndex({ sim_idx }: {
+        sim_idx: string;
+    }): Promise<import("mongoose").Document<unknown, any, {
+        index: string;
         title: string;
         ingredients: string;
         preparation: string;
         img_url: string;
         cluster_label: string;
+        sim_idx: string;
     }> & {
+        index: string;
         title: string;
         ingredients: string;
         preparation: string;
         img_url: string;
         cluster_label: string;
+        sim_idx: string;
     } & {
         _id: import("mongoose").Types.ObjectId;
-    })[]>;
+    }>;
 }
 export { Recipe };

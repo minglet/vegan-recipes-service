@@ -24,16 +24,20 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { Schema } from "mongoose";
 declare const RecipeModel: import("mongoose").Model<{
+    index: string;
     title: string;
     ingredients: string;
     preparation: string;
     img_url: string;
     cluster_label: string;
+    sim_idx: string;
 }, {}, {}, {}, Schema<any, import("mongoose").Model<any, any, any, any, any>, {}, {}, {}, {}, "type", {
+    index: string;
     title: string;
     ingredients: string;
     preparation: string;
     img_url: string;
     cluster_label: string;
+    sim_idx: string;
 }>>;
 export { RecipeModel };
