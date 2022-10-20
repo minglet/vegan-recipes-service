@@ -44,7 +44,7 @@ function ServiceRecipes(recipes) {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Grid xs="6">
+                <Grid>
                   <Button size="small" color="inherit">
                     <Link to={`/recipes/current/${item._id}`}>VIEW</Link>
                   </Button>

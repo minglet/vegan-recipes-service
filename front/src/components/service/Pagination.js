@@ -12,8 +12,6 @@ function Pagination({ total, limit, page, setPage }) {
   let leftNum = rightNum - pageCount + 1;
   if (rightNum > numPages) {rightNum = numPages}
 
-  console.log(total, numPages, pageGroup, leftNum, rightNum);
-
   return (
       <div
         style={{

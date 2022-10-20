@@ -13,6 +13,7 @@ import hj from "../../img/hj.png";
 import jh from "../../img/jh.png";
 import bk from "../../img/bk.png";
 import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 const Wrapper = styled("div")`
   display: flex;
@@ -33,17 +34,16 @@ const Wrapper = styled("div")`
   }
 
   .team-title {
-    margin: 20vh 0 50px 0;
+    margin: 145px 0 50px 0;
   }
 
   .team-title h1 {
     font-family: SBAggroB;
     font-size: 50px;
-    color: #263238;
   }
 
   .img {
-    height: 200px;
+    height: 300px;
     margin-top: 25px;
   }
 
@@ -82,16 +82,27 @@ const Wrapper = styled("div")`
 export default function TeamPage() {
   return (
     <Wrapper>
-      <div className="team-title">
+      <div
+        className="team-title"
+        style={{ cursor: "pointer" }}
+        onClick={() => {
+          window.location.reload("/team");
+        }}
+      >
         <h1>Windows11</h1>
       </div>
 
       <div className="team-member">
-        <Card className="card-container" sx={{ width: 300, height: 450 }}>
+        <Card className="card-container" sx={{ width: 300, height: 500 }}>
           <CardMedia className="img" component="img" image={hd} />
           <CardContent>
-            <Typography gutterBottom variant="h4" component="div">
-              HD
+            <Typography
+              gutterBottom
+              variant="h4"
+              component="div"
+              style={{ fontWeight: 1000 }}
+            >
+              HwiDong
             </Typography>
             <div className="box reader" style={{ marginRight: 10 }}>
               TeamReader
@@ -100,75 +111,72 @@ export default function TeamPage() {
             <div className="icon-text-container">
               <GitHubIcon className="icon" />
               <Typography variant="body2">
-                <a href="" target="_blank">
-                  github.com/
+                <a href="https://github.com/gnlehd94" target="_blank">
+                  github.com/gnlehd94
                 </a>
-              </Typography>
-            </div>
-            <div className="icon-text-container">
-              <EmailIcon className="icon" />
-              <Typography variant="body2">
-                <a href="mailto:">@gmail.com</a>
               </Typography>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="card-container" sx={{ width: 300, height: 450 }}>
+        <Card className="card-container" sx={{ width: 300, height: 500 }}>
           <CardMedia className="img" component="img" image={ma} />
           <CardContent>
-            <Typography gutterBottom variant="h4" component="div">
-              MA
+            <Typography
+              gutterBottom
+              variant="h4"
+              component="div"
+              style={{ fontWeight: 1000 }}
+            >
+              MinAh
             </Typography>
             <div className="box backend">Backend</div>
             <div className="icon-text-container">
               <GitHubIcon className="icon" />
               <Typography variant="body2">
-                <a href="" target="_blank">
-                  github.com/
+                <a href="https://github.com/minglet" target="_blank">
+                  github.com/minglet
                 </a>
-              </Typography>
-            </div>
-            <div className="icon-text-container">
-              <EmailIcon className="icon" />
-              <Typography variant="body2">
-                <a href="mailto:">@gmail.com</a>
               </Typography>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="card-container" sx={{ width: 300, height: 450 }}>
+        <Card className="card-container" sx={{ width: 300, height: 500 }}>
           <CardMedia className="img" component="img" image={hj} />
           <CardContent>
-            <Typography gutterBottom variant="h4" component="div">
-              HJ
+            <Typography
+              gutterBottom
+              variant="h4"
+              component="div"
+              style={{ fontWeight: 1000 }}
+            >
+              HyeJoo
             </Typography>
             <div className="box backend">Backend</div>
             <div className="icon-text-container">
               <GitHubIcon className="icon" />
               <Typography variant="body2">
-                <a href="" target="_blank">
-                  github.com/
+                <a href="https://github.com/outdoing7" target="_blank">
+                  github.com/outdoing7
                 </a>
-              </Typography>
-            </div>
-            <div className="icon-text-container">
-              <EmailIcon className="icon" />
-              <Typography variant="body2">
-                <a href="mailto:">@gmail.com</a>
               </Typography>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="card-container" sx={{ width: 300, height: 450 }}>
+        <Card className="card-container" sx={{ width: 300, height: 500 }}>
           <CardMedia className="img" component="img" image={jh} />
           <CardContent>
-            <Typography gutterBottom variant="h4" component="div">
+            <Typography
+              gutterBottom
+              variant="h4"
+              component="div"
+              style={{ fontWeight: 1000 }}
+            >
               JiHye
             </Typography>
-            <div className="box frontend">frontend</div>
+            <div className="box frontend">Frontend</div>
             <div className="icon-text-container">
               <GitHubIcon className="icon" />
               <Typography variant="body2">
@@ -177,36 +185,27 @@ export default function TeamPage() {
                 </a>
               </Typography>
             </div>
-            <div className="icon-text-container">
-              <EmailIcon className="icon" />
-              <Typography variant="body2">
-                <a href="mailto:leejihye7117@gmail.com">
-                  leejihye7117@gmail.com
-                </a>
-              </Typography>
-            </div>
           </CardContent>
         </Card>
 
-        <Card className="card-container" sx={{ width: 300, height: 450 }}>
+        <Card className="card-container" sx={{ width: 300, height: 500 }}>
           <CardMedia className="img" component="img" image={bk} />
           <CardContent>
-            <Typography gutterBottom variant="h4" component="div">
-              BK
+            <Typography
+              gutterBottom
+              variant="h4"
+              component="div"
+              style={{ fontWeight: 1000 }}
+            >
+              BoKyung
             </Typography>
             <div className="box frontend">Frontend</div>
             <div className="icon-text-container">
               <GitHubIcon className="icon" />
               <Typography variant="body2">
-                <a href="" target="_blank">
+                <a href="https://github.com/" target="_blank">
                   github.com/
                 </a>
-              </Typography>
-            </div>
-            <div className="icon-text-container">
-              <EmailIcon className="icon" />
-              <Typography variant="body2">
-                <a href="mailto:">@gmail.com</a>
               </Typography>
             </div>
           </CardContent>

@@ -75,7 +75,6 @@ export default function LikeBtn() {
     const res = await Api.put(`scrap/addscrap/${recipeId}`);
     refetch();
   };
-  // console.log("recipeId :", recipeId);
 
   return (
     <Wrapper>

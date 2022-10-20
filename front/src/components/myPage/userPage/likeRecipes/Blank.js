@@ -19,7 +19,7 @@ const Wrapper = styled("div")`
   align-items: center;
   margin: 10px;
   width: 900px;
-  height: 500px;
+  height: 450px;
 
   .like-recipe-text {
     display: inline-block;

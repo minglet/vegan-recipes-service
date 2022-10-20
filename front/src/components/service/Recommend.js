@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -7,12 +7,10 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
 
 import * as Api from "../../api";
 
 import styled from "@emotion/styled";
-import { Paper } from "@mui/material";
 
 const Wrapper = styled("div")`
   /* position: fixed; */
@@ -26,32 +24,26 @@ const Wrapper = styled("div")`
 `;
 
 export default function Recommend() {
-  const navigate = useNavigate();
-  // console.log(recipeId);
-  // const recipe_id = recipeId.recipeId;
-  // console.log(recipe_id);
   // 추천카드한개 api 가져오기
   const cards = [1];
 
   const { recipeId } = useParams();
  
-  console.log(recipeId);
+  // console.log(recipeId);
 
   const [recommendCard, setRecommendCard] = useState(null);
   
 
   useEffect (() => {
-    console.log('test1')
     Api.get(`recipes/current/${recipeId}/rec`).then((res) => { console.log('test2');
                                                                 setRecommendCard(res.data);
                                                                 console.log(recommendCard);})
 
   }, []);
   if(recommendCard){
-  console.log(recommendCard);
+  // console.log(recommendCard);
 }
   
-
   return (
     <Wrapper>
       <Grid item key={cards}>
