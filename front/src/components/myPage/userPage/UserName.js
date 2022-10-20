@@ -23,7 +23,6 @@ export default function UserName() {
   useEffect(() => {
     Api.get("user/current").then((res) => setUser(res.data));
   }, []);
-  console.log(user);
 
   return (
     <Wrapper>

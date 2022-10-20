@@ -22,9 +22,6 @@ const Wrapper = styled("div")`
 export default function UserEditBtn() {
   const userState = useContext(UserStateContext);
 
-  // console.log("userState.user : ", userState.user);
-  // console.log("userId", userState.user.id);
-
   return (
     <Wrapper>
       <Button

@@ -50,15 +50,11 @@ export default function ServiceRecipeDetail() {
   const { recipeId } = useParams();
   const [recipes, setrecipes] = useState([]);
 
-  // console.log(recipes.title);
-
   useEffect(() => {
     if (!recipeId) return;
     // get요청res를 setState로 !
     Api.get(`recipes/current/${recipeId}`).then((res) => setrecipes(res.data));
   }, [recipeId]);
-
-  // console.log("recipeId :", recipeId);
 
   return (
     <Wrapper maxWidth="md">
