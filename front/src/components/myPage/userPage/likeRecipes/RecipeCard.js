@@ -37,20 +37,47 @@ const Wrapper = styled("div")`
   }
 `;
 
-export default function RecipeCard() {
-  const [recipes, setrecipes] = useState([]);
+function useScraps() {
+  const [data, setData] = useState([]);
 
-  // 여기에 좋아요 한 레시피 불러오는 API로 수정
+  const fetchData = async () => {
+    const { data } = await Api.get("scraps");
+    setData(data);
+  };
+
   useEffect(() => {
-    Api.get("scraps").then((res) => setrecipes(res.data));
+    fetchData();
   }, []);
 
+  return {
+    data,
+  };
+}
+
+export default function RecipeCard() {
+  //좋아요한 레시피 배열
+  // const [recipes, setRecipes] = useState([]);
+
+  // 좋아요 한 레시피 Api
+  const { data: recipes = [] } = useScraps();
+
   // 상태가 false이면 Blank페이지, true면 좋아요한 레시피가 뜸
-  // 불러온 값이 null이면 false, null이 아니면 true ?
+  // const [favorite, setFavorite] = useState(false);
 
-  const [favorite, setFavorite] = useState(true);
+  // if (recipes === []) {
+  //   setFavorite(true);
+  //   return;
+  // }
+  // return setFavorite(false);
 
-  // if ()
+  // 좋아하는 레시피 삭제버튼
+  // const deleteRecipe = async () => {
+  //   Api.put(`users/unscrap/${recipeId}`);
+  // };
+
+  const favorite = recipes.length > 0;
+
+  console.log("favorite :", favorite);
 
   return (
     <Wrapper>
@@ -86,7 +113,11 @@ export default function RecipeCard() {
                       </Button>
                     </Grid>
                     <Grid xs="6">
-                      <Button size="small" color="inherit">
+                      <Button
+                        size="small"
+                        color="inherit"
+                        // onClick={deleteRecipe}
+                      >
                         DELETE
                       </Button>
                     </Grid>
