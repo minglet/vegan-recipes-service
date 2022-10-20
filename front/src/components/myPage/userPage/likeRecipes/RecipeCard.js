@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Blank from "./Blank";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
@@ -26,7 +27,6 @@ const Wrapper = styled("div")`
     padding: 20px 70px 60px 70px;
     border: 2px solid #cccccc;
     border-radius: 50px;
-    /* box-shadow: 5px 2px 15px #cccccc; */
   }
 
   .like-recipe-text {
@@ -40,6 +40,8 @@ const Wrapper = styled("div")`
 function useScraps() {
   const [data, setData] = useState([]);
 
+  const [lastUpdate, setLastUpdate] = useState([]);
+
   const fetchData = async () => {
     const { data } = await Api.get("scraps");
     setData(data);
@@ -47,37 +49,33 @@ function useScraps() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [lastUpdate]);
 
   return {
     data,
+    reFetch: () => {
+      setLastUpdate(new Date().getTime());
+    },
   };
 }
 
 export default function RecipeCard() {
-  //좋아요한 레시피 배열
-  // const [recipes, setRecipes] = useState([]);
-
-  // 좋아요 한 레시피 Api
+  const { recipeId, reFetch } = useParams();
   const { data: recipes = [] } = useScraps();
 
-  // 상태가 false이면 Blank페이지, true면 좋아요한 레시피가 뜸
-  // const [favorite, setFavorite] = useState(false);
-
-  // if (recipes === []) {
-  //   setFavorite(true);
-  //   return;
-  // }
-  // return setFavorite(false);
-
   // 좋아하는 레시피 삭제버튼
-  // const deleteRecipe = async () => {
-  //   Api.put(`users/unscrap/${recipeId}`);
-  // };
+  const deleteRecipe = async () => {
+    await Api.put(`users/unscrap/${recipeId}`);
+
+    // 리스트 다시 불러오기
+    reFetch();
+  };
 
   const favorite = recipes.length > 0;
 
-  console.log("favorite :", favorite);
+  // console.log("recipes :", recipes);
+  // console.log("recipes._id :", recipes);
+  // console.log("getRecipe :", getRecipe);
 
   return (
     <Wrapper>
@@ -102,7 +100,6 @@ export default function RecipeCard() {
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      {/* 레시피 이름 */}
                       {item.title}
                     </Typography>
                   </CardContent>
@@ -116,7 +113,7 @@ export default function RecipeCard() {
                       <Button
                         size="small"
                         color="inherit"
-                        // onClick={deleteRecipe}
+                        onClick={deleteRecipe}
                       >
                         DELETE
                       </Button>
