@@ -89,7 +89,12 @@ export default function TeamPage() {
         <Card className="card-container" sx={{ width: 300, height: 500 }}>
           <CardMedia className="img" component="img" image={hd} />
           <CardContent>
-            <Typography gutterBottom variant="h4" component="div">
+            <Typography
+              gutterBottom
+              variant="h4"
+              component="div"
+              style={{ fontWeight: 1000 }}
+            >
               HwiDong
             </Typography>
             <div className="box reader" style={{ marginRight: 10 }}>
@@ -110,7 +115,12 @@ export default function TeamPage() {
         <Card className="card-container" sx={{ width: 300, height: 500 }}>
           <CardMedia className="img" component="img" image={ma} />
           <CardContent>
-            <Typography gutterBottom variant="h4" component="div">
+            <Typography
+              gutterBottom
+              variant="h4"
+              component="div"
+              style={{ fontWeight: 1000 }}
+            >
               MinAh
             </Typography>
             <div className="box backend">Backend</div>
@@ -128,7 +138,12 @@ export default function TeamPage() {
         <Card className="card-container" sx={{ width: 300, height: 500 }}>
           <CardMedia className="img" component="img" image={hj} />
           <CardContent>
-            <Typography gutterBottom variant="h4" component="div">
+            <Typography
+              gutterBottom
+              variant="h4"
+              component="div"
+              style={{ fontWeight: 1000 }}
+            >
               HyeJoo
             </Typography>
             <div className="box backend">Backend</div>
@@ -146,7 +161,12 @@ export default function TeamPage() {
         <Card className="card-container" sx={{ width: 300, height: 500 }}>
           <CardMedia className="img" component="img" image={jh} />
           <CardContent>
-            <Typography gutterBottom variant="h4" component="div">
+            <Typography
+              gutterBottom
+              variant="h4"
+              component="div"
+              style={{ fontWeight: 1000 }}
+            >
               JiHye
             </Typography>
             <div className="box frontend">frontend</div>
@@ -164,7 +184,12 @@ export default function TeamPage() {
         <Card className="card-container" sx={{ width: 300, height: 500 }}>
           <CardMedia className="img" component="img" image={bk} />
           <CardContent>
-            <Typography gutterBottom variant="h4" component="div">
+            <Typography
+              gutterBottom
+              variant="h4"
+              component="div"
+              style={{ fontWeight: 1000 }}
+            >
               BoKyung
             </Typography>
             <div className="box frontend">Frontend</div>
