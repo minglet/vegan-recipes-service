@@ -1,9 +1,9 @@
-export class NotFoundError {
+export class BadRequestError {
     status: number;
     message: any;
     constructor(message: any) {
       this.message = message;
-      this.status = 404;
+      this.status = 400;
     }
   }
   

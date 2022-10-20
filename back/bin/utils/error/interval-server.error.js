@@ -4,6 +4,7 @@ exports.IntervalServerError = void 0;
 class IntervalServerError {
     constructor(message) {
         this.message = message;
+        this.status = 500;
     }
 }
 exports.IntervalServerError = IntervalServerError;
