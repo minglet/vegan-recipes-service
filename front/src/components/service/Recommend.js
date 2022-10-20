@@ -23,7 +23,7 @@ const Wrapper = styled("div")`
 `;
 
 export default function Recommend() {
-  // 여기에 좋아하는 레시피 목록을 넣으면 되나?
+  // 추천카드한개 api 가져오기
   const cards = [1];
 
   return (

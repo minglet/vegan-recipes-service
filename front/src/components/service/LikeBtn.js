@@ -52,11 +52,19 @@ export default function LikeBtn() {
     setIsLiked((pre) => !pre);
     if (!isLiked) {
       // 조아용 API 호출
+      // Api.post("/",{})
     } else {
       // 안좋아용 API 호출
+      // Api.post("",{)
     }
 
     // 데이터 현재 데이터 다시 로드 (결과 가 제대로 처리 됬는지 여부를 판단하기 위해...)
+    //   useEffect(() => {
+    //     Api.get("/", {})
+    //   }, [])
+    //   if (Likedata가 유저id와 같으면) {
+    //     setIsLiked(true)
+    //   }
   };
   // console.log("isLiked :", isLiked);
 

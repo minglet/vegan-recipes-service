@@ -27,7 +27,6 @@ const Wrapper = styled("div")`
 
   .text {
     font-size: 23px;
-    font-family: NanumSquareRound;
     font-weight: 1000;
   }
 
@@ -61,7 +60,7 @@ export default function DataCard() {
             distribute is enormous?
           </div>
         </Typography>
-        <div className="chart-box">
+        <div className="chart-box hidden">
           <Chart />
         </div>
         <Typography>
