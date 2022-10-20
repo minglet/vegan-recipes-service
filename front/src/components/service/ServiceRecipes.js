@@ -1,5 +1,4 @@
-import PaginationFunc from "./Pagination";
-import Pagination from '@mui/material/Pagination';
+import Pagination from "./Pagination";
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
@@ -12,6 +11,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
+import LinearProgress from '@mui/material/LinearProgress';
 
 function ServiceRecipes(recipes) {
   const selectedRecipes = recipes.recipes;
@@ -55,14 +55,20 @@ function ServiceRecipes(recipes) {
         ))}
       </Grid>
 
-      <footer>
-        <PaginationFunc
+      {selectedRecipes.length>0 ?(
+        <Pagination
           total={selectedRecipes.length}
           limit={limit}
           page={page}
           setPage={setPage}
         />
-      </footer>
+      ):(
+        <>
+          <h2>Loading...</h2>
+          <LinearProgress color="inherit" />
+        </>
+      )}
+    
     </Container>
   );
 }

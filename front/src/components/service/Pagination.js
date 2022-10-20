@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-function PaginationFunc({ total, limit, page, setPage }) {
+function Pagination({ total, limit, page, setPage }) {
   // 총 페이지 수
   const numPages = Math.ceil(total / limit);
   // 1~5 (1그룹), 6~10(2그룹)
@@ -11,6 +11,8 @@ function PaginationFunc({ total, limit, page, setPage }) {
   let rightNum = pageGroup * pageCount;
   let leftNum = rightNum - pageCount + 1;
   if (rightNum > numPages) {rightNum = numPages}
+
+  console.log(total, numPages, pageGroup, leftNum, rightNum);
 
   return (
       <div
@@ -70,7 +72,6 @@ function PaginationFunc({ total, limit, page, setPage }) {
         <Button
           onClick={() => { if (page < numPages) {
                                           setPage(page + 1);
-                                          // setCurrPage(page);
                                           }}}
           disabled={page === numPages}
         >
@@ -119,4 +120,4 @@ const Button = styled.button`
   }
 `;
 
-export default PaginationFunc;
+export default Pagination;
