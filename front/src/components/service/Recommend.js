@@ -44,7 +44,7 @@ export default function Recommend() {
                                                                 setRecommendCard(res.data);
                                                                 console.log(recommendCard);})
 
-  }, [recommendCard]);
+  }, []);
   if(recommendCard){
   console.log(recommendCard);
 }
@@ -61,24 +61,28 @@ export default function Recommend() {
             flexDirection: "column",
           }}
         >
-          <CardMedia
-            component="img"
-            image="https://picsum.photos/300/300"
-            alt="random"
-          />
-          <CardContent sx={{ flexGrow: 1 }}>
-            <Typography gutterBottom variant="h5" component="h2">
-              {/* 레시피 이름 */}
-              TITLE
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Grid xs="6">
-              <Button size="small" color="inherit">
-                VIEW
-              </Button>
-            </Grid>
-          </CardActions>
+          {recommendCard && (
+            <>
+              <CardMedia
+                component="img"
+                image={recommendCard.img_url}
+                alt="random"
+              />
+              <CardContent sx={{ flexGrow: 1 }}>
+                <Typography gutterBottom variant="h5" component="h2">
+                  {/* 레시피 이름 */}
+                  {recommendCard.title}
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Grid xs="6">
+                  <Button size="small" color="inherit">
+                    VIEW
+                  </Button>
+                </Grid>
+              </CardActions>
+            </>
+          )}
         </Card>
       </Grid>
     </Wrapper>
