@@ -12,36 +12,26 @@ import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
 
 function RecipePage() {
+  const [allRecipes, setAllRecipes] = useState([]);
   const [recipes, setRecipes] = useState([]);
   const [keyword, setKeyword] = useState("");
-  const [inputValue, setInputValue] = useState("");
   const [loading, setLoading] = useState(true);
   
  
   useEffect(() => {
-    // console.log("test");
-    // console.log(recipes);
-    Api.get("recipes").then((res) => setRecipes(res.data));
+    Api.get("recipes").then((res) => {
+                                       setAllRecipes(res.data);
+                                       setRecipes(res.data);
+                                      })
     setLoading(false);
   }, []);
+  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-   
-    setKeyword(inputValue);
 
-    Api.get("recipes").then((res) => setRecipes(res.data))
-                      .then(() => {
-                        if (keyword.length > 0) {
-                            console.log(keyword);
-                            console.log(recipes);
-                            const newRecipes 
-                                   = recipes.filter((item) => item.ingredients.includes(keyword)) 
-                            console.log(newRecipes);
-                            setRecipes(newRecipes);
-                      }})
-                    
-
+    const newRecipes = allRecipes.filter((item) => item.ingredients.includes(keyword))
+    setRecipes(newRecipes);
   } 
 
   return (
@@ -50,6 +40,7 @@ function RecipePage() {
       {/* Search Bar */}
 
       <Paper
+        onSubmit={handleSubmit}   // enter로 검색 가능
         component="form"
         sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: "50vh" }}
         
@@ -57,8 +48,8 @@ function RecipePage() {
         <InputBase
           sx={{ ml: 1, flex: 1 }}
           placeholder="Search"
-          inputProps={{ inputValue }}
-          onChange={(e)=> setInputValue(e.target.value)}
+          // inputProps={{ inputValue }}
+          onChange={(e)=> setKeyword(e.target.value)}
         />
         <Button 
           type="button" 
@@ -72,10 +63,11 @@ function RecipePage() {
       </Paper>
 
       {/* Recipe Display */}
-      <ServiceRecipes 
-        recipes = {recipes}
-        loading = {loading}
-      />
+        <ServiceRecipes 
+          recipes = {recipes}
+          loading = {loading}
+        />
+
         
     </Container> 
       
