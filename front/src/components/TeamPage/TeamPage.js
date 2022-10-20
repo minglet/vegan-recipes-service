@@ -42,7 +42,7 @@ const Wrapper = styled("div")`
   }
 
   .img {
-    height: 200px;
+    height: 300px;
     margin-top: 25px;
   }
 
@@ -78,39 +78,6 @@ const Wrapper = styled("div")`
   }
 `;
 
-const members = [
-  {
-    name: "HuiDong",
-    img: hd,
-    position: "Frontend",
-    github: "github.com/outdoing7",
-  },
-  {
-    name: "MinAh",
-    img: ma,
-    position: "Backend",
-    github: "github.com/minglet",
-  },
-  {
-    name: "HyeJu",
-    img: hj,
-    position: "Backend",
-    github: "github.com/gnlehd94",
-  },
-  {
-    name: "JiHye",
-    img: jh,
-    position: "Frontend",
-    github: "github.com/2wisdom",
-  },
-  {
-    name: "BoKyung",
-    img: bk,
-    position: "Frontend",
-    github: "github.com/",
-  },
-];
-
 export default function TeamPage() {
   return (
     <Wrapper>
@@ -119,11 +86,11 @@ export default function TeamPage() {
       </div>
 
       <div className="team-member">
-        <Card className="card-container" sx={{ width: 300, height: 420 }}>
+        <Card className="card-container" sx={{ width: 300, height: 500 }}>
           <CardMedia className="img" component="img" image={hd} />
           <CardContent>
             <Typography gutterBottom variant="h4" component="div">
-              HuiDong
+              HwiDong
             </Typography>
             <div className="box reader" style={{ marginRight: 10 }}>
               TeamReader
@@ -132,15 +99,15 @@ export default function TeamPage() {
             <div className="icon-text-container">
               <GitHubIcon className="icon" />
               <Typography variant="body2">
-                <a href="https://github.com/outdoing7" target="_blank">
-                  github.com/outdoing7
+                <a href="https://github.com/gnlehd94" target="_blank">
+                  github.com/gnlehd94
                 </a>
               </Typography>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="card-container" sx={{ width: 300, height: 420 }}>
+        <Card className="card-container" sx={{ width: 300, height: 500 }}>
           <CardMedia className="img" component="img" image={ma} />
           <CardContent>
             <Typography gutterBottom variant="h4" component="div">
@@ -158,25 +125,25 @@ export default function TeamPage() {
           </CardContent>
         </Card>
 
-        <Card className="card-container" sx={{ width: 300, height: 420 }}>
+        <Card className="card-container" sx={{ width: 300, height: 500 }}>
           <CardMedia className="img" component="img" image={hj} />
           <CardContent>
             <Typography gutterBottom variant="h4" component="div">
-              HyeJu
+              HyeJoo
             </Typography>
             <div className="box backend">Backend</div>
             <div className="icon-text-container">
               <GitHubIcon className="icon" />
               <Typography variant="body2">
-                <a href="https://github.com/gnlehd94" target="_blank">
-                  github.com/gnlehd94
+                <a href="https://github.com/outdoing7" target="_blank">
+                  github.com/outdoing7
                 </a>
               </Typography>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="card-container" sx={{ width: 300, height: 420 }}>
+        <Card className="card-container" sx={{ width: 300, height: 500 }}>
           <CardMedia className="img" component="img" image={jh} />
           <CardContent>
             <Typography gutterBottom variant="h4" component="div">
@@ -194,7 +161,7 @@ export default function TeamPage() {
           </CardContent>
         </Card>
 
-        <Card className="card-container" sx={{ width: 300, height: 420 }}>
+        <Card className="card-container" sx={{ width: 300, height: 500 }}>
           <CardMedia className="img" component="img" image={bk} />
           <CardContent>
             <Typography gutterBottom variant="h4" component="div">
