@@ -29,13 +29,30 @@ export declare class recipeService {
         ingredients: string;
         preparation: string;
         img_url: string;
+        cluster_label: string;
     }> & {
         title: string;
         ingredients: string;
         preparation: string;
         img_url: string;
+        cluster_label: string;
     } & {
         _id: import("mongoose").Types.ObjectId;
     })[]>;
     static getRecipeInfo(recipe_id: string): Promise<any>;
+    static getSimilarRecipes(cluster_num: string): Promise<(import("mongoose").Document<unknown, any, {
+        title: string;
+        ingredients: string;
+        preparation: string;
+        img_url: string;
+        cluster_label: string;
+    }> & {
+        title: string;
+        ingredients: string;
+        preparation: string;
+        img_url: string;
+        cluster_label: string;
+    } & {
+        _id: import("mongoose").Types.ObjectId;
+    })[]>;
 }

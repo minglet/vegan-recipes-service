@@ -31,11 +31,13 @@ declare class Recipe {
         ingredients: string;
         preparation: string;
         img_url: string;
+        cluster_label: string;
     }> & {
         title: string;
         ingredients: string;
         preparation: string;
         img_url: string;
+        cluster_label: string;
     } & {
         _id: import("mongoose").Types.ObjectId;
     }>;
@@ -44,11 +46,30 @@ declare class Recipe {
         ingredients: string;
         preparation: string;
         img_url: string;
+        cluster_label: string;
     }> & {
         title: string;
         ingredients: string;
         preparation: string;
         img_url: string;
+        cluster_label: string;
+    } & {
+        _id: import("mongoose").Types.ObjectId;
+    })[]>;
+    static findByClusterNum({ cluster_num }: {
+        cluster_num: string;
+    }): Promise<(import("mongoose").Document<unknown, any, {
+        title: string;
+        ingredients: string;
+        preparation: string;
+        img_url: string;
+        cluster_label: string;
+    }> & {
+        title: string;
+        ingredients: string;
+        preparation: string;
+        img_url: string;
+        cluster_label: string;
     } & {
         _id: import("mongoose").Types.ObjectId;
     })[]>;

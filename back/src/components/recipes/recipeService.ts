@@ -16,6 +16,12 @@ export class recipeService {
 
     return recipe;
   }
+
+  /** Get same cluster recipes */
+  static async getSimilarRecipes( cluster_num :string) {
+    return await Recipe.findByClusterNum({cluster_num});
+  }
+
 }
 
 

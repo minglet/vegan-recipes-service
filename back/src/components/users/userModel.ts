@@ -31,6 +31,39 @@ class User {
   }
 }
 
-
-
 export { User };
+
+
+class Scrap {
+  static async findByUserIdAndRecipeId({ userId, recipeId } : any) {
+    return await UserModel.findOne({ _id: userId, recipe_scraps: recipeId });
+  }
+
+  static async create({ userId, recipeId }) {
+    return await UserModel.findOneAndUpdate({ _id: userId }, {$addToSet: { recipe_scraps: recipeId }});
+  }
+
+  static async findById({ user_id }: { user_id: string }) {
+    return await UserModel.findOne({ id: user_id });
+  }
+
+  static async findAll() {
+    return await UserModel.find({});
+  }
+
+  static async update({ recipe_scraps, fieldToUpdate, newValue }: {recipe_scraps: string, fieldToUpdate: string, newValue: any}) {
+    const filter = { id: recipe_scraps };
+    const update = { [fieldToUpdate]: newValue };
+    const option = { returnOriginal: false };
+
+    const updatedUser = await UserModel.findOneAndUpdate(
+      filter,
+      update,
+      option
+    );
+    return updatedUser;
+  }
+}
+
+
+export { Scrap };

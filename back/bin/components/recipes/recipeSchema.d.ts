@@ -28,10 +28,12 @@ declare const RecipeModel: import("mongoose").Model<{
     ingredients: string;
     preparation: string;
     img_url: string;
+    cluster_label: string;
 }, {}, {}, {}, Schema<any, import("mongoose").Model<any, any, any, any, any>, {}, {}, {}, {}, "type", {
     title: string;
     ingredients: string;
     preparation: string;
     img_url: string;
+    cluster_label: string;
 }>>;
 export { RecipeModel };

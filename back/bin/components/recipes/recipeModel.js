@@ -9,6 +9,9 @@ class Recipe {
     static async findAll() {
         return await recipeSchema_1.RecipeModel.find({});
     }
+    static async findByClusterNum({ cluster_num }) {
+        return await recipeSchema_1.RecipeModel.find({ cluster_label: cluster_num });
+    }
 }
 exports.Recipe = Recipe;
 //# sourceMappingURL=recipeModel.js.map

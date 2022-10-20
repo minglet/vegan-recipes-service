@@ -13,6 +13,9 @@ class recipeService {
             throw new notfound_error_1.NotFoundError("해당 레시피가 존재하지 않습니다.😢");
         return recipe;
     }
+    static async getSimilarRecipes(cluster_num) {
+        return await recipeModel_1.Recipe.findByClusterNum({ cluster_num });
+    }
 }
 exports.recipeService = recipeService;
 //# sourceMappingURL=recipeService.js.map

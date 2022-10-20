@@ -18,6 +18,10 @@ const RecipeSchema = new Schema(
       type: String,
       required: true,
     },
+    cluster_label: {
+      type: String,
+      required: true
+    }
   },
   {
     timestamps: true,

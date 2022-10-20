@@ -18,6 +18,9 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
+    recipe_scraps : {
+      type : Array 
+    },
   },
   {
     timestamps: true,
@@ -27,3 +30,4 @@ const UserSchema = new Schema(
 const UserModel = model("User", UserSchema);
 
 export { UserModel };
+
