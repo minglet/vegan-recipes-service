@@ -33,13 +33,12 @@ const Wrapper = styled("div")`
   }
 
   .team-title {
-    margin: 20vh 0 50px 0;
+    margin: 145px 0 50px 0;
   }
 
   .team-title h1 {
     font-family: SBAggroB;
     font-size: 50px;
-    color: #263238;
   }
 
   .img {

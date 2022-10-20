@@ -4,35 +4,35 @@ import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container";
 
 function RecipePageTitle() {
-
-    return (
-      <>
-        <Box
-          sx={{
-            bgcolor: "background.paper",
-            pt: 8,
-            pb: 6,
-          }}
-        >
-          <Container maxWidth="sm">
-            <Typography
-              component="h1"
-              variant="h2"
-              align="center"
-              color="text.primary"
-              gutterBottom
-            >
-              Vegan Recipes
-            </Typography>
-            <Stack
-              sx={{ pt: 4 }}
-              direction="row"
-              spacing={2}
-              justifyContent="center"
-            > </Stack>
-          </Container>
-        </Box>
-      </> 
+  return (
+    <>
+      <Box
+        sx={{
+          bgcolor: "background.paper",
+          pt: 8,
+          pb: 6,
+        }}
+      >
+        <Container maxWidth="sm">
+          <Typography
+            align="center"
+            color="text.primary"
+            gutterBottom
+            style={{ fontFamily: "SBAggroB", fontSize: "50px" }}
+          >
+            Vegan Recipes
+          </Typography>
+          <Stack
+            sx={{ pt: 4 }}
+            direction="row"
+            spacing={2}
+            justifyContent="center"
+          >
+            {" "}
+          </Stack>
+        </Container>
+      </Box>
+    </>
   );
 }
 

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Typography } from "@mui/material";
 
 import styled from "@emotion/styled";
@@ -13,19 +13,18 @@ const Wrapper = styled("div")`
 
   .user {
     margin: 150px 0 30px 0;
-    font-family: NanumSquareRound;
-    font-size: 80px;
+    font-family: SBAggroB;
+    font-size: 50px;
   }
 `;
 
 export default function UserName() {
-
   const [user, setUser] = useState(null);
-  useEffect (() => {
-    Api.get('user/current').then((res) => setUser(res.data))
+  useEffect(() => {
+    Api.get("user/current").then((res) => setUser(res.data));
   }, []);
   console.log(user);
-  
+
   return (
     <Wrapper>
       {user && (

@@ -32,7 +32,7 @@ const Wrapper = styled("div")`
   .like-recipe-text {
     display: inline-block;
     background-color: #ffffff;
-    transform: translate(-300px, -32px);
+    transform: translate(-280px, -32px);
     padding: 0 10px 0 10px;
   }
 `;
