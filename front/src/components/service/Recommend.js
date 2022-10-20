@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -26,6 +26,7 @@ const Wrapper = styled("div")`
 `;
 
 export default function Recommend() {
+  const navigate = useNavigate();
   // console.log(recipeId);
   // const recipe_id = recipeId.recipeId;
   // console.log(recipe_id);
@@ -33,7 +34,8 @@ export default function Recommend() {
   const cards = [1];
 
   const { recipeId } = useParams();
-  // console.log(recipeId);
+ 
+  console.log(recipeId);
 
   const [recommendCard, setRecommendCard] = useState(null);
   
@@ -76,7 +78,11 @@ export default function Recommend() {
               </CardContent>
               <CardActions>
                 <Grid xs="6">
-                  <Button size="small" color="inherit">
+                  <Button 
+                    size="small" 
+                    color="inherit"
+                    component = {Link} to = {`/recipes/current/${recommendCard._id}`}
+                  >
                     VIEW
                   </Button>
                 </Grid>
