@@ -103,10 +103,23 @@ export default function RegisterPage() {
                 alignItems: "center",
               }}
             >
-              <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+              <Avatar
+                sx={{ m: 1, bgcolor: "secondary.main" }}
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  window.location.reload("/team");
+                }}
+              >
                 {/* <LockOutlinedIcon /> */}
               </Avatar>
-              <Typography component="h1" variant="h5">
+              <Typography
+                component="h1"
+                variant="h5"
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  window.location.reload();
+                }}
+              >
                 Register
               </Typography>
               <Box

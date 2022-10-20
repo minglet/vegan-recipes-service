@@ -18,7 +18,14 @@ function RecipePageTitle() {
             align="center"
             color="text.primary"
             gutterBottom
-            style={{ fontFamily: "SBAggroB", fontSize: "50px" }}
+            style={{
+              fontFamily: "SBAggroB",
+              fontSize: "50px",
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              window.location.reload();
+            }}
           >
             Vegan Recipes
           </Typography>

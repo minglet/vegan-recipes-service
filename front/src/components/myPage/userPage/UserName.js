@@ -28,7 +28,14 @@ export default function UserName() {
   return (
     <Wrapper>
       {user && (
-        <Typography className="user" variant="h2">
+        <Typography
+          className="user"
+          variant="h2"
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            window.location.reload();
+          }}
+        >
           {user.name}
         </Typography>
       )}

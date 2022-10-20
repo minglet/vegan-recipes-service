@@ -13,6 +13,7 @@ import hj from "../../img/hj.png";
 import jh from "../../img/jh.png";
 import bk from "../../img/bk.png";
 import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 const Wrapper = styled("div")`
   display: flex;
@@ -81,7 +82,13 @@ const Wrapper = styled("div")`
 export default function TeamPage() {
   return (
     <Wrapper>
-      <div className="team-title">
+      <div
+        className="team-title"
+        style={{ cursor: "pointer" }}
+        onClick={() => {
+          window.location.reload("/team");
+        }}
+      >
         <h1>Windows11</h1>
       </div>
 
