@@ -56,20 +56,6 @@ userAuthRouter.post(
   }
 });
 
-// Get users list (전체 유저 리스트: 사용안할수도있는 기능)
-userAuthRouter.get(
-  "/userlist",
-  login_required,
-  async function (req, res, next) {
-    try {
-      // 전체 사용자 목록을 얻음
-      const users = await userAuthService.getUsers();
-      res.status(200).send(users);
-    } catch (error) {
-      next(error);
-    }
-  }
-);
 
 // Get user info 
 userAuthRouter.get(
@@ -130,15 +116,7 @@ userAuthRouter.put(
   }
 );
 
-// jwt 토큰 기능 확인용, 삭제해도 되는 라우터임.
-userAuthRouter.get("/afterlogin", login_required, function (req, res, next) {
-  res
-    .status(200)
-    .send(
-      `안녕하세요 ${req.currentUserId}님, jwt 웹 토큰 기능 정상 작동 중입니다.`
-    );
-});
-
+/** Add or undo scrap */
 userAuthRouter.put(
   "/scrap/addscrap/:recipeId",
   login_required,
@@ -149,12 +127,13 @@ userAuthRouter.put(
         user_id,
       })
 
-      //현재 레시피 스크랩 현황 
+      // 현재 레시피 스크랩 현황 
       const recipe_scraps = currentUserInfo.recipe_scraps
 
-      //현재 유저가 보고 있는 레시피(스크랩 할 레시피)
+      // 현재 유저가 보고 있는 레시피(스크랩 할 레시피)
       const recipe_id = req.params.recipeId
 
+      // 이미 recipe_id가 스크랩 목록에 있다면 없애기
       if (recipe_scraps.includes(recipe_id)) {
         recipe_scraps.splice(recipe_scraps.indexOf(recipe_id), 1)
       } else {
@@ -162,10 +141,8 @@ userAuthRouter.put(
         recipe_scraps.push(recipe_id)  
       }
 
-      //업데이트 된 레시피 스크랩
+      //업데이트 된 레시피 스크랩 목록
       const toUpdate :{ recipe_scraps?: string[]} = {recipe_scraps}
-
-      //업데이트
       const updatedUser = await userAuthService.setUser({ user_id, toUpdate });
 
       res.status(200).json(updatedUser)
@@ -175,7 +152,7 @@ userAuthRouter.put(
   }
 );
 
-/** 마이페이지에서 삭제 기능 */
+/** Delete scrap */
 userAuthRouter.put(
   "/users/unscrap/:recipeId",
   login_required,
@@ -188,7 +165,7 @@ userAuthRouter.put(
         user_id
       })
 
-      // recipe_scraps => 유저가 좋아요한 레시피 전체
+      // recipe_scraps => 유저가 좋아요한 레시피 전체 목록
       const recipe_scraps = user_info.recipe_scraps
       if (recipe_scraps.includes(recipe_id)) {
         recipe_scraps.splice(recipe_scraps.indexOf(recipe_id), 1)
@@ -205,6 +182,7 @@ userAuthRouter.put(
   }
 );
 
+/** Get all scraps */
 userAuthRouter.get(
   "/scraps",
   login_required,

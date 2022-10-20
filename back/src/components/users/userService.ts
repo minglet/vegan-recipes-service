@@ -69,12 +69,6 @@ class userAuthService {
     return loginUser;
   }
 
-  /** Get all users */
-  static async getUsers() {
-    return await User.findAll();
-  }
-
-
   /** Edit user info */
   static async setUser({ user_id, toUpdate }:
     {user_id: string, toUpdate: {
@@ -88,7 +82,7 @@ class userAuthService {
         ("가입 내역이 없습니다. 다시 한 번 확인해 주세요.");
     
 
-    // 업데이트 대상에 name이 있다면, 즉 name 값이 null 이 아니라면 업데이트 진행
+    // 업데이트 대상에 값이 있다면, 즉 값이 null 이 아니라면 업데이트 진행
     if (toUpdate.name) {
       const fieldToUpdate = "name";
       const newValue = toUpdate.name;
@@ -120,7 +114,6 @@ class userAuthService {
       
       return { errorMessage };
     }
-
     return user;
   }
 }
