@@ -71,8 +71,8 @@ function LoginPage() {
         payload: user,
       });
 
-      // 기본 페이지로 이동함.
-      navigate("/", { replace: true });
+      // 마이페이지로 이동함.
+      navigate("/users", { replace: true });
     } catch (err) {
       console.log("로그인에 실패하였습니다.\n", err);
       setUserValidation("Please check your email or password");
