@@ -25,34 +25,43 @@
 /// <reference types="mongoose/types/inferschematype" />
 export declare class recipeService {
     static getRecipes(): Promise<(import("mongoose").Document<unknown, any, {
+        index: string;
         title: string;
         ingredients: string;
         preparation: string;
         img_url: string;
         cluster_label: string;
+        sim_idx: string;
     }> & {
+        index: string;
         title: string;
         ingredients: string;
         preparation: string;
         img_url: string;
         cluster_label: string;
+        sim_idx: string;
     } & {
         _id: import("mongoose").Types.ObjectId;
     })[]>;
     static getRecipeInfo(recipe_id: string): Promise<any>;
-    static getSimilarRecipes(cluster_num: string): Promise<(import("mongoose").Document<unknown, any, {
+    static getRecipeIndex(recipe_id: string): Promise<any>;
+    static getSimilarRecipes(sim_idx: string): Promise<import("mongoose").Document<unknown, any, {
+        index: string;
         title: string;
         ingredients: string;
         preparation: string;
         img_url: string;
         cluster_label: string;
+        sim_idx: string;
     }> & {
+        index: string;
         title: string;
         ingredients: string;
         preparation: string;
         img_url: string;
         cluster_label: string;
+        sim_idx: string;
     } & {
         _id: import("mongoose").Types.ObjectId;
-    })[]>;
+    }>;
 }

@@ -10,8 +10,8 @@ class Recipe {
     return await RecipeModel.find({});
   }
 
-  static async findByClusterNum({ cluster_num }: { cluster_num: string }) {
-    return await RecipeModel.find({ cluster_label: cluster_num });
+  static async findByIndex({ sim_idx }: { sim_idx: string }) {
+    return await RecipeModel.findOne({ index: sim_idx });
   }
 }
 
