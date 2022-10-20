@@ -176,7 +176,7 @@ export default function TeamPage() {
             >
               JiHye
             </Typography>
-            <div className="box frontend">frontend</div>
+            <div className="box frontend">Frontend</div>
             <div className="icon-text-container">
               <GitHubIcon className="icon" />
               <Typography variant="body2">
