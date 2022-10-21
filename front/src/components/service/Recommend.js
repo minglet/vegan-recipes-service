@@ -28,21 +28,17 @@ export default function Recommend() {
   const cards = [1];
 
   const { recipeId } = useParams();
- 
   // console.log(recipeId);
-
   const [recommendCard, setRecommendCard] = useState(null);
-  
+  const [loading, setLoading] = useState(true);
 
   useEffect (() => {
-    Api.get(`recipes/current/${recipeId}/rec`).then((res) => { console.log('test2');
-                                                                setRecommendCard(res.data);
-                                                                console.log(recommendCard);})
-
+    Api.get(`recipes/current/${recipeId}/rec`).then((res) => { 
+      setRecommendCard(res.data);
+      setLoading(false);
+    })
   }, []);
-  if(recommendCard){
-  // console.log(recommendCard);
-}
+  if(recommendCard){ console.log(loading + '추천 페이지' + recipeId + '추천된 페이지 id : ' + recommendCard._id)}
   
   return (
     <Wrapper>

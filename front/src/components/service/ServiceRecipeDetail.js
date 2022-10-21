@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 import { useParams } from "react-router-dom";
 import LikeBtn from "./LikeBtn";
-import Recommend from "./Recommend";
 import styled from "@emotion/styled";
 
 import * as Api from "../../api";
@@ -47,6 +46,7 @@ const Wrapper = styled(Container)`
 `;
 
 export default function ServiceRecipeDetail() {
+  console.log('detail page 들어옴');
   const { recipeId } = useParams();
   const [recipes, setrecipes] = useState([]);
 
@@ -54,6 +54,7 @@ export default function ServiceRecipeDetail() {
     if (!recipeId) return;
     // get요청res를 setState로 !
     Api.get(`recipes/current/${recipeId}`).then((res) => setrecipes(res.data));
+    console.log('바뀜x')                                       
   }, [recipeId]);
 
   return (
