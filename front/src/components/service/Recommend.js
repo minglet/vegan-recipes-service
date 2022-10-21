@@ -28,22 +28,16 @@ export default function Recommend() {
   const cards = [1];
 
   const { recipeId } = useParams();
- 
-  // console.log(recipeId);
-
   const [recommendCard, setRecommendCard] = useState(null);
-  
+  const [loading, setLoading] = useState(true);
 
-  useEffect (() => {
-    Api.get(`recipes/current/${recipeId}/rec`).then((res) => { console.log('test2');
-                                                                setRecommendCard(res.data);
-                                                                console.log(recommendCard);})
-
+  useEffect(() => {
+    Api.get(`recipes/current/${recipeId}/rec`).then((res) => {
+      setRecommendCard(res.data);
+      setLoading(false);
+    });
   }, []);
-  if(recommendCard){
-  // console.log(recommendCard);
-}
-  
+
   return (
     <Wrapper>
       <Grid item key={cards}>
@@ -70,10 +64,11 @@ export default function Recommend() {
               </CardContent>
               <CardActions>
                 <Grid xs="6">
-                  <Button 
-                    size="small" 
+                  <Button
+                    size="small"
                     color="inherit"
-                    component = {Link} to = {`/recipes/current/${recommendCard._id}`}
+                    component={Link}
+                    to={`/recipes/current/${recommendCard._id}`}
                   >
                     VIEW
                   </Button>

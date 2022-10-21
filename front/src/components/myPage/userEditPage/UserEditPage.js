@@ -15,18 +15,14 @@ export default function UserEditPage() {
   const navigate = useNavigate();
 
   const [user, setUser] = useState("");
-  const email = user.email;  // email 변경 불가
+  const email = user.email; // email 변경 불가
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [password_confirm, setPasswordConfirm] = useState("");
 
-  useEffect (() => {
-    Api.get('user/current').then((res) => setUser(res.data))
-
+  useEffect(() => {
+    Api.get("user/current").then((res) => setUser(res.data));
   }, []);
-
-  console.log(user);
-  // console.log(user.name);
 
   // 비밀번호가 4글자 이상인지 여부를 확인함.
   const isPasswordValid = password.length >= 4;
@@ -35,8 +31,7 @@ export default function UserEditPage() {
   // 이름이 2글자 이상인지 여부를 확인함.
   const isNameValid = name.length >= 2;
 
-  const isFormValid =
-    isPasswordValid && isPasswordSame && isNameValid;
+  const isFormValid = isPasswordValid && isPasswordSame && isNameValid;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,7 +41,7 @@ export default function UserEditPage() {
       password: password,
     });
 
-    navigate('/users');
+    navigate("/users");
   };
 
   return (
@@ -66,54 +61,54 @@ export default function UserEditPage() {
           </Typography>
 
           <Box sx={{ mt: 3 }}>
-                  <TextField
-                    label="Name"
-                    variant="outlined"
-                    margin="normal"
-                    fullWidth
-                    autoFocus
-                    defaultValue= {user.name}
-                    value = {name}
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                  {!isNameValid && (
-                    <Form.Text className="text-success">
-                      Name should be same as or more than 2 letters.
-                    </Form.Text>
-                  )}    
-            
-                  <TextField
-                    name="password"
-                    label="Password"
-                    variant="outlined"
-                    type="password"
-                    autoComplete="current-password"
-                    margin="normal"
-                    fullWidth
-                    value = {password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  {!isPasswordValid && (
-                    <Form.Text className="text-success">
-                      Same as or More than 4 Letters.
-                    </Form.Text>
-                  )}
-    
-                  <TextField
-                    label="Confirm password"
-                    variant="outlined"
-                    type="password"
-                    autoComplete="current-password"
-                    margin="normal"
-                    fullWidth
-                    value = {password_confirm}
-                    onChange={(e) => setPasswordConfirm(e.target.value)}
-                  />
-                  {!isPasswordSame && (
-                    <Form.Text className="text-success">
-                      Please check the password one more.
-                    </Form.Text>
-                  )}
+            <TextField
+              label="Name"
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              autoFocus
+              defaultValue={user.name}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            {!isNameValid && (
+              <Form.Text className="text-success">
+                Name should be same as or more than 2 letters.
+              </Form.Text>
+            )}
+
+            <TextField
+              name="password"
+              label="Password"
+              variant="outlined"
+              type="password"
+              autoComplete="current-password"
+              margin="normal"
+              fullWidth
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            {!isPasswordValid && (
+              <Form.Text className="text-success">
+                Same as or More than 4 Letters.
+              </Form.Text>
+            )}
+
+            <TextField
+              label="Confirm password"
+              variant="outlined"
+              type="password"
+              autoComplete="current-password"
+              margin="normal"
+              fullWidth
+              value={password_confirm}
+              onChange={(e) => setPasswordConfirm(e.target.value)}
+            />
+            {!isPasswordSame && (
+              <Form.Text className="text-success">
+                Please check the password one more.
+              </Form.Text>
+            )}
 
             <Button
               // onClick={handleSubmit}

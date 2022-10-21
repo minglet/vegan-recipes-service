@@ -35,6 +35,7 @@ const Wrapper = styled("div")`
 function useScraps() {
   const [scraps, setScraps] = useState([]);
   const [lastUpdate, setLastUpdate] = useState();
+
   useEffect(() => {
     const fetchData = async () => {
       const res = await Api.get(`scraps`);
@@ -52,6 +53,7 @@ function useScraps() {
 }
 
 export default function LikeBtn() {
+  const [loading, setLoading] = useState(true);
   const { data: scraps, refetch } = useScraps();
 
   const userState = useContext(UserStateContext);
@@ -74,19 +76,11 @@ export default function LikeBtn() {
     // 로그인이 되었을 때 작동
     const res = await Api.put(`scrap/addscrap/${recipeId}`);
     refetch();
+    setLoading(false);
   };
 
   return (
     <Wrapper>
-      <div className="recommend-container">
-        <Grow in={isScrap}>
-          <Paper sx={{ border: "none" }} elevation={0} variant="outlined">
-            
-              <Recommend/>
-            
-          </Paper>
-        </Grow>
-      </div>
       <Button
         className="button"
         onClick={() => {
@@ -108,6 +102,17 @@ export default function LikeBtn() {
           </svg>
         }
       </Button>
+      {isScrap && !loading ? (
+        <div className="recommend-container">
+          <Grow in={isScrap}>
+            <Paper sx={{ border: "none" }} elevation={0} variant="outlined">
+              <Recommend />
+            </Paper>
+          </Grow>
+        </div>
+      ) : (
+        <></>
+      )}
     </Wrapper>
   );
 }

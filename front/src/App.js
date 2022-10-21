@@ -4,8 +4,8 @@ import { loginReducer } from "./reducer";
 
 import React, { useState, useEffect, useReducer, createContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Box, CircularProgress, ThemeProvider } from "@mui/material";
-import theme from "./theme";
+// import { Box, CircularProgress, ThemeProvider } from "@mui/material";
+// import theme from "./theme";
 
 import NavBar from "./components/NavBar";
 import Main from "./components/mainPage/Main";
@@ -62,7 +62,7 @@ function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
+    // <ThemeProvider theme={theme}>
       <DispatchContext.Provider value={dispatch}>
         <UserStateContext.Provider value={userState}>
           <Router>
@@ -83,7 +83,7 @@ function App() {
           </Router>
         </UserStateContext.Provider>
       </DispatchContext.Provider>
-    </ThemeProvider>
+    // </ThemeProvider>
   );
 }
 

@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 import { useParams } from "react-router-dom";
 import LikeBtn from "./LikeBtn";
-import Recommend from "./Recommend";
 import styled from "@emotion/styled";
 
 import * as Api from "../../api";
