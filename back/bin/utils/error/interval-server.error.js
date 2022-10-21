@@ -1,10 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.IntervalServerError = void 0;
-class IntervalServerError {
+exports.InternalServerError = void 0;
+class InternalServerError {
     constructor(message) {
         this.message = message;
+        this.status = 500;
     }
 }
-exports.IntervalServerError = IntervalServerError;
+exports.InternalServerError = InternalServerError;
 //# sourceMappingURL=interval-server.error.js.map

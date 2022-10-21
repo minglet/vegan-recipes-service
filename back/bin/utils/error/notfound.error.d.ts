@@ -1,5 +1,5 @@
 export declare class NotFoundError {
-    status: 404;
+    status: number;
     message: any;
     constructor(message: any);
 }

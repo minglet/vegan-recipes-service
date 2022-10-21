@@ -2,7 +2,8 @@ import { User } from "./userModel"; // from을 폴더(db) 로 설정 시, 디폴
 import bcrypt from "bcryptjs";
 import { v4 as uuidv4 } from "uuid";
 import jwt from "jsonwebtoken";
-import { Recipe } from "../recipes/recipeModel";
+import { BadRequestError } from "../../utils/error/bad-request.error"
+
 
 class userAuthService {
   /** User register */
@@ -33,11 +34,10 @@ class userAuthService {
   static async getUser({ email, password }: {email: string, password: string}) {
     // 이메일 db에 존재 여부 확인
     const user = await User.findByEmail({ email });
-    if (!user) {
-      const errorMessage =
-        "해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.";
-      return { errorMessage };
-    }
+    if (!user) 
+      throw new BadRequestError 
+       ( "해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.");
+    
 
     // 비밀번호 일치 여부 확인
     const correctPasswordHash = user.password;
@@ -45,11 +45,10 @@ class userAuthService {
       password,
       correctPasswordHash
     );
-    if (!isPasswordCorrect) {
-      const errorMessage =
-        "비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.";
-      return { errorMessage };
-    }
+    if (!isPasswordCorrect) 
+      throw new BadRequestError 
+        ("비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.");
+    
 
     // 로그인 성공 -> JWT 웹 토큰 생성
     const secretKey = process.env.JWT_SECRET_KEY || "jwt-secret-key";
@@ -70,12 +69,6 @@ class userAuthService {
     return loginUser;
   }
 
-  /** Get all users */
-  static async getUsers() {
-    return await User.findAll();
-  }
-
-
   /** Edit user info */
   static async setUser({ user_id, toUpdate }:
     {user_id: string, toUpdate: {
@@ -84,13 +77,12 @@ class userAuthService {
     let user :any = await User.findById({ user_id });
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
-    if (!user) {
-      const errorMessage =
-        "가입 내역이 없습니다. 다시 한 번 확인해 주세요.";
-      return { errorMessage };
-    }
+    if (!user) 
+      throw new BadRequestError
+        ("가입 내역이 없습니다. 다시 한 번 확인해 주세요.");
+    
 
-    // 업데이트 대상에 name이 있다면, 즉 name 값이 null 이 아니라면 업데이트 진행
+    // 업데이트 대상에 값이 있다면, 즉 값이 null 이 아니라면 업데이트 진행
     if (toUpdate.name) {
       const fieldToUpdate = "name";
       const newValue = toUpdate.name;
@@ -122,7 +114,6 @@ class userAuthService {
       
       return { errorMessage };
     }
-
     return user;
   }
 }

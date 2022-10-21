@@ -42,7 +42,7 @@ export class MiddleWare {
     });
 
     App.use(userAuthRouter);
-    App.use("/recipes", recipeRouter);
+    App.use(recipeRouter);
     App.use(graphRouter);
 
     /** Error handling */

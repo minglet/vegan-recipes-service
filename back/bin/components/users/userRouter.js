@@ -1,4 +1,7 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.userAuthRouter = void 0;
 const express_1 = require("express");
@@ -6,9 +9,10 @@ const notfound_error_1 = require("../../utils/error/notfound.error");
 const login_required_1 = require("../../lib/login_required");
 const recipeService_1 = require("../recipes/recipeService");
 const userService_1 = require("./userService");
+const validator_middleware_1 = __importDefault(require("../../middleware/validator.middleware"));
 const userAuthRouter = (0, express_1.Router)();
 exports.userAuthRouter = userAuthRouter;
-userAuthRouter.post("/user/register", async function (req, res, next) {
+userAuthRouter.post("/user/register", (0, validator_middleware_1.default)('register'), async function (req, res, next) {
     try {
         const { name, email, password } = req.body;
         const newUser = await userService_1.userAuthService.addUser({
@@ -25,7 +29,7 @@ userAuthRouter.post("/user/register", async function (req, res, next) {
         next(error);
     }
 });
-userAuthRouter.post("/user/login", async function (req, res, next) {
+userAuthRouter.post("/user/login", (0, validator_middleware_1.default)('login'), async function (req, res, next) {
     try {
         const { email, password } = req.body;
         const user = await userService_1.userAuthService.getUser({ email, password });
@@ -33,15 +37,6 @@ userAuthRouter.post("/user/login", async function (req, res, next) {
             throw new Error(user.errorMessage);
         }
         res.status(200).send(user);
-    }
-    catch (error) {
-        next(error);
-    }
-});
-userAuthRouter.get("/userlist", login_required_1.login_required, async function (req, res, next) {
-    try {
-        const users = await userService_1.userAuthService.getUsers();
-        res.status(200).send(users);
     }
     catch (error) {
         next(error);
@@ -62,7 +57,7 @@ userAuthRouter.get("/user/current", login_required_1.login_required, async funct
         next(error);
     }
 });
-userAuthRouter.put("/users/:userId", login_required_1.login_required, async function (req, res, next) {
+userAuthRouter.put("/users/:userId", (0, validator_middleware_1.default)('edit'), login_required_1.login_required, async function (req, res, next) {
     var _a, _b;
     try {
         const currentUser = req.currentUserId;
@@ -82,11 +77,6 @@ userAuthRouter.put("/users/:userId", login_required_1.login_required, async func
     catch (error) {
         next(error);
     }
-});
-userAuthRouter.get("/afterlogin", login_required_1.login_required, function (req, res, next) {
-    res
-        .status(200)
-        .send(`안녕하세요 ${req.currentUserId}님, jwt 웹 토큰 기능 정상 작동 중입니다.`);
 });
 userAuthRouter.put("/scrap/addscrap/:recipeId", login_required_1.login_required, async (req, res, next) => {
     try {
