@@ -103,7 +103,7 @@ export default function LikeBtn() {
           </svg>
         }
       </Button>
-      {(isScrap && !loading)? (
+      {(isScrap || !loading)? (
         <div className="recommend-container">
         <Grow in={isScrap}>
           <Paper sx={{ border: "none" }} elevation={0} variant="outlined">
