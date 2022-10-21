@@ -3,6 +3,7 @@ import styled from "styled-components";
 function Pagination({ total, limit, page, setPage }) {
   // 총 페이지 수
   const numPages = Math.ceil(total / limit);
+  if (page > numPages) {setPage(1)}
   // 1~5 (1그룹), 6~10(2그룹)
   const pageCount = 5;
   const pageGroup = Math.ceil(page / pageCount);
