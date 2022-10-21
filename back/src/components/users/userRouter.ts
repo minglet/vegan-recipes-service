@@ -83,7 +83,6 @@ userAuthRouter.get(
 // Edit user info
 userAuthRouter.put(
   "/users/:userId",
-  validator('edit'),
   login_required,
   async function (req, res, next) {
     try {

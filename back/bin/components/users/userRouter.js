@@ -57,7 +57,7 @@ userAuthRouter.get("/user/current", login_required_1.login_required, async funct
         next(error);
     }
 });
-userAuthRouter.put("/users/:userId", (0, validator_middleware_1.default)('edit'), login_required_1.login_required, async function (req, res, next) {
+userAuthRouter.put("/users/:userId", login_required_1.login_required, async function (req, res, next) {
     var _a, _b;
     try {
         const currentUser = req.currentUserId;
