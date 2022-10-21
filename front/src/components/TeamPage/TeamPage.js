@@ -74,7 +74,7 @@ const Wrapper = styled("div")`
     background-color: #ffbe40;
   }
 
-  .reader {
+  .leader {
     background-color: #dbb0ef;
   }
 `;
@@ -104,8 +104,8 @@ export default function TeamPage() {
             >
               HwiDong
             </Typography>
-            <div className="box reader" style={{ marginRight: 10 }}>
-              TeamReader
+            <div className="box leader" style={{ marginRight: 10 }}>
+              TeamLeader
             </div>
             <div className="box frontend">Frontend</div>
             <div className="icon-text-container">
