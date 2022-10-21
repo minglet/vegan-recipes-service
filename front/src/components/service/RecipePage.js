@@ -19,47 +19,53 @@ function RecipePage() {
 
   useEffect(() => {
     Api.get("recipes").then((res) => {
-                                       setAllRecipes(res.data);
-                                       setRecipes(res.data);
-                                      })
+      setAllRecipes(res.data);
+      setRecipes(res.data);
+    });
     setLoading(false);
   }, []);
-  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const newRecipes = allRecipes.filter((item) => item.ingredients.includes(keyword))
+    const newRecipes = allRecipes.filter((item) =>
+      item.ingredients.includes(keyword)
+    );
     setRecipes(newRecipes);
-  } 
+  };
 
   return (
     <Container className="like-recipe-container" sx={{ py: 8 }} maxWidth="md">
       <RecipePageTitle />
-
-      {/* Search Bar */}
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        {/* Search Bar */}
         <Paper
-          onSubmit={handleSubmit}   // enter로 검색 가능
+          onSubmit={handleSubmit} // enter로 검색 가능
           component="form"
-          sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: "50vh" }}
-          
+          sx={{
+            p: "2px 4px",
+            display: "flex",
+            alignItems: "center",
+            width: "50vh",
+          }}
         >
           <InputBase
             sx={{ ml: 1, flex: 1 }}
-            placeholder="Search"
+            placeholder="Search by Ingredients"
             // inputProps={{ inputValue }}
-            onChange={(e)=> setKeyword(e.target.value)}
+            onChange={(e) => setKeyword(e.target.value)}
           />
-          <Button 
-            type="button" 
-            sx={{ p: '10px' }} 
+          <Button
+            type="button"
+            sx={{ p: "10px" }}
             aria-label="search"
             color="inherit"
             onClick={handleSubmit}
-          >      
+          >
             <SearchIcon />
           </Button>
         </Paper>
+      </div>
 
       {/* Recipe Display */}
       <ServiceRecipes recipes={recipes} loading={loading} />
