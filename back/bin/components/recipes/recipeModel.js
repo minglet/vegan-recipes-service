@@ -8,6 +8,7 @@ class Recipe {
     }
     static async findAll() {
         return await recipeSchema_1.RecipeModel.find({});
+
     }
     static async findByIndex({ sim_idx }) {
         return await recipeSchema_1.RecipeModel.findOne({ index: sim_idx });

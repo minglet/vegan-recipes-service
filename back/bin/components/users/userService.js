@@ -44,6 +44,7 @@ class userAuthService {
         };
         return loginUser;
     }
+
     static async setUser({ user_id, toUpdate }) {
         let user = await userModel_1.User.findById({ user_id });
         if (!user)

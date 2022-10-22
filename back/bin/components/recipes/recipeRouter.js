@@ -21,6 +21,7 @@ recipeRouter.get("/recipes/current/:recipeId", async function (req, res, next) {
         res
             .status(200)
             .send(await recipeService_1.recipeService.getRecipeInfo(req.params.recipeId));
+
     }
     catch (error) {
         next(error);

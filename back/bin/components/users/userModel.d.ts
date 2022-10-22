@@ -30,6 +30,7 @@ declare class User {
         email: string;
         password: string;
         recipe_scraps: any[];
+
     }> & {
         id: string;
         name: string;
@@ -46,6 +47,7 @@ declare class User {
         name: string;
         email: string;
         password: string;
+
         recipe_scraps: any[];
     }> & {
         id: string;

@@ -9,6 +9,7 @@ export class recipeService {
 
   /** Get one recipe info */
   static async getRecipeInfo( recipe_id :string ) {
+
     const recipe: any = await Recipe.findById({recipe_id});
 
     // db에서 찾지 못한 경우, 에러 메시지 반환

@@ -1,3 +1,4 @@
+
 export declare class InternalServerError {
     status: number;
     message: any;
