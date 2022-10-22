@@ -3,6 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RecipeModel = void 0;
 const mongoose_1 = require("mongoose");
 const RecipeSchema = new mongoose_1.Schema({
+    index: {
+        type: String,
+        required: true
+    },
     title: {
         type: String,
         required: true,
@@ -19,6 +23,14 @@ const RecipeSchema = new mongoose_1.Schema({
         type: String,
         required: true,
     },
+    cluster_label: {
+        type: String,
+        required: true
+    },
+    sim_idx: {
+        type: String,
+        required: true
+    }
 }, {
     timestamps: true,
 });

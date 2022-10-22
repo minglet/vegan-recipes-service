@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import Blank from "./Blank";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -7,6 +10,8 @@ import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+
+import * as Api from "../../../../api";
 
 import styled from "@emotion/styled";
 
@@ -18,67 +23,106 @@ const Wrapper = styled("div")`
   align-items: center;
   margin: 10px;
   .like-recipe-container {
+    width: 805px;
     padding: 20px 70px 60px 70px;
     border: 2px solid #cccccc;
     border-radius: 50px;
-    /* box-shadow: 5px 2px 15px #cccccc; */
   }
 
   .like-recipe-text {
     display: inline-block;
     background-color: #ffffff;
-    transform: translate(-300px, -32px);
+    transform: translate(-280px, -32px);
     padding: 0 10px 0 10px;
   }
 `;
 
+function useScraps() {
+  const [data, setData] = useState([]);
+
+  const [lastUpdate, setLastUpdate] = useState();
+
+  const fetchData = async () => {
+    const { data } = await Api.get("scraps");
+    setData(data);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [lastUpdate]);
+
+  return {
+    data,
+    reFetch: () => {
+      setLastUpdate(new Date().getTime());
+    },
+  };
+}
+
 export default function RecipeCard() {
-  // 여기에 좋아하는 레시피 목록을 넣으면 되나?
-  const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const [scrapRecipe, setScrapRecipe] = useState();
+  // const { recipeId } = useParams();
+  const { data: recipes = [], reFetch } = useScraps();
+
+  const favorite = recipes.length > 0;
+
+  // 좋아하는 레시피 삭제버튼
+  const deleteRecipe = async (recipeId) => {
+    await Api.put(`users/unscrap/${recipeId}`);
+
+    // 리스트 다시 불러오기
+    reFetch();
+    // window.location.replace("/users");
+  };
 
   return (
     <Wrapper>
       <Container className="like-recipe-container" sx={{ py: 8 }} maxWidth="md">
-        <Typography className="like-recipe-text">
-          내가 좋아하는 레시피
-        </Typography>
+        <Typography className="like-recipe-text">My favorite recipe</Typography>
         {/* End hero unit */}
         <Grid container spacing={4}>
-          {cards.map((card) => (
-            <Grid item key={card} xs={12} sm={6} md={4}>
-              <Card
-                sx={{
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <CardMedia
-                  component="img"
-                  image="https://picsum.photos/300/300"
-                  alt="random"
-                />
-                <CardContent sx={{ flexGrow: 1 }}>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    {/* 레시피 이름 */}
-                    요리이름
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  <Grid xs="6">
-                    <Button size="small" color="inherit">
-                      보러가기
-                    </Button>
-                  </Grid>
-                  <Grid xs="6">
-                    <Button size="small" color="inherit">
-                      삭제
-                    </Button>
-                  </Grid>
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
+          {favorite ? (
+            recipes.map((item) => (
+              <Grid item key={item} xs={12} sm={6} md={4}>
+                <Card
+                  sx={{
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <CardMedia
+                    component="img"
+                    image={item.img_url}
+                    height="250px"
+                  />
+                  <CardContent sx={{ flexGrow: 1 }}>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      {item.title}
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Grid xs="6">
+                      <Button size="small" color="inherit">
+                        <Link to={`/recipes/current/${item._id}`}>VIEW</Link>
+                      </Button>
+                    </Grid>
+                    <Grid xs="6">
+                      <Button
+                        size="small"
+                        color="inherit"
+                        onClick={() => deleteRecipe(item._id)}
+                      >
+                        DELETE
+                      </Button>
+                    </Grid>
+                  </CardActions>
+                </Card>
+              </Grid>
+            ))
+          ) : (
+            <Blank />
+          )}
         </Grid>
       </Container>
     </Wrapper>

@@ -19,6 +19,9 @@ const UserSchema = new mongoose_1.Schema({
         type: String,
         required: true,
     },
+    recipe_scraps: {
+        type: Array
+    },
 }, {
     timestamps: true,
 });

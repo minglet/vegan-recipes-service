@@ -2,7 +2,7 @@ import { createTheme } from "@mui/material";
 
 const theme = createTheme({
   typography: {
-    fontFamily: ["NanumSquareRound"].join(","),
+    fontFamily: ["NanumSquareRound", "Roboto", "snas-serif"].join(","),
   },
   components: {
     MuiButton: {
@@ -12,7 +12,7 @@ const theme = createTheme({
       },
       styleOverrides: {
         root: {
-          fontFamily: ["NanumSquareRound"].join(","),
+          fontFamily: ["NanumSquareRound", "snas-serif"].join(","),
         },
       },
     },

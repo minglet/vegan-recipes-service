@@ -7,8 +7,7 @@ const graphRouter = (0, express_1.Router)();
 exports.graphRouter = graphRouter;
 graphRouter.get("/graphs", async (req, res, next) => {
     try {
-        const graphs = await graphService_1.graphService.getGraphs();
-        res.status(200).json(graphs);
+        res.status(200).json(await graphService_1.graphService.getGraphs());
     }
     catch (err) {
         next(err);

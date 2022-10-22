@@ -20,6 +20,7 @@
     "@sindresorhus/is": "^5.3.0",
     "@types/bcrypt": "^5.0.0",
     "@types/cors": "^2.8.12",
+    "@types/http-errors": "^1.8.2",
     "@types/jsonwebtoken": "^8.5.9",
     "@types/mongoose": "^5.11.97",
     "@types/node": "^18.8.2",
@@ -41,7 +42,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "start": "nodemon --exec ts-node bin/app.js",
-    "serve": "nodemon --exec ts-node -r tsconfig-paths/register src/app.ts"
+    "start": "nodemon --exec ts-node bin/server.js",
+    "serve": "nodemon --exec ts-node -r tsconfig-paths/register src/server.ts"
   }
 }

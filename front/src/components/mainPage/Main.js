@@ -1,6 +1,6 @@
 import AttractionCard from "./AttractionCard";
-import DrawPath from "./drawPath/DrawPath";
-import DataCard from "./data/DataCard";
+import DrawPath from "./DrawPath";
+import DataCard from "./DataCard";
 import ProposalCard from "./ProposalCard";
 import QuestionCard from "./QuestionCard";
 

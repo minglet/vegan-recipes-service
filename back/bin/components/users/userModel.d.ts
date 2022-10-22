@@ -25,58 +25,68 @@
 /// <reference types="mongoose/types/inferschematype" />
 declare class User {
     static create({ newUser }: any): Promise<import("mongoose").Document<unknown, any, {
+        id: string;
         name: string;
         email: string;
         password: string;
-        id: string;
+        recipe_scraps: any[];
+
     }> & {
+        id: string;
         name: string;
         email: string;
         password: string;
-        id: string;
+        recipe_scraps: any[];
     } & {
         _id: import("mongoose").Types.ObjectId;
     }>;
     static findByEmail({ email }: {
         email: string;
     }): Promise<import("mongoose").Document<unknown, any, {
+        id: string;
         name: string;
         email: string;
         password: string;
-        id: string;
+
+        recipe_scraps: any[];
     }> & {
+        id: string;
         name: string;
         email: string;
         password: string;
-        id: string;
+        recipe_scraps: any[];
     } & {
         _id: import("mongoose").Types.ObjectId;
     }>;
     static findById({ user_id }: {
         user_id: string;
     }): Promise<import("mongoose").Document<unknown, any, {
+        id: string;
         name: string;
         email: string;
         password: string;
-        id: string;
+        recipe_scraps: any[];
     }> & {
+        id: string;
         name: string;
         email: string;
         password: string;
-        id: string;
+        recipe_scraps: any[];
     } & {
         _id: import("mongoose").Types.ObjectId;
     }>;
     static findAll(): Promise<(import("mongoose").Document<unknown, any, {
+        id: string;
         name: string;
         email: string;
         password: string;
-        id: string;
+        recipe_scraps: any[];
     }> & {
+        id: string;
         name: string;
         email: string;
         password: string;
-        id: string;
+        recipe_scraps: any[];
     } & {
         _id: import("mongoose").Types.ObjectId;
     })[]>;
@@ -85,17 +95,106 @@ declare class User {
         fieldToUpdate: string;
         newValue: any;
     }): Promise<import("mongoose").Document<unknown, any, {
+        id: string;
         name: string;
         email: string;
         password: string;
-        id: string;
+        recipe_scraps: any[];
     }> & {
+        id: string;
         name: string;
         email: string;
         password: string;
-        id: string;
+        recipe_scraps: any[];
     } & {
         _id: import("mongoose").Types.ObjectId;
     }>;
 }
 export { User };
+declare class Scrap {
+    static findByUserIdAndRecipeId({ userId, recipeId }: any): Promise<import("mongoose").Document<unknown, any, {
+        id: string;
+        name: string;
+        email: string;
+        password: string;
+        recipe_scraps: any[];
+    }> & {
+        id: string;
+        name: string;
+        email: string;
+        password: string;
+        recipe_scraps: any[];
+    } & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    static create({ userId, recipeId }: {
+        userId: any;
+        recipeId: any;
+    }): Promise<import("mongoose").Document<unknown, any, {
+        id: string;
+        name: string;
+        email: string;
+        password: string;
+        recipe_scraps: any[];
+    }> & {
+        id: string;
+        name: string;
+        email: string;
+        password: string;
+        recipe_scraps: any[];
+    } & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    static findById({ user_id }: {
+        user_id: string;
+    }): Promise<import("mongoose").Document<unknown, any, {
+        id: string;
+        name: string;
+        email: string;
+        password: string;
+        recipe_scraps: any[];
+    }> & {
+        id: string;
+        name: string;
+        email: string;
+        password: string;
+        recipe_scraps: any[];
+    } & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    static findAll(): Promise<(import("mongoose").Document<unknown, any, {
+        id: string;
+        name: string;
+        email: string;
+        password: string;
+        recipe_scraps: any[];
+    }> & {
+        id: string;
+        name: string;
+        email: string;
+        password: string;
+        recipe_scraps: any[];
+    } & {
+        _id: import("mongoose").Types.ObjectId;
+    })[]>;
+    static update({ recipe_scraps, fieldToUpdate, newValue }: {
+        recipe_scraps: string;
+        fieldToUpdate: string;
+        newValue: any;
+    }): Promise<import("mongoose").Document<unknown, any, {
+        id: string;
+        name: string;
+        email: string;
+        password: string;
+        recipe_scraps: any[];
+    }> & {
+        id: string;
+        name: string;
+        email: string;
+        password: string;
+        recipe_scraps: any[];
+    } & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+}
+export { Scrap };

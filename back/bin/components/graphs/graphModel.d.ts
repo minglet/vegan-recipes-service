@@ -23,7 +23,7 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
-declare class Graph {
+export declare class Graph {
     static findAll(): Promise<(import("mongoose").Document<unknown, any, {
         data: {
             type: ObjectConstructor;
@@ -38,4 +38,3 @@ declare class Graph {
         _id: import("mongoose").Types.ObjectId;
     })[]>;
 }
-export { Graph };

@@ -1,10 +1,8 @@
 import { GraphModel } from "./graphSchema";
 
-class Graph {
+export class Graph {
   static async findAll() {
-    const charts = await GraphModel.find({});
-    return charts;
+    return await GraphModel.find({});
   }
 }
 
-export { Graph };

@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Typography } from "@mui/material";
 
 import styled from "@emotion/styled";
+
+import * as Api from "../../../api";
 
 const Wrapper = styled("div")`
   text-align: center;
@@ -11,18 +13,31 @@ const Wrapper = styled("div")`
 
   .user {
     margin: 150px 0 30px 0;
-    font-family: NanumSquareRound;
-    font-size: 80px;
+    font-family: SBAggroB;
+    font-size: 50px;
   }
 `;
 
 export default function UserName() {
-  const userName = "이사장";
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    Api.get("user/current").then((res) => setUser(res.data));
+  }, []);
+
   return (
     <Wrapper>
-      <Typography className="user" variant="h2">
-        {userName}님
-      </Typography>
+      {user && (
+        <Typography
+          className="user"
+          variant="h2"
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            window.location.reload();
+          }}
+        >
+          {user.name}
+        </Typography>
+      )}
     </Wrapper>
   );
 }
