@@ -1,6 +1,7 @@
-import React, { useEffect, useState, useRef } from "react";
+import React from "react";
 import { Typography } from "@mui/material";
 import styled from "@emotion/styled";
+import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 
 const Wrapper = styled("div")`
   position: relative;
@@ -29,34 +30,14 @@ const Wrapper = styled("div")`
 `;
 
 export default function QuestionCard() {
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        // console.log(entry);
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show");
-        } else {
-          entry.target.classList.remove("show");
-        }
-      });
-    });
-
-    const hiddenElements = document.querySelectorAll(".hidden");
-    hiddenElements.forEach((el) => observer.observe(el));
-
-    return () => {
-      hiddenElements.forEach((el) => {
-        // console.log("unobserve => ", el);
-        observer.unobserve(el);
-      });
-    };
-  }, []);
+  useIntersectionObserver();
 
   return (
     <Wrapper>
       <Typography sx={{ overflow: "hidden" }} component="div">
         <div className="text hidden">
-          "나도 지구를위해, 또 내 몸을 위해 채식을 하고 싶지만 너무 어려워요"
+          "I want to be a vegetarian for the earth and for my body, but it's too
+          hard"
         </div>
       </Typography>
     </Wrapper>

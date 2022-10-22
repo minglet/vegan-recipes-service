@@ -66,13 +66,13 @@ export default function AttractionCard() {
         }}
       >
         <div className="attraction-typo-content">
-          <span>지구를&nbsp;</span>
-          <span>위한&nbsp;</span>
-          <span>오늘&nbsp;</span>
-          <span>하루&nbsp;</span>
-          <span>한 끼,</span>
+          <span>A meal&nbsp;</span>
+          <span>for&nbsp;</span>
+          <span>the&nbsp;</span>
+          <span>earth&nbsp;</span>
+          <span>today,</span>
           <br />
-          <span>시작해볼까요?</span>
+          <span>Shall we get started?</span>
         </div>
       </Typography>
     </Wrapper>

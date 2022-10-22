@@ -1,44 +1,61 @@
-import { Router, Request, Response, NextFunction } from "express";
+import { Router } from "express";
+import { NotFoundError } from "../../utils/error/notfound.error";
+import { login_required } from "../../lib/login_required";
+import { userAuthService } from "../users/userService";
 import { recipeService } from "./recipeService";
 
 const recipeRouter = Router();
 
-// recipes + 경로
-// Get recipes list 
+/** Get recipes list  */
 recipeRouter.get(
-  "/",
+  "/recipes",
   async function (req, res, next) {
     try {
-      // 전체 레시피 목록을 얻음
-      const recipes = await recipeService.getRecipes();
-      res.status(200).send(recipes);
+      res.status(200).send(await recipeService.getRecipes());
     } catch (error) {
       next(error);
     }
   }
 );
 
-// Get recipe info 
+/** Get recipe info  */
 recipeRouter.get(
-  "/current/:recipeId",
+  "/recipes/current/:recipeId",
   async function (req, res, next) {
     try {
-      // jwt토큰에서 추출된 사용자 id를 가지고 db에서 사용자 정보를 찾음.
-      const recipe_id = req.params.recipeId;
-      const currentRecipeInfo = await recipeService.getRecipeInfo({
-        recipe_id,
-      });
+      res
+        .status(200)
+        .send(await recipeService.getRecipeInfo(req.params.recipeId));
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
-      if (currentRecipeInfo.errorMessage) {
-        throw new Error(currentRecipeInfo.errorMessage);
+/** Get the most similar recipe */ 
+recipeRouter.get(
+  "/recipes/current/:recipeId/rec",
+  login_required,
+  async function (req, res, next) {
+    try {
+      const user_id = req.currentUserId;
+      const user_info = await userAuthService.getUserInfo({user_id})
+      const recipe_like : string[] = user_info.recipe_scraps
+
+      const recipe_id = req.params.recipeId
+
+      if (!recipe_like.includes(recipe_id)) {
+        throw new NotFoundError("좋아요 레시피 리스트에서 찾을 수 없습니다.")
       }
 
-      res.status(200).send(currentRecipeInfo);
+      // 좋아요한 레시피와 유사성이 높은 레시피 찾기
+      const find_recipe = await recipeService.getRecipeIndex(recipe_id)
+      const similar_recipe = await recipeService.getSimilarRecipes(find_recipe)
+      
+      res.status(200).send(similar_recipe)
     } catch (error) {
       next(error);
     }
   }
 );
-
-
 export { recipeRouter };

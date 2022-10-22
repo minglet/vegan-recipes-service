@@ -4,8 +4,7 @@ exports.graphService = void 0;
 const graphModel_1 = require("./graphModel");
 class graphService {
     static async getGraphs() {
-        const graphs = await graphModel_1.Graph.findAll();
-        return graphs;
+        return await graphModel_1.Graph.findAll();
     }
 }
 exports.graphService = graphService;

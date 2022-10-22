@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
+import { Link, useParams } from "react-router-dom";
 import { Button } from "@mui/material";
+import { UserStateContext, DispatchContext } from "../../../App";
+
+import * as Api from "../../../api";
 
 import styled from "@emotion/styled";
 
@@ -16,10 +20,18 @@ const Wrapper = styled("div")`
 `;
 
 export default function UserEditBtn() {
+  const userState = useContext(UserStateContext);
+
   return (
     <Wrapper>
-      <Button className="user-edit-btn" variant="outlined" color="inherit">
-        회원정보 수정
+      <Button
+        component={Link}
+        to={`/users/${userState.user.id}`}
+        className="user-edit-btn"
+        variant="outlined"
+        color="inherit"
+      >
+        edit profile
       </Button>
     </Wrapper>
   );
