@@ -11,7 +11,7 @@
 
 ### 사용한 데이터
   - [Vegan Recipes](https://www.kaggle.com/datasets/rodrigoazs/vegan-recipes): 비건 레시피 데이터  
-  - [FoodEmissions]([https://www.kaggle.com/datasets/amandaroseknudsen/edgarfoodemissions](https://www.kaggle.com/datasets/amandaroseknudsen/foodproductemissions)): 식품 시스템에서 배출되는 GHG의 글로벌 배출량 인벤토리
+  - [FoodEmissions](https://www.kaggle.com/datasets/amandaroseknudsen/foodproductemissions): 식품 시스템에서 배출되는 GHG의 글로벌 배출량 인벤토리
   
 
 ### 기술 스택
